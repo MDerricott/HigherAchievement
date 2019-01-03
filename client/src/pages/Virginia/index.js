@@ -33,13 +33,8 @@ const wrapperStyles = {
   margin: "0 auto",
   padding: 10
 }
-const sidebarStyles = {
-  width: "100%",
-  maxWidth: 300,
-  margin: "0 auto",
-  padding: 10
 
-}
+
 const otherScale = scaleLinear()
   .domain([0,16.3])
   .range(["#FBE9E7","#FF5722"])
@@ -49,7 +44,7 @@ const colorScale = scaleLinear()
   .domain([0,10000,50000,500000,120000])
   .range(["#ffeee8","#ffab90","#ff5722","#993414","#331106"])
 
-class AlbersUSA extends Component {
+class Virginia extends Component {
   constructor() {
     super()
     this.state = {
@@ -83,7 +78,7 @@ class AlbersUSA extends Component {
   }
 
   handleCenterSelection(evt) {
-    const centerId = evt.target.getAttribute("data-city")
+    // const centerId = evt.target.getAttribute("data-city")
     // const center = this.state.centers[centerId]
     this.setState({
       viewBox: "6200 -350 980 751",
@@ -294,4 +289,4 @@ class AlbersUSA extends Component {
   }
 }
 
-export default AlbersUSA
+export default Virginia
