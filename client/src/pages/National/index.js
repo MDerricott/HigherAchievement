@@ -11,6 +11,9 @@ import { scaleLinear } from "d3-scale"
 import map from './data/states.json'
 import data from './data/data'
 import Tooltip from '@material-ui/core/Tooltip';
+import { Link } from "react-router-dom";
+import AppleBase from "./components/AffilateButton/"
+import svg from "../../images/apple.svg"
 
 
 
@@ -37,10 +40,10 @@ class National extends Component {
         displayText: "hide",
         mapStrokeWidth: .5,
         affiliates: [
-            {markerOffset: -10, name: "Baltimore", coordinates: [-76.6122 , 39.2904]},
-            {markerOffset: -10, name: "Washington DC", coordinates: [-77.0369, 38.9072]},
-            {markerOffset: -10, name: "Richmond", coordinates: [-77.4360, 37.5407]},
-            {markerOffset: -10, name: "Pittsburgh", coordinates: [-79.9959, 40.4406]},
+            {markerOffset: -10, name: "Baltimore", route: "baltimore", coordinates: [-76.6122 , 39.2904]},
+            {markerOffset: -10, name: "Washington DC", route: "dcmetro", coordinates: [-77.0369, 38.9072]},
+            {markerOffset: -10, name: "Richmond", route: "richmond", coordinates: [-77.4360, 37.5407]},
+            {markerOffset: -10, name: "Pittsburgh", route: "pittsburgh", coordinates: [-79.9959, 40.4406]},
         ]
     }
 
@@ -54,7 +57,7 @@ class National extends Component {
     this.setState({
       center: [-77.0369, 38.9072],
       zoom: 6,
-      radius: 6,
+      radius: 8,
       displayText: "affilateMarkers",
       mapStrokeWidth: 0,
     })
@@ -82,6 +85,11 @@ componentDidMount() {
 
     return (
       <div style={wrapperStyles}>
+          <button>  
+            <AppleBase />
+          </button>
+          {svg}
+          <img src={svg} height={100} alt="apple"/>
 
             <button
                 key={1}
@@ -152,9 +160,11 @@ componentDidMount() {
               )}
              
             </Geographies>
+            
             <Markers>
               {this.state.affiliates.map((affiliate, i) => (
-                 <Tooltip title="test"  placement="top" disableFocusListener key={"ab" + i}> 
+                
+                
                 <Marker
                   key={"marker" + i}
                   marker={affiliate}
@@ -164,6 +174,7 @@ componentDidMount() {
                     pressed: { fill: "#FF5722" },
                   }}
                   >
+                  <Link to={`/${affiliate.route}/`} >
                   <circle
                   className={this.state.circle}
                     cx={0}
@@ -175,6 +186,7 @@ componentDidMount() {
                       opacity: 1,
                     }}
                   />
+                  </Link>
                   <text
                     className={this.state.displayText}
                     textAnchor="middle"
@@ -188,9 +200,11 @@ componentDidMount() {
                   </text>
                
                 </Marker>
-                </Tooltip>
+                
+              
               ))}
             </Markers>  
+          
             
           </ZoomableGroup>
         </ComposableMap>

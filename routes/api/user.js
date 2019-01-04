@@ -9,10 +9,12 @@ router.route("/")
 //Matches with "/api/user/:id"
 router.route("/:id")
     .get(usercontroller.findUser)
+
+router.route("/likes/:id")
     .post(usercontroller.updateLikes)
 
 
-module .exports = router;
+module.exports = router;
 
 
 

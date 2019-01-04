@@ -1,10 +1,14 @@
+import React from 'react';
+import SvgIcon from '@material-ui/core/SvgIcon';
+// import apple from '../../../../images/apple'
 
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="790.000000pt" height="986.000000pt" viewBox="0 0 790.000000 986.000000"
- preserveAspectRatio="xMidYMid meet">
 
+function AppleButton (){
+    return (
+        <SvgIcon>
+            
 <g transform="translate(0.000000,986.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+fill="#062bb46" stroke="none"> 
 
 
 <path d="M5149 9225 c-49 -39 -123 -60 -175 -51 -30 6 -39 3 -66 -24 -17 -18
@@ -505,5 +509,11 @@ c37 44 99 61 225 61 148 1 193 21 224 101 2 6 19 -5 38 -22 39 -38 68 -41 109
 23 33 -2 17 -10 23 -38 25 -19 1 -41 -2 -49 -7z"/>
 <path d="M3791 591 c-25 -13 -44 -16 -72 -11 -52 10 -66 -7 -44 -50 15 -30 19
 -31 53 -25 42 7 171 50 180 60 4 3 1 14 -4 23 -15 24 -72 25 -113 3z"/>
-</g>
-</svg>
+</g> 
+        </SvgIcon>
+    );
+
+
+}
+
+export default AppleButton;
