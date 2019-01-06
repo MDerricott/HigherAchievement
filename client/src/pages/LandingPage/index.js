@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Timeline from './Timeline';
+import Grid from '@material-ui/core/Grid';
+import Tabs from './Tabs'
 // import API from "../utils/API";
 
 class LandingPage extends Component {
@@ -15,12 +18,34 @@ render(){
 
 
     return(
-        <div>Landing Page</div>
-    )
 
-    }
+        <div className="lp">  
+            <Grid container  >
+                    <Grid 
+                        item 
+                        width={"50%"} 
+                        xs={12} 
+                        md={6}
+                        className="loading-page"
+                    >
+                            <Grid container style={{height: 200}} justify="center" >
+                            <br></br>
+                            <br></br>
 
-
+                            Place holder for HA About Text and App Introduction
+                            </Grid>
+                                <Tabs />
+                            </Grid>
+                    <Grid 
+                        item 
+                        width={"50%"}  
+                        xs={12} 
+                        md={6}>
+                            <Timeline />
+                    </Grid>
+            </Grid>
+        </div>
+    )}
 
 }
 export default LandingPage

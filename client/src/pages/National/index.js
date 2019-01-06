@@ -14,6 +14,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from "react-router-dom";
 import AppleBase from "./components/AffilateButton/"
 import svg from "../../images/apple.svg"
+import AffilateButton from './components/AffiliateButtons'
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -84,7 +86,9 @@ componentDidMount() {
     const { poverty, mapStrokeWidth} = this.state
 
     return (
+      <Grid container justify="center">
       <div style={wrapperStyles}>
+    
           <button>  
             <AppleBase />
           </button>
@@ -103,6 +107,8 @@ componentDidMount() {
           <button onClick={this.handleReset}>
             { "Reset" }
           </button>
+ <Grid container justify="center">
+ <Grid item xs={12}>
         <ComposableMap
           projection="albersUsa"
           projectionConfig={{
@@ -208,7 +214,43 @@ componentDidMount() {
             
           </ZoomableGroup>
         </ComposableMap>
+        </Grid>
+  </Grid>
+        <div>
+<Grid container width="100%" spacing={8}>
+                
+                  
+                    <Grid item sm={3}>
+                      
+                        <AffilateButton key={1} affilate="DC Metro"  />
+                    </Grid>
+                    
+                 
+                    <Grid item sm={3}>
+                        <AffilateButton key={2} affilate="Baltimore"  />
+                    </Grid>
+                  
+                 
+                
+
+               
+                    <Grid item sm={3}>
+                        <AffilateButton key={3} affilate="Richmond"  />
+                    </Grid>
+                   
+                    <Grid item sm={3}>
+                        <AffilateButton key={4} affilate="Pittsburgh"  />
+                    </Grid>
+                    
+                
+
+
+
+</Grid>
+          
+        </div>
       </div>
+      </Grid>
     )
   }
 }
