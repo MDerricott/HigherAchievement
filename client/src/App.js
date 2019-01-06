@@ -10,6 +10,7 @@ import Baltimore from "./pages/Baltimore";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./common/Navbar";
 import NoMatch from "./pages/NoMatch";
+// import BottomNav from "./common/BottomNav";
 
 
 class App extends Component {
@@ -30,8 +31,9 @@ class App extends Component {
           </Switch>
 
 
-
+          {/* <BottomNav /> */}
         </div>
+        
       </Router>
      
     );
