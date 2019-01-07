@@ -16,7 +16,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Paper from '@material-ui/core/Paper'
+import Paper from '@material-ui/core/Paper';
+import FavsIcon from '@material-ui/icons/Favorite'
 
 const styles = theme => ({
   root: {
@@ -171,7 +172,7 @@ class PrimarySearchAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Material-UI
+              Higher Achievement
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -187,14 +188,14 @@ class PrimarySearchAppBar extends React.Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
+              {/* <IconButton color="inherit">
                 <Badge badgeContent={4} color="secondary">
                   <MailIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <IconButton color="inherit">
                 <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
+                  <FavsIcon />
                 </Badge>
               </IconButton>
               <IconButton

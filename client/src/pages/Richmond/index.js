@@ -14,16 +14,24 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import SchoolIcon from '@material-ui/icons/School';
+// import SchoolIcon from '@material-ui/icons/School';
 import Card from '@material-ui/core/Card';
-import { ButtonBase } from "@material-ui/core";
+// import { ButtonBase } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import red from '@material-ui/core/colors/red';
+import CardActions from '@material-ui/core/CardActions';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import CardFooter from "../National/components/CardFooter";
+import IconButton from '@material-ui/core/IconButton';
+import LocalOffer from "@material-ui/icons/LocalOffer";
 
 
 
-// import { csv } from "d3-fetch"
 
-// console.log(map)
-// console.log(data[1][1])
+
 
 
 
@@ -44,6 +52,32 @@ const colorScale = scaleLinear()
   .domain([0,10000,50000,500000,120000])
   .range(["#ffeee8","#ffab90","#ff5722","#993414","#331106"])
 
+  const styles = theme => ({
+    card: {
+      maxWidth: "100%",
+    },
+    media: {
+      height: 0,
+      paddingTop: '56.25%', // 16:9
+    },
+    actions: {
+      display: 'flex',
+    },
+    expand: {
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+      }),
+    },
+    expandOpen: {
+      transform: 'rotate(180deg)',
+    },
+    avatar: {
+      backgroundColor: red[500],
+    },
+  });
+
 class Virginia extends Component {
   constructor() {
     super()
@@ -53,6 +87,7 @@ class Virginia extends Component {
       radius: 0,
       zoom: 9,
       circle: "visible",
+      zoomedIn: false,
       grad: true,
       test: "test",
       centers: [
@@ -78,13 +113,12 @@ class Virginia extends Component {
   }
 
   handleCenterSelection(evt) {
-    // const centerId = evt.target.getAttribute("data-city")
-    // const center = this.state.centers[centerId]
     this.setState({
       viewBox: "6200 -350 980 751",
       circle: "hidden",
       zoom: 24,
       radius: 9,
+      zoomedIn:true,
     })
   }
 
@@ -106,6 +140,7 @@ class Virginia extends Component {
       radius: 0,
       circle: "visible",
       zoom: 9,
+      zoomedIn: false,
     })
   }
 
@@ -116,15 +151,16 @@ class Virginia extends Component {
 
 
   render() {
-    const { poverty } = this.state
+    const { classes } = this.props;
+    const { poverty , grad , zoomedIn} = this.state
     return (
-     <Grid container > 
-     <Grid container height={100}> 
-     <div>
-              <button
-                key={1}
-                className="btn px1"
-                data-city={1}
+     <Grid container justify="center" > 
+            {/* <Grid container height={100}> 
+                  <div>
+                      <button
+                        key={1}
+                        className="btn px1"
+                          data-city={1}
                 onClick={this.handleCenterSelection}
                 >
                 Zoom
@@ -154,139 +190,255 @@ class Virginia extends Component {
          
 
         </div>
-     </Grid>
+     </Grid> */}
      <Grid container>
-     
-        <Grid container xs={12} sm={12}>
-        
-        
-        
-
-      <Paper style={wrapperStyles} elevation={1}>
-        <ComposableMap
-          projection="albersUsa"
-          projectionConfig={{
-            scale: 1000,
-          }}
-          width={980}
-          height={751}
-          viewBox={this.state.viewBox}
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-          >
-          <ZoomableGroup  zoom={this.state.zoom} >
-            <Geographies geography={map} disableOptimization>
-              {(geographies, projection) =>
-                geographies.map((geography, i) => {
-                  
-                  const statePoverty = poverty.find(s =>
-                    s[0] === geography.properties.NAME
-                  ) || {}
-
-                  return (
-                    <Tooltip title={`${statePoverty[0]} estimated in poverty ${this.useCommas(statePoverty[1])} the HS dropout rate is ${(statePoverty[5]? statePoverty[5] + "%": "unknown")}`} placement="top" disableFocusListener key={i}> 
-                    <Geography
-                      key={`state-${geography.properties.GEOID}`}
-                      cacheId={`state-${geography.properties.GEOID}`}
-                      round
-                      geography={geography}
-                      projection={projection}
-                      style={{
-                        default: {
-                          fill: (this.state.grad ? otherScale(+statePoverty[5]): colorScale(+statePoverty[1])),
-                          stroke: "#607D8B",
-                          strokeWidth: 0.05,
-                          outline: "none",
-                        },
-                        hover: {
-                          fill: "#607D8B",
-                          stroke: "#607D8B",
-                          strokeWidth: 0.05,
-                          outline: "none",
-                        },
-                        pressed: {
-                          ill: "#607D8B",
-                          stroke: "#607D8B",
-                          strokeWidth: 0.05,
-                          outline: "none",
-                        },
-                      }}
-                    />
-                     </Tooltip>
-                  )
-                }
-              )}
-            </Geographies>
+          <Grid container justify="center">
+            <div> 
+             <Card elevation={4} style={{backgroundColor: "#9E9E9E", width: "40%", minHeight: 50, display: "inline-block", position: "relative", top:50, left:20}}> 
+                       {(grad ? 
+                       <div>
+                        <Typography
+                        color="primary"
+                        variant="h5"
+                        style={{paddingLeft: 15, paddingTop: 5}}>
+                          Virginia Drop Out Rates
+                        </Typography>
+                        <Typography
+                            variant="subtitle1"
+                            color="primary"
+                            style={{paddingLeft: 15, paddingBottom: 5}}>
+                            The estimated % of all people living in poverty
+                         </Typography>
+                         </div> 
+                          : 
+                          <div>
+                          <Typography
+                          color="primary"
+                          variant="h5"
+                          style={{paddingLeft: 15, paddingTop: 5}}>
+                          Virginia Poverty Rates
+                        </Typography>
+                        <Typography
+                            variant="subtitle1"
+                            color="primary"
+                            style={{paddingLeft: 15, paddingBottom: 5}}>
+                            The estimated % of all people living in poverty
+                         </Typography>
+                        </div>
+                       )}
+              </Card>
            
-            <Markers>
-              {this.state.centers.map((center, i) => (
-                 <Tooltip title="test"  placement="top" disableFocusListener key={"ab" + i}> 
-                <Marker
-                  key={"marker" + i}
-                  marker={center}
-                  style={{
-                    default: { fill: "#00695f" },
-                    hover: { fill: "#FFFFFF" },
-                    pressed: { fill: "#FF5722" },
-                  }}
-                  >
-                  <circle
-                  className={this.state.circle}
-                    cx={0}
-                    cy={0}
-                    r={this.state.radius}
-                    style={{
-                      stroke: "#00695f",
-                      strokeWidth: 1,
-                      opacity: 1,
-                    }}
-                  />
+              <Card className={classes.card} elevation={2} > 
+                    <Grid container justify="flex-end"> 
+                        <Grid item  sm={12} md={3} style={{height: 75}}> 
+                      
+                        </Grid>
+                        <Grid item sm={12} md={7}>
+                              <div className="float-left">
+                                    <CardActions className={classes.actions} disableActionSpacing>
+                                              
+                                              
+                                              
+                                            {(zoomedIn
+                                             ? 
+                                            <Button
+                                                // variant="contained"
+                                                size="large"
+                                                color={(grad ?  "primary" : null)}
+                                                onClick={this.handleReset}
+                                                
+                                                style={{
+                                                  margin: 10
+                                                }}
+                                              >
+                                                    <Typography >
+                                                       Virginia Map
+                                                    </Typography>
+                                                    
+                                              </Button>
+                                              :
+                                              <Button
+                                                // variant="contained"
+                                                size="large"
+                                                color={(grad ?  "primary" : null)}
+                                                onClick={this.handleCenterSelection}
+                                                
+                                                style={{
+                                                  margin: 10
+                                                }}
+                                              >
+                                                    <Typography >
+                                                      Our Centers
+                                                    </Typography>
+                                                    
+                                              </Button>
+                                               )}
+              
+                                              <Button
+                                                // variant="contained"
+                                                size="large"
+                                                color={(grad ?  "primary" : null)}
+                                                onClick={this.handleDropout}
+                                                
+                                                style={{
+                                                  margin: 10
+                                                }}
+                                              >
+                                                    <Typography >
+                                                        Dropout Rates 
+                                                    </Typography>
+                                                    
+                                              </Button>
+                                              <Button
+                                                // variant="contained"
+                                                size="large"
+                                                color={(grad ?  null : "primary" )}
+                                                onClick={this.handlePoverty}
+                                                style={{
+                                                  margin: 10
+                                                }}
+                                              >
+                                                  <Typography> 
+                                                      Poverty Rates 
+                                                  </Typography>
+                                              </Button>
+
+                                               
+                                    </CardActions>
+                                </div>   
+                    
+                          </Grid>
+                          </Grid>
+                      <Paper style={wrapperStyles} elevation={0}>
+                          <ComposableMap
+                            projection="albersUsa"
+                            projectionConfig={{
+                                scale: 1000,
+                            }}
+                            width={980}
+                            height={751}
+                            viewBox={this.state.viewBox}
+                            style={{
+                                width: "100%",
+                                height: "auto",
+                            }}
+                          >
+                        <ZoomableGroup  zoom={this.state.zoom} >
+                              <Geographies geography={map} disableOptimization>
+                                  {(geographies, projection) =>
+                                      geographies.map((geography, i) => { 
+                                      const statePoverty = poverty.find(s =>
+                                      s[0] === geography.properties.NAME
+                                    ) || {}
+                                return (
+                                    <Tooltip 
+                                        title={`${statePoverty[0]} estimated in poverty ${this.useCommas(statePoverty[1])} the HS dropout rate is ${(statePoverty[5]? statePoverty[5] + "%": "unknown")}`} placement="top" disableFocusListener key={i}> 
+                                      <Geography
+                                          key={`state-${geography.properties.GEOID}`}
+                                          cacheId={`state-${geography.properties.GEOID}`}
+                                          round
+                                          geography={geography}
+                                          projection={projection}
+                                          style={{
+                                            default: {
+                                              fill: (this.state.grad ? otherScale(+statePoverty[5]): colorScale(+statePoverty[1])),
+                                              stroke: "#607D8B",
+                                              strokeWidth: 0.05,
+                                              outline: "none",
+                                            },
+                                            hover: {
+                                              fill: "#607D8B",
+                                              stroke: "#607D8B",
+                                              strokeWidth: 0.05,
+                                              outline: "none",
+                                            },
+                        // pressed: {
+                        //   ill: "#607D8B",
+                        //   stroke: "#607D8B",
+                        //   strokeWidth: 0.05,
+                        //   outline: "none",
+                        // },
+                                          }}
+                                            />
+                                        </Tooltip>
+                                    )}
+                                  )}
+                                  </Geographies>
+                                  <Markers>
+                                      {this.state.centers.map((center, i) => (
+                                          <Tooltip title="test"  placement="top" disableFocusListener key={"ab" + i}> 
+                                              <Marker
+                                                key={"marker" + i}
+                                                marker={center}
+                                                style={{
+                                                  default: { fill: "#00695f" },
+                                                  hover: { fill: "#FFFFFF" },
+                                                  pressed: { fill: "#FF5722" },
+                                                }}
+                                                >
+                                              <circle
+                                                className={this.state.circle}
+                                                cx={0}
+                                                cy={0}
+                                                r={this.state.radius}
+                                                style={{
+                                                  stroke: "#00695f",
+                                                  strokeWidth: 1,
+                                                  opacity: 1,
+                                                }}
+                                                />
                
-                </Marker>
-                </Tooltip>
-              ))}
-            </Markers>  
+                                              </Marker>
+                                          </Tooltip>
+                                        ))}
+                                  </Markers>  
             
-          </ZoomableGroup>
-        </ComposableMap>
-        </Paper>
-      
-      
-      
-      </Grid>
-            <Grid container xs={12} style={wrapperStyles}>
-               <Grid item>
-                <Paper >
-                     <a class="twitter-timeline" data-width="400" data-height="300" data-theme="light" href="https://twitter.com/VDOE_News?ref_src=twsrc%5Etfw">Tweets by VDOE_News</a> 
+                        </ZoomableGroup>
+                        </ComposableMap>
+                      </Paper>
+                      <CardFooter stats>
+                        <div className={classes.stats}>
+                          <Typography
+                              variant="subtitle2"
+                            >
+                                <LocalOffer />
+                                Data from 2017 Census
+                          </Typography>
+                        </div>
+                        <div>
+                          <CardActions className={classes.actions} disableActionSpacing>
+                              <IconButton aria-label="Add to favorites">
+                                  <FavoriteIcon />
+                              </IconButton>
+                              <IconButton aria-label="Share">
+                                  <ShareIcon />
+                              </IconButton>
+                          </CardActions>
+                        </div>
+                    </CardFooter>
+            </Card>
+            </div>
+            <Grid container  style={wrapperStyles}>
+                 <Grid item>
+                   <Paper >
+                     <a className="twitter-timeline" data-width="400" data-height="300" data-theme="light" href="https://twitter.com/VDOE_News?ref_src=twsrc%5Etfw">Tweets by VDOE_News</a> 
 
-                </Paper>
-
-      
+                   </Paper>
                 </Grid>
                 <Grid item>
-                    <ButtonBase focusRipple>
-                      <Card >
-                        <Grid container xs={12} >Dropout %</Grid>
-                        <Grid container xs={12}>
-                        <SchoolIcon 
-                       size = "large"
-                       style={{
-                         height: 100,
-                         width: 100
-                       }}
-                       />
-                       </Grid> 
-                      </Card>
-                      </ButtonBase>
+                    
                 </Grid>
             </Grid>
      
-      </Grid>
-      </Grid>
+     </Grid>
+     </Grid>
+     </Grid>
     )
   }
 }
 
-export default Virginia
+Virginia.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles (styles) (Virginia);

@@ -81,22 +81,22 @@ const images = [
   {
     url: 'https://picsum.photos/200/300?image=0',
     title: 'Breakfast',
-    width: 100,
+    width: "25%",
   },
   {
     url: 'https://picsum.photos/200/300?image=0',
     title: 'Burgers',
-    width: 100,
+    width: "25%",
   },
   {
     url: 'https://picsum.photos/200/300?image=0',
     title: 'Camera',
-    width: 100,
+    width: "25%",
   },
   {
     url: 'https://picsum.photos/200/300?image=0',
     title: 'Camera',
-    width: 100,
+    width: "25%",
   },
 ];
 
@@ -113,6 +113,7 @@ function ButtonBases(props) {
           focusVisibleClassName={classes.focusVisible}
           style={{
             width: "75%",
+            margin: 25,
           }}
         >
           <span

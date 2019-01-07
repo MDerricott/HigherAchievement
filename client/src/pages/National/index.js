@@ -12,33 +12,19 @@ import map from './data/states.json'
 import data from './data/data'
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from "react-router-dom";
-import AppleBase from "./components/AffilateButton/"
-import svg from "../../images/apple.svg"
 import AffilateButton from './components/AffiliateButtons'
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CardFooter from "./components/CardFooter";
 import LocalOffer from "@material-ui/icons/LocalOffer";
-import { CardActionArea } from "@material-ui/core";
-import CardIcon from "./components/CardIcon";
-import Store from "@material-ui/icons/Store";
-import ButtonBase from '@material-ui/core/ButtonBase'
 import ZoomIn from '@material-ui/icons/ZoomIn'
 import Button from '@material-ui/core/Button'; 
 import ZoomOut from '@material-ui/icons/ZoomOutMap'
@@ -49,12 +35,12 @@ import ZoomOut from '@material-ui/icons/ZoomOutMap'
 
 const wrapperStyles = {
   width: "100%",
-  maxWidth: 980,
+  maxWidth: "70%",
   margin: "0 auto",
 }
 const styles = theme => ({
   card: {
-    maxWidth: 960,
+    maxWidth: "100%",
   },
   media: {
     height: 0,
@@ -150,51 +136,49 @@ componentDidMount() {
   return (
     <Grid container justify="center">
     
-            <div style={wrapperStyles}>
-                {/* <button
-                  key={1}
-                  className="btn px1"
-                  data-city={1}
-                  onClick={this.handeAffiliateSelection}
-                  >
-                      Check out our affiliates
-                </button>
-          
-                <button onClick={this.handleReset}>
-                    { "Reset" }
-                </button> */}
+    <div style={wrapperStyles}>
                 
-         
           <div>
           
-              <Card  stat icon rounded elevation={4} style={{backgroundColor: "#000000", width: 300, minHeight: 75, display: "inline-block", position: "relative", top:50, left:20}}>
-                
+              <Card   stat icon rounded elevation={4} style={{backgroundColor: "#000000", width: "50%", minHeight: 75, display: "inline-block", position: "relative", top:50, left:20}}> 
+                  <Typography
+                    color="secondary"
+                    variant="h4"
+                    style={{padding: 15}}
+
+                  > 
+                    National Poverty Data
+                  </Typography>
               </Card>
         
           
           <Card className={classes.card} elevation={2} > 
                
-                  <Grid container>
-                    <Grid item sm={9}> 
+                  <Grid container justify="flex-end"> 
+                    <Grid item  sm={12} md={3} style={{height: 75}}> 
                       
                     </Grid>
-                    <Grid item sm={3}>
+                    <Grid item sm={12} md={3}>
                       <div className="float-left">
                         <CardActions className={classes.actions} disableActionSpacing>
                                     { (zoomedIn ? 
                                           <Button
+                                              className={classes.actions}
                                               size="large"
                                               onClick={this.handleReset}
                                           >
-                                          <ZoomOut /> 
+                                              <ZoomOut fontSize="large"/> 
+                                              <Typography> National Map </Typography>
                                           </Button>
                                           : 
                                           <Button 
                                               size="large"
                                               onClick={this.handeAffiliateSelection}
+                                              className="float-right"
+                                              
                                           >
                                               <ZoomIn  fontSize="large"/>
-                                              <Typography>Our Affilates </Typography>
+                                              <Typography> Our Affilates </Typography>
                                           </Button>
                                       )}
 
@@ -325,8 +309,13 @@ componentDidMount() {
         </Grid>
               <CardFooter stats>
                   <div className={classes.stats}>
-                     <LocalOffer />
-                        Data from 2017 Census
+                     
+                        <Typography
+                          variant="subtitle2"
+                        >
+                            <LocalOffer />
+                            Data from 2017 Census
+                        </Typography>
                   </div>
                   <div>
                       <CardActions className={classes.actions} disableActionSpacing>
@@ -342,15 +331,15 @@ componentDidMount() {
       </Card >
       
       </div>
-       <div>
-        <div style={{height:100}}>
+       <div >
+        <div style={{height:100 , width:"100%"}}>
             <br />
             <br />
-            About National Poverty Data
+              <Typography> About National Poverty Data </Typography>
         </div>
 
-      <Card square elevation={0}>
-          <Grid container width="100%" spacing={8}>
+      <Card square elevation={0} style={{padding:5}} justifyContent="center">
+          <Grid container width="100%" spacing={16} justify="center" >
               <Grid item sm={3}>
                   <AffilateButton key={1} affilate="DC Metro"  />
               </Grid>
