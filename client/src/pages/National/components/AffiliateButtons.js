@@ -77,28 +77,28 @@ const styles = theme => ({
   },
 });
 
-const images = [
-  {
-    url: 'https://picsum.photos/200/300?image=0',
-    title: 'Breakfast',
-    width: "25%",
-  },
-  {
-    url: 'https://picsum.photos/200/300?image=0',
-    title: 'Burgers',
-    width: "25%",
-  },
-  {
-    url: 'https://picsum.photos/200/300?image=0',
-    title: 'Camera',
-    width: "25%",
-  },
-  {
-    url: 'https://picsum.photos/200/300?image=0',
-    title: 'Camera',
-    width: "25%",
-  },
-];
+// const images = [
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Breakfast',
+//     width: "25%",
+//   },
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Burgers',
+//     width: "25%",
+//   },
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Camera',
+//     width: "25%",
+//   },
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Camera',
+//     width: "25%",
+//   },
+// ];
 
 function ButtonBases(props) {
   const { classes } = props;
