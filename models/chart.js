@@ -12,6 +12,6 @@ const chartSchema = new Schema({
     }
 });
 
-const Chart = mongoose.model("Chart", chartSchema);
+const Chart = mongoose.model("Charts", chartSchema);
 
 module.exports = Chart

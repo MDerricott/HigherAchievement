@@ -29,6 +29,7 @@ userSchema.methods.avatar = function() {
   return this.firstName[0];
 }
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User;
+

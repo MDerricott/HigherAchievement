@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import Form from './Form';
+import Form from './SignForm';
 import Paper from '@material-ui/core/Paper';
 import Login from './Login';
 
@@ -37,6 +37,10 @@ class SimpleTabs extends React.Component {
     this.setState({ value });
   };
 
+  handleSubmit = (event) =>{
+    console.log(event.target)
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -54,7 +58,7 @@ class SimpleTabs extends React.Component {
             {/* <Tab label="Item Three" /> */}
           </Tabs>
         </Paper>
-        {value === 0 && <TabContainer><Form /></TabContainer>}
+        {value === 0 && <TabContainer><Form handleSubmit={this.handleSubmit} /></TabContainer>}
         {value === 1 && <TabContainer><Login /></TabContainer>}
         {/* {value === 2 && <TabContainer>Item Three</TabContainer>} */}
       </div>

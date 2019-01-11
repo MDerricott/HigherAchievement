@@ -18,6 +18,8 @@ app.use(routes);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/ha-app", { useNewUrlParser: true });
 
 
+
+
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {

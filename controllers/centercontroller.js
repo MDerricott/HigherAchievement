@@ -5,13 +5,13 @@
 const db = require('../models');
 
 module.exports = {
-    findCenter: (req, res) => {
-        db.Center
-            .findById({ _id: req.params.id })
-            .then((dbCenter) => {
-                res.json(dbCenter)
+    findCenter: function (req, res) {
+        db.Center.find({})
+            .then(dbModel => {
+                console.log("logging" + dbModel)
+                return res.json(dbModel)
             })
+
             .catch(err => res.status(422).json(err));
-    },
-  
+    }
 }
