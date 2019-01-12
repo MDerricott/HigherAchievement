@@ -1,17 +1,17 @@
 import React from 'react';
 import { Group } from '@vx/group';
-// import { genBins } from '@vx/mock-data';
+import { genBins } from '@vx/mock-data';
 import { scaleLinear } from '@vx/scale';
 import { HeatmapCircle} from '@vx/heatmap';
-import heatdata from './data.json'
+// import heatdata from './data.json'
 
 const hot1 = '#77312f';
 const hot2 = '#f33d15';
 
 const bg = '#28272c';
 
-// const data = genBins(40, 5);
-const data = heatdata;
+const data = genBins(50, 27);
+// const data = heatdata;
 console.log(data)
 
 // utils
@@ -44,7 +44,7 @@ const opacityScale = scaleLinear({
 
 export default ({
   width =800,
-  height= 200,
+  height= 500,
   separation = 20,
   margin = {
     top: 10,
