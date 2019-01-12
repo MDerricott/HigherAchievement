@@ -1,0 +1,196 @@
+[
+ {
+  "bin": 1,
+  "bins": [
+        {
+          "count": 4,
+          "bins": 0
+         },
+         {
+          "count": 4,
+          "bins": 0
+         }
+    ]
+    },
+ {
+  "bin": 2,
+  "bins": [
+        {
+          "count": 2,
+          "bins": 150
+         },
+         {
+          "count": 2,
+          "bins": 150
+         }
+    ]
+    },
+ {
+  "bin": 3,
+  "bins": [
+        {
+          "count": 4,
+          "bins": 300
+         },
+         {
+          "count": 4,
+          "bins": 300
+         }
+    ]
+    },
+ {
+  "bin": 4,
+  "bins": [
+        {
+          "count": 1,
+          "bins": 450
+         },
+         {
+          "count": 1,
+          "bins": 450
+         }
+    ]
+    },
+ {
+  "bin": 5,
+  "bins": [
+        {
+          "count": 3,
+          "bins": 600
+         },
+         {
+          "count": 3,
+          "bins": 600
+         }
+    ]
+    },
+ {
+  "bin": 6,
+  "bins": [
+        {
+          "count": 4,
+          "bins": 0
+         },
+         {
+          "count": 4,
+          "bins": 0
+         }
+    ]
+    },
+ {
+  "bin": 7,
+  "bins": [
+        {
+          "count": 2,
+          "bins": 150
+         },
+         {
+          "count": 2,
+          "bins": 150
+         }
+    ]
+    },
+ {
+  "bin": 8,
+  "bins": [
+        {
+          "count": 1,
+          "bins": 300
+         },
+         {
+          "count": 1,
+          "bins": 300
+         }
+    ]
+    },
+ {
+  "bin": 9,
+  "bins": [
+        {
+          "count": 1,
+          "bins": 450
+         },
+         {
+          "count": 1,
+          "bins": 450
+         }
+    ]
+    },
+ {
+  "bin": 10,
+  "bins": [
+        {
+          "count": 2,
+          "bins": 600
+         },
+         {
+          "count": 2,
+          "bins": 600
+         }
+    ]
+    },
+ {
+  "bin": 11,
+  "bins": [
+        {
+          "count": 4,
+          "bins": 0
+         },
+         {
+          "count": 4,
+          "bins": 0
+         }
+    ]
+    },
+ {
+  "bin": 12,
+  "bins": [
+        {
+          "count": 2,
+          "bins": 150
+         },
+         {
+          "count": 2,
+          "bins": 150
+         }
+    ]
+    },
+ {
+  "bin": 13,
+  "bins": [
+        {
+          "count": 3,
+          "bins": 300
+         },
+         {
+          "count": 3,
+          "bins": 300
+         }
+    ]
+    },
+ {
+  "bin": 14,
+  "bins": [
+        {
+          "count": 2,
+          "bins": 450
+         },
+         {
+          "count": 2,
+          "bins": 450
+         }
+    ]
+    },
+ {
+  "bin": 15,
+  "bins": [
+        {
+          "count": 4,
+          "bins": 600
+         },
+         {
+          "count": 4,
+          "bins": 600
+         }
+    ]
+    }]
