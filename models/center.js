@@ -10,6 +10,10 @@ const centerSchema = new Schema({
         type: Number,
         
     },
+    affilate: {
+        type: String,
+        
+    },
     centerDirector: {
         name: {
             type: String

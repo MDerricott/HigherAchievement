@@ -27,6 +27,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import CardFooter from "../National/components/CardFooter";
 import IconButton from '@material-ui/core/IconButton';
 import LocalOffer from "@material-ui/icons/LocalOffer";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -83,6 +85,7 @@ class Virginia extends Component {
     super()
     this.state = {
       poverty: [],
+      displayText: "hide",
       viewBox: "2100 0 980 751",
       radius: 0,
       zoom: 9,
@@ -91,11 +94,11 @@ class Virginia extends Component {
       grad: true,
       test: "test",
       centers: [
-        { markerOffset: -5, name: "Henderson", coordinates: [-77.4466, 37.5963] },
-        { markerOffset: -5, name: "Boushall", coordinates: [-77.4697, 37.4729] },
-        { markerOffset: 5, name: "Wilder", coordinates: [-77.4216, 37.6205] },
-        { markerOffset: 5, name: "Binford", coordinates: [-77.4622, 37.5491] },
-        { markerOffset: 5, name: "Alexandria", coordinates: [-77.1108, 38.8265] },
+        { markerOffset: 10,markerXOff:-50, name: "Henderson", coordinates: [-77.4466, 37.5963], id: "5c3b7d308296f336bce86ccf" },
+        { markerOffset: 10,markerXOff:-40, name: "Boushall", coordinates: [-77.4697, 37.4729], id: "5c3b84538296f336bce86ee1"},
+        { markerOffset:5,markerXOff:45, name: "Wilder", coordinates: [-77.4216, 37.6205] },
+        { markerOffset: 10,markerXOff:40, name: "Binford", coordinates: [-77.4622, 37.5491], id: "5c3b84668296f336bce86ee7" },
+        { markerOffset: 30, name: "Alexandria", coordinates: [-77.1108, 38.8265] },
         ]
     }
     this.handleCenterSelection = this.handleCenterSelection.bind(this)
@@ -118,6 +121,7 @@ class Virginia extends Component {
       circle: "hidden",
       zoom: 24,
       radius: 9,
+      displayText:  "affilateMarkers" ,
       zoomedIn:true,
     })
   }
@@ -139,6 +143,7 @@ class Virginia extends Component {
       viewBox: "2100 0 980 751",
       radius: 0,
       circle: "visible",
+      displayText: "hide",
       zoom: 9,
       zoomedIn: false,
     })
@@ -366,7 +371,7 @@ class Virginia extends Component {
                                   </Geographies>
                                   <Markers>
                                       {this.state.centers.map((center, i) => (
-                                          <Tooltip title="test"  placement="top" disableFocusListener key={"ab" + i}> 
+                                          
                                               <Marker
                                                 key={"marker" + i}
                                                 marker={center}
@@ -376,6 +381,7 @@ class Virginia extends Component {
                                                   pressed: { fill: "#FF5722" },
                                                 }}
                                                 >
+                                               <Link to={`/center/${center.id}`} >
                                               <circle
                                                 className={this.state.circle}
                                                 cx={0}
@@ -387,9 +393,21 @@ class Virginia extends Component {
                                                   opacity: 1,
                                                 }}
                                                 />
-               
+                                              </Link>
+                                              <text
+                                                className={this.state.displayText}
+                                                textAnchor="middle"
+                                                x={center.markerXOff}
+                                                y={center.markerOffset}
+                                                style={{
+                                                    fontFamily: "Roboto, sans-serif",
+                                                    fill: "#607D8B",
+                                                }}
+                                            >
+                                                {center.name}
+                                            </text>
                                               </Marker>
-                                          </Tooltip>
+                                          
                                         ))}
                                   </Markers>  
             
