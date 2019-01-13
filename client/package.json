@@ -6,9 +6,12 @@
   "dependencies": {
     "@material-ui/core": "^3.8.1",
     "@material-ui/icons": "^3.0.1",
+    "@vx/glyph": "0.0.183",
+    "@vx/gradient": "0.0.183",
     "@vx/heatmap": "0.0.183",
     "@vx/mock-data": "0.0.182",
     "@vx/scale": "0.0.182",
+    "@vx/shape": "0.0.183",
     "axios": "^0.18.0",
     "d3-fetch": "^1.1.2",
     "d3-scale": "^2.1.2",

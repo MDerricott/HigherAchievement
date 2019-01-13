@@ -1,17 +1,18 @@
 import React from 'react';
 import { Group } from '@vx/group';
-import { genBins } from '@vx/mock-data';
+// import { genBins } from '@vx/mock-data';
 import { scaleLinear } from '@vx/scale';
 import { HeatmapCircle} from '@vx/heatmap';
-// import heatdata from './data.json'
+import heatdata from './boushall.json'
+import Tooltip from '@material-ui/core/Tooltip';
 
-const hot1 = '#77312f';
-const hot2 = '#f33d15';
+const hot1 = '#000000';
+const hot2 = '#62BB46';
 
 const bg = '#28272c';
 
-const data = genBins(50, 27);
-// const data = heatdata;
+// const data = genBins(50, 27);
+const data = heatdata;
 console.log(data)
 
 // utils
@@ -86,11 +87,17 @@ export default ({
           radius={radius}
           gap={2}
         >
+       
         
           {heatmap => {
             return heatmap.map(bins => {
-              return bins.map(bin => {
+              return bins.map((bin, i) => {
                 return (
+                  <Tooltip 
+                  title={`Scholar ${bin.bin.count} GPA`}
+                  placement="top"
+                  key={i}
+                  >
                   <circle
                     key={`heatmap-circle-${bin.row}-${bin.column}`}
                     className="vx-heatmap-circle"
@@ -101,13 +108,17 @@ export default ({
                     fillOpacity={bin.opacity}
                     // onClick={event => {
                     //   const { row, column } = bin;
-                    //   alert(JSON.stringify({ row, column, ...bin.bin }));
+                    //   alert(JSON.stringify({ row, column, ...bin.bin }
+                    // ));
+                    // console.log(bin.bin.count)
                     // }}
                   />
+                   </Tooltip>
                 );
               });
             });
           }}
+         
         </HeatmapCircle>
       </Group>
       

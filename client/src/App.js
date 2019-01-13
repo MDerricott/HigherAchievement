@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Glyphs from './pages/Center/Glyphs'
+// import PieChart from './pages/Center/PieChart'
+
 // import Virginia from "./pages/Virginia/index";
 // import National from "./pages/National";
 // import Center from "./pages/Center";
@@ -13,14 +16,16 @@ import React, { Component } from "react";
 
 // import BottomNav from "./common/BottomNav";
 
-import Heatmap from "../src/pages/Center/Heatmap"
+// import Heatmap from "../src/pages/Center/Heatmap"
 
 
 class App extends Component {
   render() {
     return (
+<Glyphs />
 
-          <Heatmap />
+        // <PieChart/>
+          // <Heatmap />
       // <Router>
       //   <div>
       //     <Navbar />
