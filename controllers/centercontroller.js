@@ -7,7 +7,7 @@ const db = require('../models');
 module.exports = {
     findCenter: (req, res) => {
         db.Center
-            .findById({  _id: req.params.id })
+            .findOne({ centerName: req.params.centerName })
             .then(dbModel => {
                
             res.json(dbModel)

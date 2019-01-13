@@ -7,7 +7,7 @@ export default {
     getUser: (id) => {
         return axios.get("/api/users/" + id);
     },
-    getCenter: (id) => {
-        return axios.get("/api/center/" + id)
+    getCenter: (centerName) => {
+        return axios.get("/api/center/" + centerName)
     }
 }

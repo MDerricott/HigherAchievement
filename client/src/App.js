@@ -54,7 +54,7 @@ class App extends Component {
             <Route exact path="/dcmetro" component={DCMetro} />
             <Route exact path="/pittsburgh" component={Pittsburgh} />
             <Route exact path="/baltimore" component={Baltimore} />
-            <Route exact path="/center/:id" component={Center} />
+            <Route exact path="/center/:centerName" component={Center} />
             <Route exact path="/national" component={National} />
             <Route component={NoMatch} />
           </Switch>

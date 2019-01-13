@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const centercontroller = require('../../controllers/centercontroller');
 
-router.route("/:id")
+router.route("/:centerName")
     .get(centercontroller.findCenter);
 
 

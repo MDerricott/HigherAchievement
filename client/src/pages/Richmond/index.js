@@ -381,7 +381,7 @@ class Virginia extends Component {
                                                   pressed: { fill: "#FF5722" },
                                                 }}
                                                 >
-                                               <Link to={`/center/${center.id}`} >
+                                               <Link to={`/center/${center.name}`} >
                                               <circle
                                                 className={this.state.circle}
                                                 cx={0}
