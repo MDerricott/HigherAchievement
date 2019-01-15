@@ -6,20 +6,42 @@ import { HeatmapCircle} from '@vx/heatmap';
 import heatdata from './boushall.json'
 import Tooltip from '@material-ui/core/Tooltip';
 
-const hot1 = '#000000';
+
+
+export default ({
+  width =800,
+  height= 500,
+  separation = 20,
+  
+  
+  margin = {
+    top: 10,
+    left: 20,
+    right: 20,
+    bottom: 110
+  }
+}) => {
+
+  const hot1 = '#28272c';
 const hot2 = '#62BB46';
 
 const bg = '#28272c';
-
+const data = heatdata
 // const data = genBins(50, 27);
-const data = heatdata;
-console.log(data)
+// const data = data;
 
-// utils
+// console.log("test " + JSON.parse(data))
+
+
+console.log(data)
+// // utils
 const max = (data, value = d => d) => Math.max(...data.map(value));
 const min = (data, value = d => d) => Math.min(...data.map(value));
 
-// accessors
+
+
+
+// // accessors
 const bins = d => d.bins;
 const count = d => d.count;
 
@@ -42,29 +64,17 @@ const opacityScale = scaleLinear({
   range: [0.1, 1],
   domain: [0, colorMax]
 });
-
-export default ({
-  width,
-  height,
-  separation = 20,
-  margin = {
-    top: 10,
-    left: 20,
-    right: 20,
-    bottom: 110
-  }
-}) => {
   // bounds
   let size = width;
   if (size > margin.left + margin.right) {
     size = width - margin.left - margin.right - separation;
   }
-
-//   const xMax = size / 2;
-//   const yMax = height - margin.bottom - margin.top;
-
-  const xMax = size;
+    
+  const xMax = size / 2;
   const yMax = height - margin.bottom - margin.top;
+
+  // const xMax = size;
+  // const yMax = height - margin.bottom - margin.top;
 
   const binWidth = xMax / data.length;
   const binHeight = yMax / bucketSizeMax;
@@ -75,6 +85,7 @@ export default ({
   yScale.range([yMax, 0]);
 
   return (
+    // <div>Testing</div>
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} rx={14} fill={bg} />
       <Group top={margin.top} left={margin.left}>

@@ -72,9 +72,4 @@ class App extends Component {
 export default App;
 
 
-//  <Glyphs
-//   width="500"
-//   height="500"
-//   margin="5"
-//   data={this.state.data}
-// /> 
+ 

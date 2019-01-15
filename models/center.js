@@ -10,9 +10,12 @@ const centerSchema = new Schema({
         type: Number,
         
     },
-    affilate: {
-        type: String,
+    glyph: {
+        type: Array,
         
+    },
+    heatmap:{
+        type: Array
     },
     centerDirector: {
         name: {

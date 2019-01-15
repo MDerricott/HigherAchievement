@@ -2,9 +2,9 @@ import React from 'react';
 import { Group } from '@vx/group';
 import { GlyphDot } from '@vx/glyph';
 import { LinePath } from '@vx/shape';
-import { genDateValue } from '@vx/mock-data';
+// import { genDateValue } from '@vx/mock-data';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { curveMonotoneX, curveBasis } from '@vx/curve';
+import { curveMonotoneX } from '@vx/curve';
 import Tooltip from '@material-ui/core/Tooltip'
 
 // const data = genDateValue(4);
@@ -39,7 +39,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 // const secondary = '#00f2ff';
 // const contrast = '#ffffff';
 
-export default ({ width, height, margin, data}) => {
+export default ({ width, height, data}) => {
   // bounds
 //   const xMax = width - margin.left - margin.right;
 //   const yMax = height - margin.top - margin.bottom;
@@ -49,10 +49,10 @@ const value = d => d.value;
 
 // scales
 const xScale = scaleTime({
-  domain: [Math.min(...data.map(date)), Math.max(...data.map(date))]
+  domain:[ 1, 4]
 });
 const yScale = scaleLinear({
-  domain: [0, Math.max(...data.map(value))]
+  domain: [0, 4]
 });
 
 // positions
@@ -70,11 +70,12 @@ const yMax = height - 20 ;
   // update scale range to match bounds
   xScale.range([0, xMax]);
   yScale.range([yMax  , 10]);
+ 
 
   return (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill={secondary} rx={14} />
-      <Group top={margin.top}>
+      <Group top={5}>
         {/* <LinePath
           data={data}
           x={x}
@@ -84,7 +85,7 @@ const yMax = height - 20 ;
           strokeDasharray="2,2"
           curve={curveBasis}
         /> */}
-        <LinePath
+         <LinePath
           data={data}
           x={x}
           y={y}
@@ -106,7 +107,7 @@ const yMax = height - 20 ;
             </g>
             </Tooltip>
           );
-        })}
+        })}  */}
       </Group>
     </svg>
   );
