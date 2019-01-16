@@ -13,6 +13,7 @@ import Baltimore from "./pages/Baltimore";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./common/Navbar";
 import NoMatch from "./pages/NoMatch";
+import Admin from './pages/Admin'
 
 // import BottomNav from "./common/BottomNav";
 
@@ -27,16 +28,20 @@ import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
   state = {
-    data: [
-      {date: 3, value: 4-2},
-      {date: 2, value: 3},
-      {date: 1, value: 0},
-      {date: 0.1, value: 2},
-      
-    ]
+      adminLoggedin: false,
+      open: false 
+
   }
  
+handleAdminAccess = () => {
+  console.log("admin clicked")
+  this.setState({ open: true})
+}
 
+handleSubmit = () => {
+  console.log("handle close")
+//   this.setState({ open: false })
+}
 
 
   render() {
@@ -47,7 +52,12 @@ class App extends Component {
           // <Heatmap />
       <Router>
         <div>
-          <Navbar />
+          <Navbar 
+            handleAdminAccess={this.handleAdminAccess} 
+            open={this.state.open}
+            // onClose={this.handleClose}
+            handleSubmit={this.handleSubmit}
+            />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/richmond" component={Richmond} />
@@ -56,6 +66,7 @@ class App extends Component {
             <Route exact path="/baltimore" component={Baltimore} />
             <Route exact path="/center/:centerName" component={Center} />
             <Route exact path="/national" component={National} />
+            <Route exact path="/admin" component={Admin} />
             <Route component={NoMatch} />
           </Switch>
 
