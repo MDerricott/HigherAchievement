@@ -4,8 +4,8 @@ export default {
     createUser: (userdata) => {
         return axios.post("/api/users", userdata);
     },
-    getUser: (id) => {
-        return axios.get("/api/users/" + id);
+    getUser: (userData) => {
+        return axios.get("/api/users", userData);
     },
     getCenter: (centerName) => {
         return axios.get("/api/center/" + centerName)

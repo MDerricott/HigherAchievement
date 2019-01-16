@@ -25,9 +25,9 @@ const usersSchema = new Schema({
         ref: "Charts"
     },
 });
-usersSchema.methods.avatar = function() {
-  return this.firstName[0];
-}
+// usersSchema.methods.avatar = function() {
+//   return this.firstName[0];
+// }
 
 const Users = mongoose.model("Users", usersSchema);
 

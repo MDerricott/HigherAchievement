@@ -17,7 +17,7 @@ module.exports = {
     //Find all a user
     findUser: (req, res) =>{
         db.Users
-            .findById({ _id: req.params.id })
+            .find(req.body.password)
             .then(function(dbUser){
                 res.json(dbUser)
             })

@@ -2,13 +2,11 @@ const router = require("express").Router();
 const usercontroller = require('../../controllers/usercontroller');
 
 
-//Matches with "/api/user"
+//Matches with "/api/users"
 router.route("/")
-    .post(usercontroller.create);
-
-//Matches with "/api/user/:id"
-router.route("/:id")
+    .post(usercontroller.create)
     .get(usercontroller.findUser)
+
 
 router.route("/likes/:id")
     .post(usercontroller.updateLikes)
