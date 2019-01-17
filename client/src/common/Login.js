@@ -1,16 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Link } from "react-router-dom";
-
+import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -20,54 +10,17 @@ import { Input } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import { Link } from "react-router-dom";
 
 
 
-
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
-
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            Higher Achievement
-          </Typography>
-          <div>
-          
-            <Button> <Link to="/"> Home</Link></Button>
-            
-          
-            <Tooltip 
-              title="Admin Dashboard"
-            >   
-              <Link
-              to={"/admin"}>
-              
-              <IconButton
-                onClick={props.handleAdminAccess}
-                color="inherit">
-                
-             <DashboardIcon />
-              
-              </IconButton>
-              </Link> 
-            </Tooltip> 
-            {/* <Dialog
+function DialogLogin (props) {
+ 
+  
+    return (
+      <div>
+       <Dialog
               open={props.open}
               onClose={props.handleClose}
               maxWidth = "sm"
@@ -75,12 +28,10 @@ function ButtonAppBar(props) {
               aria-labelledby="form-dialog-title"
             >
           <DialogTitle id="max-width-dialog-title">Admin Dashboard</DialogTitle>
-          <DialogContent>
+       <DialogContent>
             <DialogContentText>
               Login into the Admin Dashboard
             </DialogContentText>
-          
-
               <Input
                 key="pw1"
                 fullWidth
@@ -105,34 +56,26 @@ function ButtonAppBar(props) {
                       </InputAdornment>
                     }
                   />
-
-
-
-
           </DialogContent>
           <DialogActions>
             <Button onClick={props.handleSubmit} color="primary">
              <Link to="/admin"> Login </Link>
             </Button>
+            <Link to="/">
+            
+            
+           
             <Button onClick={props.handleClose} color="primary">
-              Close
+              Cancel
             </Button>
+            </Link>
             
           </DialogActions>
-        </Dialog> */}
+        </Dialog>
+
+      </div>
+    );
+  }
 
 
-
-          </div>
-
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
-
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
+export default DialogLogin;

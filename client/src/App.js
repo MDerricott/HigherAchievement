@@ -15,6 +15,8 @@ import Navbar from "./common/Navbar";
 import NoMatch from "./pages/NoMatch";
 import Admin from './pages/Admin'
 import API from "./utils/API";
+import ProtectedRoute from './common/ProtectedRoute'
+import Login from "./common/Login"
 
 
 // import BottomNav from "./common/BottomNav";
@@ -34,62 +36,95 @@ class App extends Component {
       open: false ,
       password:"",
       showPassword: false,
-      link: "/"
+      link: "/",
+      redirectToReferrer: false ,
+      isAuth: false
+
 
   }
  
 handleAdminAccess = () => {
-  
-(this.adminLoggedin ?   
-      this.setState({ 
-      open: false,
-      link: "/admin"
-      })
-     :
-  this.setState({ 
-    open: true})
-    
-  )
 
-}
+    console.log("handle")
+  // let { from } = this.props.location.state || { from: { pathname: "/" } };
+
+      // this.fakeAuth.authenticate(() => {
+        this.setState({  open: true});
+      
+      // console.log(this.fakeAuth.isAuthenticated)
+    
+    
+  
+  }
+  
+ 
+// (this.adminLoggedin ?   
+//       this.setState({ 
+//       open: false,
+//       link: "/admin"
+//       })
+//      :
+//   this.setState({ 
+//     open: true})
+    
+//   )
+
+
+
+
+
+
+// login = () => {
+  
+
+//   this.fakeAuth.authenticate(() => {
+//     this.setState({ redirectToReferrer: true });
+//   });
+// };
+
 
 
 handleSubmit = (event) => {
+  
   event.preventDefault();
-  (!this.state.adminLoggedin ?    
-      API.getUser({
-            firstName: "admin",
-            password: this.state.password
-          })
-          .then(res => {
-            // Map through users to find admin password match
-            res.data.map( (arr, i) => {
-              (
-                arr.password === this.state.password ?  
-                this.setState(
-                  { 
-                  adminLoggedin: true, 
-                  open: false ,
-                  link: "/admin"
+  // this.fakeAuth.authenticate(() => {
+  //   this.setState({ redirectToReferrer: true });
+  // });
+  
+    // (!this.state.adminLoggedin ?    
+    //   API.getUser({
+    //         firstName: "admin",
+    //         password: this.state.password
+    //       })
+    //       .then(res => {
+    //         // Map through users to find admin password match
+    //         res.data.map( (arr, i) => {
+    //           (
+    //             arr.password === this.state.password ?  
+    //             this.setState(
+    //               { 
+    //               adminLoggedin: true, 
+    //               open: false ,
+    //               link: "/admin"
                   
-                  }
-                )
-                 : 
-                console.log("Enter the correct password")
-                )
-            }) 
-          })
-    .catch(err => console.log(err))
+    //               }
+    //             )
+    //              : 
+    //             console.log("Enter the correct password")
+    //             )
+    //         }) 
+    //       })
+    // .catch(err => console.log(err))
 
-    :
-    console.log("already admin"))
-    console.log(this.state)
+    // :
+    // console.log("already admin"))
+    // console.log(this.state)
       
         }       
 
 handleClose = () => {
   console.log("handle close")
-  this.setState({ open: false })
+  this.setState({ open: false})
   console.log(this.state)
 }
 
@@ -110,26 +145,19 @@ handleClickShowPassword = () => {
   this.setState(state => ({ showPassword: !state.showPassword }));
 };
 
+
+
   render() {
+
+  
     return (
 
-
-        // <PieChart/>
-          // <Heatmap />
       <Router>
+        
         <div>
           <Navbar 
             handleAdminAccess={this.handleAdminAccess} 
-            open={this.state.open}
-            handleClose={this.handleClose}
-            handleSubmit={this.handleSubmit}
-            showPassword={this.state.showPassword}
-            password={this.state.password}
-            handleInputChange={this.handleInputChange}
-            handleClickShowPassword={this.handleClickShowPassword}
-            link={"/admin"}
            
-
             />
           <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -139,10 +167,25 @@ handleClickShowPassword = () => {
             <Route exact path="/baltimore" component={Baltimore} />
             <Route exact path="/center/:centerName" component={Center} />
             <Route exact path="/national" component={National} />
-            
-            {this.state.adminLoggedin && 
-            <Route exact path="/admin" component={Admin} />
-            }
+            <Route path="/login" component={Login} />
+        
+            <Route path="/admin" 
+            render={() => (this.state.isAuth ? 
+            <Admin /> : 
+            <Login  
+        
+            open={this.state.open}
+            handleClose={this.handleClose}
+            handleSubmit={this.handleSubmit}
+            showPassword={this.state.showPassword}
+            password={this.state.password}
+            handleInputChange={this.handleInputChange}
+            handleClickShowPassword={this.handleClickShowPassword}
+            // fakeAuth={this.fakeAuth.isAuthenticated}
+            /> 
+            )}
+            />
+          
             <Route component={NoMatch} />
           </Switch>
 
