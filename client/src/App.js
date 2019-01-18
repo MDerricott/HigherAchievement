@@ -38,7 +38,9 @@ class App extends Component {
       showPassword: false,
       link: "/",
       redirectToReferrer: false ,
-      isAuth: false
+      isAuth: false,
+      incorrectMessage: "",
+      error: false
 
 
   }
@@ -49,7 +51,10 @@ handleAdminAccess = () => {
   // let { from } = this.props.location.state || { from: { pathname: "/" } };
 
       // this.fakeAuth.authenticate(() => {
-        this.setState({  open: true});
+        this.setState({  
+          open: true,
+          password: "",
+        });
       
       // console.log(this.fakeAuth.isAuthenticated)
     
@@ -91,34 +96,38 @@ handleSubmit = (event) => {
   //   this.setState({ redirectToReferrer: true });
   // });
   
-    // (!this.state.adminLoggedin ?    
-    //   API.getUser({
-    //         firstName: "admin",
-    //         password: this.state.password
-    //       })
-    //       .then(res => {
-    //         // Map through users to find admin password match
-    //         res.data.map( (arr, i) => {
-    //           (
-    //             arr.password === this.state.password ?  
-    //             this.setState(
-    //               { 
-    //               adminLoggedin: true, 
-    //               open: false ,
-    //               link: "/admin"
+    (!this.state.isAuth?    
+      API.getUser({
+            firstName: "admin",
+            password: this.state.password
+          })
+          .then(res => {
+            // Map through users to find admin password match
+            res.data.map( (arr, i) => {
+              (
+                arr.password === this.state.password ?  
+                this.setState(
+                  { 
+                  isAuth: true, 
+                  open: false ,
+                  password: "",
+                  error: false
                   
-    //               }
-    //             )
-    //              : 
-    //             console.log("Enter the correct password")
-    //             )
-    //         }) 
-    //       })
-    // .catch(err => console.log(err))
+                  }
+                )
+                 : 
+                this.setState({
+                  incorrectMessage: "You have entered the wrong password",
+                  error:true                
+                })
+                )
+            }) 
+          })
+    .catch(err => console.log(err))
 
-    // :
-    // console.log("already admin"))
-    // console.log(this.state)
+    :
+    console.log("already admin"))
+    console.log(this.state)
       
         }       
 
@@ -167,15 +176,15 @@ handleClickShowPassword = () => {
             <Route exact path="/baltimore" component={Baltimore} />
             <Route exact path="/center/:centerName" component={Center} />
             <Route exact path="/national" component={National} />
-            <Route path="/login" component={Login} />
-        
+            <Route path="/login"  component={Login  } />
             <Route path="/admin" 
-            render={() => (this.state.isAuth ? 
+            render={(props) => (this.state.isAuth ? 
             <Admin /> : 
-            <Login  
-        
+            <Login  {...props}
+            incorrectMessage={this.state.incorrectMessage}
             open={this.state.open}
-            handleClose={this.handleClose}
+            error={this.state.error}
+            // handleClose={this.handleClose}
             handleSubmit={this.handleSubmit}
             showPassword={this.state.showPassword}
             password={this.state.password}
@@ -185,7 +194,20 @@ handleClickShowPassword = () => {
             /> 
             )}
             />
-          
+
+        
+            {/* <ProtectedRoute exact path="/admin" 
+            handleClose={this.handleClose}
+            handleSubmit={this.handleSubmit}
+            showPassword={this.state.showPassword}
+            password={this.state.password}
+            handleInputChange={this.handleInputChange}
+            handleClickShowPassword={this.handleClickShowPassword}
+    
+            isAuth={this.state.isAuth} component={Admin}/>
+
+        
+           */}
             <Route component={NoMatch} />
           </Switch>
 
@@ -202,4 +224,13 @@ handleClickShowPassword = () => {
 export default App;
 
 
- 
+     // path="/admin" 
+            // render={() => (this.state.isAuth ? 
+            // <Admin {...this.props}/> : 
+            // <Login  
+            // {...this.props}
+            
+            // // fakeAuth={this.fakeAuth.isAuthenticated}
+            // /> 
+            // )}
+            // />

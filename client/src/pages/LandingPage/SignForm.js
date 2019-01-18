@@ -189,7 +189,77 @@ render (){
         <Grid container justify={"center"} >
 
 
-            <Paper  elevation={0} style={{padding: 10}}>
+    <Paper  elevation={0} style={{padding: 10}}>
+        
+   <Grid container justify={"center"}>
+    <Grid item style={{minWidth: 400, padding: 5}}>    
+      <FormControl  fullWidth>
+        <InputLabel
+          htmlFor="custom-css-standard-input"
+          style={{cssLabel: {
+            '&$cssFocused': {
+              color: "#000000",
+              cssFocused: {},
+              cssUnderline: {
+              '&:after': {
+              borderBottomColor: "#000000",
+                }
+            }}}}}
+        >
+              Email
+          </InputLabel>
+           <Input
+              key="em1"
+              id="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              style={{
+                  '&:after': {
+                  borderBottomColor: "#000000",
+                  },
+                }}
+            />
+      </FormControl>
+    </Grid>
+    </Grid>
+</Paper>
+<Paper  elevation={0} style={{padding: 10}}>
+        
+   <Grid container justify={"center"}>
+    <Grid item style={{minWidth: 400, padding: 5}}>    
+      <FormControl  fullWidth>
+        <InputLabel
+          htmlFor="custom-css-standard-input"
+          style={{cssLabel: {
+            '&$cssFocused': {
+              color: "#000000",
+              cssFocused: {},
+              cssUnderline: {
+              '&:after': {
+              borderBottomColor: "#000000",
+                }
+            }}}}}
+        >
+              Email
+          </InputLabel>
+           <Input
+              key="em1"
+              id="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              style={{
+                  '&:after': {
+                  borderBottomColor: "#000000",
+                  },
+                }}
+            />
+      </FormControl>
+    </Grid>
+    </Grid>
+</Paper>
+<Paper  elevation={0} style={{padding: 10}}>
         
    <Grid container justify={"center"}>
     <Grid item style={{minWidth: 400, padding: 5}}>    

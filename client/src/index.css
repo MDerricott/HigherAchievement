@@ -6,7 +6,12 @@
 .float-right {
   float: right;
 }
-
+.link {
+  color: #ffffff;
+}
+.link:hover {
+   color: #ffffff
+}
 .float-left {
   float: left;
   width: "100%"

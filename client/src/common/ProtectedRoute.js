@@ -2,15 +2,16 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
 
   
 
 } from "react-router-dom";
-import Login from './Login'
 
 
-function PrivateRoute({ props, isAuth, component: Component, ...rest }) {
-    console.log(props)
+
+function PrivateRoute({ isAuth, component: Component, ...rest }) {
+    
     return (
       <Route
         {...rest}
@@ -18,13 +19,13 @@ function PrivateRoute({ props, isAuth, component: Component, ...rest }) {
           props.isAuth ? (
             <Component {...props} />
           ) : (
-            // <Redirect
-            //   to={{
-            //     pathname: "/"",
-            //     state: { from: props.location }
-            //   }}
-            // />
-            <Login />
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: props.location }
+              }}
+            />
+           
           )
         }
       />

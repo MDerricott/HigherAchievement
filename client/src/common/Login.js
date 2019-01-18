@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Input } from '@material-ui/core';
+import { Input, Typography } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -15,14 +15,21 @@ import { Link } from "react-router-dom";
 
 
 
-function DialogLogin (props) {
- 
+class DialogLogin extends React.Component {
+// function DialogLogin (props) {
+  // let { from } = this.props.location.state || { from: { pathname: "/" } };
+  // console.log({from})
+
+cancelClick = () => {
+  this.props.history.goBack(false)
+}
+render(){
   
     return (
       <div>
-       <Dialog
-              open={props.open}
-              onClose={props.handleClose}
+       <Dialog 
+              open={this.props.open}
+              onClose={this.props.handleClose}
               maxWidth = "sm"
               fullWidth
               aria-labelledby="form-dialog-title"
@@ -34,11 +41,12 @@ function DialogLogin (props) {
             </DialogContentText>
               <Input
                 key="pw1"
+                error={this.props.error}
                 fullWidth
                 id="password"
-                type={props.showPassword ? 'text' : 'password'}
-                value={props.password}
-                onChange={props.handleInputChange}
+                type={this.props.showPassword ? 'text' : 'password'}
+                value={this.props.password}
+                onChange={this.props.handleInputChange}
                 name="password"
                 style={{
                     underline:{ '&:after': {
@@ -49,23 +57,26 @@ function DialogLogin (props) {
                       <InputAdornment position="end">
                       <IconButton
                       aria-label="Toggle password visibility"
-                      onClick={props.handleClickShowPassword}
+                      onClick={this.props.handleClickShowPassword}
                     >
-                        {props.showPassword ? <Visibility /> : <VisibilityOff />}
+                        {this.props.showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
                       </InputAdornment>
                     }
                   />
+              <DialogContentText>
+              <Typography color="#FF0000">  {this.props.incorrectMessage}   </Typography>
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={props.handleSubmit} color="primary">
+            <Button onClick={this.props.handleSubmit} color="primary">
              <Link to="/admin"> Login </Link>
             </Button>
             <Link to="/">
             
             
            
-            <Button onClick={props.handleClose} color="primary">
+            <Button onClick={this.cancelClick} color="primary">
               Cancel
             </Button>
             </Link>
@@ -76,6 +87,7 @@ function DialogLogin (props) {
       </div>
     );
   }
+}
 
 
 export default DialogLogin;

@@ -49,23 +49,26 @@ function ButtonAppBar(props) {
           </Typography>
           <div>
           
-            <Button> <Link to="/"> Home</Link></Button>
+            <Button> 
+                <Link  className="link" to="/"> Home</Link>
+            </Button>
             
           
-            <Tooltip 
-              title="Admin Dashboard"
-            >   
-              <Link
-              to={"/admin"}>
+              <Tooltip 
+                title="Admin Dashboard"
+                >   
+                  <Link
+                    className="link"
+                    to={"/admin"}>
               
-              <IconButton
-                onClick={props.handleAdminAccess}
-                color="inherit">
+                      <IconButton
+                      onClick={props.handleAdminAccess}
+                      color="inherit">
                 
-             <DashboardIcon />
+                        <DashboardIcon />
               
-              </IconButton>
-              </Link> 
+                      </IconButton>
+                  </Link> 
             </Tooltip> 
             {/* <Dialog
               open={props.open}
