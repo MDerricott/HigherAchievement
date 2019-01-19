@@ -6,10 +6,8 @@
 .float-right {
   float: right;
 }
-.link {
-  color: #ffffff;
-}
-.link:hover {
+
+.link, .link:hover , .link:visited, .link:hover , .link:active{
    color: #ffffff
 }
 .float-left {

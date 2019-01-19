@@ -4,22 +4,17 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 
+import IconButton from '@material-ui/core/IconButton';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from "react-router-dom";
+import Menu from "@material-ui/core/Menu"
+import MenuItem from '@material-ui/core/MenuItem'
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import HomeIcon from '@material-ui/icons/Home';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Input } from '@material-ui/core';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 
@@ -36,102 +31,172 @@ const styles = {
     marginRight: 20,
   },
 };
+class ButtonAppBar extends React.Component {
+  state = {
+    
+    anchorEl: null,
+  };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
+  handleChange = event => {
+    this.setState({ auth: event.target.checked });
+  };
+
+  handleMenu = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+render() {
+  const { classes } = this.props;
+  
+  const open = Boolean(this.state.anchorEl);
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          
+          <div>
+        <IconButton 
+        aria-owns={open ? 'menus' : undefined}
+        aria-haspopup="true"
+        onClick={this.handleMenu}
+        color="inherit"
+        // className={classes.menuButton}  
+        >
+            <MenuIcon />
+        </IconButton>
+        <Menu
+            id="menus"
+            anchorEl={this.state.anchorEl}
+            // anchorOrigin={{
+            //     vertical: 'top',
+            //     horizontal: 'right',
+            //   }}
+            //   transformOrigin={{
+            //       vertical: 'top',
+            //       horizontal: 'right',
+            //   }}
+                open={open}
+                onClose={this.handleClose}
+              >
+                <Link 
+                  component="button"
+                  to="/" 
+                  color='inherit' 
+                  className="link" 
+                  underline="none">
+                    <MenuItem onClick={this.handleClose}>Home</MenuItem> 
+                </Link>
+
+                 <Link 
+                  component="button"
+                  to="/national" 
+                  color='inherit' 
+                  className="link" 
+                  underline="none">
+                    <MenuItem onClick={this.handleClose}>National</MenuItem> 
+                </Link> 
+                <Link 
+                  component="button"
+                  to="/dcmetro" 
+                  color='inherit' 
+                  className="link" 
+                  underline="none">
+                    <MenuItem onClick={this.handleClose}>DC Metro</MenuItem> 
+                </Link> 
+                <Link 
+                  component="button"
+                  to="/baltimore" 
+                  color='inherit' 
+                  className="link" 
+                  underline="none">
+                    <MenuItem onClick={this.handleClose}>Baltimore</MenuItem> 
+                </Link> 
+                <Link 
+                  component="button"
+                  to="/richmond" 
+                  color='inherit' 
+                  className="link" 
+                  underline="none">
+                    <MenuItem onClick={this.handleClose}>Richmond</MenuItem> 
+                </Link> 
+                <Link 
+                  component="button"
+                  to="/pittsburgh" 
+                  color='inherit' 
+                  className="link" 
+                  underline="none">
+                    <MenuItem onClick={this.handleClose}>Pittsburgh</MenuItem> 
+                </Link>
+                
+          </Menu>
+            </div>
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Higher Achievement
           </Typography>
           <div>
-          
-            <Button> 
-                <Link  className="link" to="/"> Home</Link>
-            </Button>
-            
-          
-              <Tooltip 
-                title="Admin Dashboard"
-                >   
-                  <Link
-                    className="link"
-                    to={"/admin"}>
-              
+
+            <Tooltip 
+              title="Admin Dashboard"
+              >   
+                <Link
+                  className="link"
+                  to={"/admin"}
+                >
                       <IconButton
-                      onClick={props.handleAdminAccess}
+                      onClick={this.props.handleAdminAccess}
                       color="inherit">
                 
                         <DashboardIcon />
               
                       </IconButton>
                   </Link> 
-            </Tooltip> 
-            {/* <Dialog
-              open={props.open}
-              onClose={props.handleClose}
-              maxWidth = "sm"
-              fullWidth
-              aria-labelledby="form-dialog-title"
-            >
-          <DialogTitle id="max-width-dialog-title">Admin Dashboard</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Login into the Admin Dashboard
-            </DialogContentText>
-          
+                  </Tooltip> 
 
-              <Input
-                key="pw1"
-                fullWidth
-                id="password"
-                type={props.showPassword ? 'text' : 'password'}
-                value={props.password}
-                onChange={props.handleInputChange}
-                name="password"
-                style={{
-                    underline:{ '&:after': {
-                    borderBottomColor: "#000000",
-                    }},
-                  }}
-                    endAdornment={
-                      <InputAdornment position="end">
+                  <Tooltip 
+                    title="Home"
+                   > 
+
+                  <Link
+                    className="link"
+                    to={"/"}
+                  >
                       <IconButton
-                      aria-label="Toggle password visibility"
-                      onClick={props.handleClickShowPassword}
-                    >
-                        {props.showPassword ? <Visibility /> : <VisibilityOff />}
+                      color="inherit">
+                        <HomeIcon />
+              
                       </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-
-
-
-
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={props.handleSubmit} color="primary">
-             <Link to="/admin"> Login </Link>
-            </Button>
-            <Button onClick={props.handleClose} color="primary">
-              Close
-            </Button>
-            
-          </DialogActions>
-        </Dialog> */}
-
-
-
+                  </Link> 
+            </Tooltip> 
           </div>
-
+          {this.props.auth && (
+              <div>
+                <Tooltip 
+                  title="My Profile"
+                >  
+                <Link
+                    className="link"
+                    to={"/profile"}>
+                  <IconButton
+                  // aria-owns={this.state.anchorEl ? 'profile' : undefined}
+                  // aria-haspopup="true"
+                  // onClick={this.handleMenu}
+                  color="inherit"
+                  >
+                  <AccountCircle />
+                  </IconButton>
+                </Link>
+                </Tooltip> 
+                
+              </div>
+            )}
         </Toolbar>
       </AppBar>
     </div>
   );
+}
 }
 
 ButtonAppBar.propTypes = {

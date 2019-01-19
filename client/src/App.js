@@ -10,25 +10,16 @@ import Richmond from "./pages/Richmond";
 import DCMetro from "./pages/DCMetro";
 import Pittsburgh from "./pages/Pittsburgh";
 import Baltimore from "./pages/Baltimore";
-import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./common/Navbar";
 import NoMatch from "./pages/NoMatch";
-import Admin from './pages/Admin'
+import Admin from './pages/Admin';
+import Profile from './pages/Profile';
 import API from "./utils/API";
-import ProtectedRoute from './common/ProtectedRoute'
+
 import Login from "./common/Login"
 
 
-// import BottomNav from "./common/BottomNav";
-
-// import Heatmap from "../src/pages/Center/Heatmap"
-// const data= [
-//   {date: 3, value: 4-2},
-//   {date: 2, value: 3},
-//   {date: 1, value: 0},
-//   {date: 0.1, value: 2},
-  
-// ]
 
 class App extends Component {
   state = {
@@ -40,61 +31,26 @@ class App extends Component {
       redirectToReferrer: false ,
       isAuth: false,
       incorrectMessage: "",
-      error: false
-
-
+      error: false,
+      auth: false,
+      testing:"testing"
   }
  
 handleAdminAccess = () => {
 
     console.log("handle")
-  // let { from } = this.props.location.state || { from: { pathname: "/" } };
-
-      // this.fakeAuth.authenticate(() => {
         this.setState({  
           open: true,
           password: "",
         });
-      
-      // console.log(this.fakeAuth.isAuthenticated)
-    
-    
-  
+
   }
   
- 
-// (this.adminLoggedin ?   
-//       this.setState({ 
-//       open: false,
-//       link: "/admin"
-//       })
-//      :
-//   this.setState({ 
-//     open: true})
-    
-//   )
-
-
-
-
-
-
-// login = () => {
-  
-
-//   this.fakeAuth.authenticate(() => {
-//     this.setState({ redirectToReferrer: true });
-//   });
-// };
-
-
 
 handleSubmit = (event) => {
   
   event.preventDefault();
-  // this.fakeAuth.authenticate(() => {
-  //   this.setState({ redirectToReferrer: true });
-  // });
+
   
     (!this.state.isAuth?    
       API.getUser({
@@ -154,10 +110,18 @@ handleClickShowPassword = () => {
   this.setState(state => ({ showPassword: !state.showPassword }));
 };
 
+componentDidMount = () => {
+const token = localStorage.getItem("token")
+
+
+  token ?
+  this.setState({auth: true}) : 
+  this.setState({auth: false})
+}
 
 
   render() {
-
+    
   
     return (
 
@@ -166,16 +130,17 @@ handleClickShowPassword = () => {
         <div>
           <Navbar 
             handleAdminAccess={this.handleAdminAccess} 
-           
+            auth={this.state.auth}
             />
           <Switch>
-            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/" render={(props) =>(<LandingPage {...props} auth={this.state.auth} handleFormSubmit={this.handleFormSubmit}/>)} />
             <Route exact path="/richmond" component={Richmond} />
             <Route exact path="/dcmetro" component={DCMetro} />
             <Route exact path="/pittsburgh" component={Pittsburgh} />
             <Route exact path="/baltimore" component={Baltimore} />
             <Route exact path="/center/:centerName" component={Center} />
             <Route exact path="/national" component={National} />
+            <Route exact path="/profile" component={Profile} />
             <Route path="/login"  component={Login  } />
             <Route path="/admin" 
             render={(props) => (this.state.isAuth ? 
@@ -184,30 +149,18 @@ handleClickShowPassword = () => {
             incorrectMessage={this.state.incorrectMessage}
             open={this.state.open}
             error={this.state.error}
-            // handleClose={this.handleClose}
             handleSubmit={this.handleSubmit}
             showPassword={this.state.showPassword}
             password={this.state.password}
             handleInputChange={this.handleInputChange}
             handleClickShowPassword={this.handleClickShowPassword}
-            // fakeAuth={this.fakeAuth.isAuthenticated}
+            
             /> 
             )}
             />
 
         
-            {/* <ProtectedRoute exact path="/admin" 
-            handleClose={this.handleClose}
-            handleSubmit={this.handleSubmit}
-            showPassword={this.state.showPassword}
-            password={this.state.password}
-            handleInputChange={this.handleInputChange}
-            handleClickShowPassword={this.handleClickShowPassword}
-    
-            isAuth={this.state.isAuth} component={Admin}/>
-
-        
-           */}
+      
             <Route component={NoMatch} />
           </Switch>
 
@@ -222,15 +175,3 @@ handleClickShowPassword = () => {
 }
 
 export default App;
-
-
-     // path="/admin" 
-            // render={() => (this.state.isAuth ? 
-            // <Admin {...this.props}/> : 
-            // <Login  
-            // {...this.props}
-            
-            // // fakeAuth={this.fakeAuth.isAuthenticated}
-            // /> 
-            // )}
-            // />

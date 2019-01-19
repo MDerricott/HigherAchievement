@@ -18,39 +18,26 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button'
 import API from '../../utils/API';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import AboutUs from './AboutUs';
+import {  Redirect } from "react-router-dom";
 
 
 
 
 
-// const styles = theme => ({
-//     container: {
-//       display: 'flex',
-//       flexWrap: 'wrap',
-//     },
-//     margin: {
-//       margin: theme.spacing.unit,
-//     },
-//     cssLabel: {
-//       '&$cssFocused': {
-//         color: "#000000",
-//       },
-//     },
-//     cssFocused: {},
-//     cssUnderline: {
-//       '&:after': {
-//         borderBottomColor: "#000000",
-//       },
-//     },
-//   });
+
   
 class Form extends React.Component {
         state = {
+           auth: "",
            firstName: "",
            lastName:"",
            password: "",
            email:"",
-           showPassword:false
+           showPassword:false,
+           completedForm: false,
       }
 
       handleInputChange = event => {
@@ -63,9 +50,8 @@ class Form extends React.Component {
         });
       };
       
-      storeUser(){
-        //LocalStorage
-      }
+     
+
       
 
 
@@ -73,32 +59,42 @@ class Form extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }));
       };
     
-      handleSubmit = event  => {
+      handleFormSubmit = event  => {
         event.preventDefault();
         console.log("state" + this.state.firstName)
         if(
-          this.state.firstName && 
-          this.state.lastName && 
-          this.state.email && 
-          this.state.password){
+          this.state.firstName)
+        {
             API.createUser({
               firstName: this.state.firstName
             })
               // .then(res => this.storeUser())
-              .then(res => console.log("respsonse " + res))
+              .then(res => {
+                console.log(res.data._id)
+                const id = res.data._id;
+                localStorage.setItem("token", id);
+                this.setState({completedForm: true})
+                this.props.history.location.push('/national')
+
+              })
               .catch(err => console.log(err));
           }
       }
 
-        // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
-      // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-      // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-      // return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
-
-render (){
     
+render (){
+
+  const completedForm = this.state.completedForm;
+  if (completedForm === true) {
+      return <Redirect to="/national" />}
+
     return(
+    
       <Grid container justify={"center"}>
+      {this.props.auth ? (
+      <div> <AboutUs /> </div>
+      )
+      :(
         <Card style={{width: 500}}> 
             <Grid container justify={"center"} >
               <Paper  elevation={0} style={{padding: 10}}>
@@ -241,12 +237,10 @@ render (){
                 }
             }}}}}
         >
-              Email
+             Affilate
           </InputLabel>
-           <Input
+           <Select
               key="em1"
-              id="email"
-              name="email"
               value={this.state.email}
               onChange={this.handleInputChange}
               style={{
@@ -254,12 +248,21 @@ render (){
                   borderBottomColor: "#000000",
                   },
                 }}
-            />
+                inputProps={{
+                  id: "email",
+                  name:"email"
+                }}
+            >
+           
+            <MenuItem value={"Richmond"}>Richmond</MenuItem>
+            <MenuItem value={"DC Metro"}>DC Metro</MenuItem>
+            <MenuItem value={"Baltimore"}>Baltimore</MenuItem>
+            </Select>
       </FormControl>
     </Grid>
     </Grid>
 </Paper>
-<Paper  elevation={0} style={{padding: 10}}>
+{/* <Paper  elevation={0} style={{padding: 10}}>
         
    <Grid container justify={"center"}>
     <Grid item style={{minWidth: 400, padding: 5}}>    
@@ -289,17 +292,17 @@ render (){
                   borderBottomColor: "#000000",
                   },
                 }}
-            />
-      </FormControl>
+            /> */}
+      {/* </FormControl>
     </Grid>
     </Grid>
-</Paper>
+</Paper> */}
 </Grid>
 <Grid container justify={"center"} >
     <Paper  elevation={0} style={{padding: 10}}>
       <Grid container justify={"center"}>
         <Grid item style={{minWidth: 400, padding: 5}}>   
-        <FormControl fullWidth>
+        <FormControl fullWidth onSubmit={this.formSubmit}>
             <InputLabel
               htmlFor="adornment-password"
                  style={{cssLabel: {
@@ -342,14 +345,19 @@ render (){
                     />
     <br>
     </br>
+    
+    
               <Button 
+               type="submit"
                 color="primary"
                 variant="contained"
-                onClick={this.handleSubmit}
+                onClick={this.handleFormSubmit}
                 >
                     Submit
               </Button>
+      
           </FormControl>
+          
       </Grid>
       <Grid item >
           <br></br>
@@ -360,6 +368,8 @@ render (){
 </Paper>
 </Grid>
 </Card>
+      )}
+
 </Grid>
     )}
       }

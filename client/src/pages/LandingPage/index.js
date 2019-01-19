@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Timeline from './Timeline';
 import Grid from '@material-ui/core/Grid';
-import Tabs from './Tabs'
+// import Tabs from './Tabs'
+import Survey from './Survey';
 // import API from "../utils/API";
 
 class LandingPage extends Component {
@@ -34,7 +35,7 @@ render(){
 
                             Place holder for HA About Text and App Introduction
                             </Grid>
-                                <Tabs />
+                                <Survey  auth={this.props.auth} {...this.props}/>
                             </Grid>
                     <Grid 
                         item 
