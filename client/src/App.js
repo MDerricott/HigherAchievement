@@ -20,11 +20,7 @@ import Login from "./common/Login";
 import Test from './common/testing'
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const palette = {
-  primary: { main: '#62BB46', contrastText: '#ffffff' },
-  secondary: { main: '#000000', contrastText: '#ffffff' }
-};
-const themeName = 'Apple Black Emu';
+
 
 // export default createMuiTheme({ palette, themeName });
 
@@ -140,7 +136,7 @@ const token = localStorage.getItem("token")
 
       <Router>
         
-        <div>
+        <div style={{backgroundColor: "#62BB46", height: "100%"}}>
           <Navbar 
             handleAdminAccess={this.handleAdminAccess} 
             auth={this.state.auth}

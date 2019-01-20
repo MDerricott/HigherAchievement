@@ -297,15 +297,14 @@ class Virginia extends Component {
                         <Grid item sm={12} md={7}>
                               <div >
                                     <CardActions className={classes.actions} disableActionSpacing>
-                                              
-                                              
-                                              
+  
                                             {(zoomedIn
                                              ? 
                                             <Button
                                                 // variant="contained"
                                                 size="small"
-                                                color={(grad ?  "primary" : null)}
+
+                                                color="primary"
                                                 onClick={this.handleReset}
                                                 
                                                 
@@ -322,7 +321,7 @@ class Virginia extends Component {
                                               <Button
                                                 // variant="contained"
                                                 size="small"
-                                                color={(grad ?  "primary" : null)}
+                                                color="primary"
                                                 onClick={this.handleCenterSelection}
                                                 
                                                 style={{
@@ -337,10 +336,11 @@ class Virginia extends Component {
                                                )}
               
                                               <Button
-                                                // variant="contained"
+                                            
                                                 size="small"
+                                                color="primary"
                                                 // variant="contained"
-                                                color={(grad ?  "primary" : null)}
+                                                // color={(grad ?  "primary" : null)}
                                                 onClick={this.handleDropout}
                                                 disabled={grad}
                                                 style={{
@@ -355,7 +355,8 @@ class Virginia extends Component {
                                               <Button
                                                 // variant="contained"
                                                 size="small"
-                                                color={(grad ?  null : "primary" )}
+                                                color="primary"
+                                                // color={(grad ?  null : "primary" )}
                                                 onClick={this.handlePoverty}
                                                 disabled={!grad}
                                                 style={{

@@ -115,17 +115,12 @@ code {
   border-right: 0 solid #e4e4e4;
   border-bottom: 15px solid transparent;
   display: inline-block;
-
-
-
-
   content: " ";
   height: 0;
   position: absolute;
-
   top: 22px;
   width: 0;
-  z-index: -1;
+  z-index: 0;
   right: 30px;
   /* border: medium solid rgb(0, 0, 0);
   border-width: 10px 0 10px 10px;
@@ -159,7 +154,7 @@ code {
 
 /* The actual content */
 .content {
-  padding: 20px 30px;
+  padding: 0 20px 20px;
   background-color: white;
   position: relative;
   border-radius: 6px;

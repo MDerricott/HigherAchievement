@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
+import image from '../images/blacklogo.png';
 
 
 
@@ -135,9 +136,13 @@ render() {
                 
           </Menu>
             </div>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+                <img src={image} height={60}/> 
+                
+            </Typography>
+          {/* <Typography variant="h6" color="inherit" className={classes.grow}>
             Higher Achievement
-          </Typography>
+          </Typography> */}
           <div>
 
             <Tooltip 

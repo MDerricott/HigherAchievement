@@ -90,13 +90,13 @@ render (){
 
     return(
     
-      <Grid container justify={"center"}>
+      <Grid container justify={"center"} style={{height:"100%"}}>
       {this.props.auth ? (
       <div> <AboutUs /> </div>
       )
       :(
       
-        <Card style={{width: 500}}> 
+        <Card style={{width: 500}} elevation={0}> 
             <Grid container justify={"center"} >
               <Paper  elevation={0} style={{padding: 10}}>
                 <Grid container justify={"center"}>
