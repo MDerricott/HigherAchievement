@@ -51,7 +51,7 @@ class Form extends React.Component {
       };
       
      
-
+      
       
 
 
@@ -74,7 +74,7 @@ class Form extends React.Component {
                 const id = res.data._id;
                 localStorage.setItem("token", id);
                 this.setState({completedForm: true})
-                this.props.history.location.push('/national')
+                this.props.onSubmit()
 
               })
               .catch(err => console.log(err));
@@ -95,6 +95,7 @@ render (){
       <div> <AboutUs /> </div>
       )
       :(
+      
         <Card style={{width: 500}}> 
             <Grid container justify={"center"} >
               <Paper  elevation={0} style={{padding: 10}}>
@@ -368,6 +369,7 @@ render (){
 </Paper>
 </Grid>
 </Card>
+
       )}
 
 </Grid>

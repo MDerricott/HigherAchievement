@@ -16,8 +16,17 @@ import NoMatch from "./pages/NoMatch";
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import API from "./utils/API";
+import Login from "./common/Login";
+import Test from './common/testing'
+import { createMuiTheme } from '@material-ui/core/styles';
 
-import Login from "./common/Login"
+const palette = {
+  primary: { main: '#62BB46', contrastText: '#ffffff' },
+  secondary: { main: '#000000', contrastText: '#ffffff' }
+};
+const themeName = 'Apple Black Emu';
+
+// export default createMuiTheme({ palette, themeName });
 
 
 
@@ -106,6 +115,10 @@ handleInputChange = event => {
   console.log(this.state)
 };
 
+onSubmit = () => {
+  this.setState({auth: true})
+}
+
 handleClickShowPassword = () => {
   this.setState(state => ({ showPassword: !state.showPassword }));
 };
@@ -133,7 +146,7 @@ const token = localStorage.getItem("token")
             auth={this.state.auth}
             />
           <Switch>
-            <Route exact path="/" render={(props) =>(<LandingPage {...props} auth={this.state.auth} handleFormSubmit={this.handleFormSubmit}/>)} />
+            <Route exact path="/" render={(props) =>(<LandingPage {...props} onSubmit={this.onSubmit} auth={this.state.auth} handleFormSubmit={this.handleFormSubmit}/>)} />
             <Route exact path="/richmond" component={Richmond} />
             <Route exact path="/dcmetro" component={DCMetro} />
             <Route exact path="/pittsburgh" component={Pittsburgh} />
@@ -142,6 +155,7 @@ const token = localStorage.getItem("token")
             <Route exact path="/national" component={National} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/login"  component={Login  } />
+            <Route exact path="/testing" component={Test} />
             <Route path="/admin" 
             render={(props) => (this.state.isAuth ? 
             <Admin /> : 

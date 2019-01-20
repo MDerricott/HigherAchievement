@@ -7,7 +7,8 @@ import Survey from './Survey';
 
 class LandingPage extends Component {
     state = {
-        landing: {}
+        landing: {},
+        auth:""
     };
 
     // componentDidMount() {
@@ -35,7 +36,7 @@ render(){
 
                             Place holder for HA About Text and App Introduction
                             </Grid>
-                                <Survey  auth={this.props.auth} {...this.props}/>
+                                <Survey {...this.props} auth={this.props.auth} onSubmit={this.props.onSubmit} />
                             </Grid>
                     <Grid 
                         item 
