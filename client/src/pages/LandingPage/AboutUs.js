@@ -13,7 +13,7 @@ function AboutUs (props) {
       <div >
         <Paper elevation={0}  color="primary">
        <Grid container style={{backgroundColor: "#62BB46"}} > 
-          <Grid item sm={3}>
+          {/* <Grid item sm={3}>
           <div style={{
             padding: 20,
             paddingRight: 10,
@@ -26,8 +26,8 @@ function AboutUs (props) {
           </div>
             
        
-          </Grid>
-          <Grid item sm={9}>
+          </Grid> */}
+          <Grid item sm={12}>
 
             <Typography
               paragraph

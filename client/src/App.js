@@ -18,7 +18,6 @@ import Profile from './pages/Profile';
 import API from "./utils/API";
 import Login from "./common/Login";
 import Test from './common/testing'
-import { createMuiTheme } from '@material-ui/core/styles';
 
 
 

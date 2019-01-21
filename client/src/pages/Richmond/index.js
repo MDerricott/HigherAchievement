@@ -247,9 +247,12 @@ class Virginia extends Component {
   render() {
     const { classes } = this.props;
     const { poverty , grad , zoomedIn} = this.state
+ 
+  
           console.log(classes.dashboardStyle)
     return (
      <Grid container justify="center"  style={{backgroundColor:"#62BB46" }}> 
+    
     <Grid container style={{height: 50}}/>
      <Grid container style={wrapperStyles}>
      <Grid container>
@@ -374,6 +377,7 @@ class Virginia extends Component {
                     
                           </Grid>
                           </Grid>
+                         
                       <Paper  elevation={0}>
                           <ComposableMap
                             projection="albersUsa"
