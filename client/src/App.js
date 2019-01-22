@@ -19,7 +19,7 @@ import API from "./utils/API";
 import Login from "./common/Login";
 import Test from './common/testing'
 import Footer from './common/Footer'
-import { Grid } from "@material-ui/core";
+// import { Grid } from "@material-ui/core";
 
 
 
@@ -65,26 +65,26 @@ handleSubmit = (event) => {
           })
           .then(res => {
             // Map through users to find admin password match
-            res.data.map( (arr, i) => {
-              (
-                arr.password === this.state.password ?  
-                this.setState(
-                  { 
-                  isAuth: true, 
-                  open: false ,
-                  password: "",
-                  error: false
-                  
-                  }
-                )
-                 : 
-                this.setState({
-                  incorrectMessage: "You have entered the wrong password",
-                  error:true                
-                })
-                )
-            }) 
-          })
+                  const userdb = res.data
+                  userdb.map( (arr => {
+                    (
+                      arr.password === this.state.password ?  
+                        this.setState(
+                        { 
+                          isAuth: true, 
+                          open: false ,
+                          password: "",
+                          error: false
+                        }
+                    )
+                    : 
+                      this.setState({
+                      incorrectMessage: "You have entered the wrong password",
+                      error:true                
+                    })
+                    )
+                  }))})
+      
     .catch(err => console.log(err))
 
     :

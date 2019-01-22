@@ -32,7 +32,7 @@ import LineChartIcon from '@material-ui/icons/ShowChart'
 import SchoolIcon from '@material-ui/icons/School'
 import StarIcon from '@material-ui/icons/Grade'
 import ElaIcon from '@material-ui/icons/Language'
-import BottomNav from '../../common/BottomNav'
+// import BottomNav from '../../common/BottomNav'
 
 
 const wrapperStyles = {
@@ -91,182 +91,36 @@ const wrapperStyles = {
 
 
 
-  let rolePieChart = {
-    data: canvas => {
-      let ctx = canvas.getContext("2d");
-     
   
-      // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-  
-      // gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
-      // gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
-      // gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
-  
-      return {
-        labels: ["Families", "Mentors","Donors","School Partners"],
-        datasets: [
-          {
-            backgroundColor: ["#62BB46","#000000", "#006595", "#F5A01A"],
-            hoverBackgroundColor: "#ffffff",
-            data: [80, 100, 71, 20],
-            borderWidth: [5,5,5,5],
-            
-            label: "data set"
-          },
-          
-          // {
-           
-          //   backgroundColor: ["#000000","#66ffff", "#0000ff"],
-          //   data: [100, 20, 40]}
-        ],
-         
-      };
-    },
-    options: {
-      maintainAspectRatio: false,
-      cutoutPercentage: 50,
-      rotation: Math.PI,
-      circumference: Math.PI,
-      title: {
-        display: true,
-        text: 'Scholar Demographics'
-      },
-      
-      legend: {
-        display: true,
-        position: "bottom",
-      },
-      tooltips: {
-        backgroundColor: "#f5f5f5",
-        titleFontColor: "#333",
-        bodyFontColor: "#666",
-        bodySpacing: 4,
-        xPadding: 12,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest"
-      },
-      responsive: true}
-  };
 
-
-  let surveyTimeline = {
-    data: canvas => {
-      let ctx = canvas.getContext("2d");
   
-      let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-  
-      gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
-      gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
-      gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
-  
-      return {
-        labels: ["5th", "6th", "7th", "8th"],
-        datasets: [
-          {
-            label: "GPA",
-            fill: true,
-            lineTension: 0,
-            backgroundColor: "rgba(0,101,149,0.7)",
-            borderColor: "#006595",
-            borderWidth: 2,
-            borderDash: [],
-            borderDashOffset: 0.0,
-            pointBackgroundColor: "#006595",
-            pointBorderColor: "rgba(34,73,18,0)",
-            pointHoverBackgroundColor: "#006595",
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: [2.5, 1.4, 2.8, 3.2],
-          }
-        ]
-      };
-    },
-    options: {
-      maintainAspectRatio: false,
-      title: {
-        display: true,
-        text: 'Cohort GPA Data'
-      },
-      legend: {
-        display: false
-      },
-      tooltips: {
-        backgroundColor: "#f5f5f5",
-        titleFontColor: "#333",
-        bodyFontColor: "#666",
-        bodySpacing: 4,
-        xPadding: 12,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest"
-      },
-      responsive: true,
-      scales: {
-        yAxes: [
-          {
-            barPercentage: 1.6,
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(29,140,248,0.0)",
-              zeroLineColor: "transparent"
-            },
-            ticks: {
-              suggestedMin: 1,
-              suggestedMax: 4,
-              padding: 20,
-              fontColor: "#9a9a9a"
-            }
-          }
-        ],
-        xAxes: [
-          {
-            barPercentage: 1.6,
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(29,140,248,0.1)",
-              zeroLineColor: "transparent"
-            },
-            ticks: {
-              padding: 20,
-              fontColor: "#9a9a9a"
-            }
-          }
-        ]
-      }}
-  };
 
 class Center extends Component {
     constructor(){
     super()
     this.state = {
         center: {},
-        glyph: [{date:2,value: 2},{date:3,value: 3}],
-        grade5Value: "",
-        grade6Value: "",
-        grade7Value: "",
-        grade8Value: ""
-        
-    
+        cdata:[],
+        ddata:[],
+        mathOutcome:null,
+        readingOutcome: null,
+        demoLabel: null,
     };
     }
 componentDidMount (){
-   
     API.getCenter(this.props.match.params.centerName)
         .then(res => {
+          
             this.setState({
                 center: res.data,
-                grade5Value: res.data.glyph[3].value,
-                grade6Value: res.data.glyph[2].value,
-                grade7Value: res.data.glyph[1].value,
-                grade8Value: res.data.glyph[0].value
+                cdata: res.data.cohortData.data.split(","),
+                ddata: res.data.scholarDemo.data,
+                demoLabel: res.data.scholarDemo.labels,
+                mathOutcome: res.data.outcomes.math * 100,
+                readingOutcome: res.data.outcomes.reading * 100
+    
             })
-           
-     
-            
-         
+            console.log(this.state.center.outcomes.math)
         })
         .catch(err => console.log(err));
 }
@@ -274,8 +128,154 @@ componentDidMount (){
 
     render(){
         const { classes } = this.props;
- 
 
+        let rolePieChart = {
+          data: canvas => {
+            // let ctx = canvas.getContext("2d");
+          
+        
+            // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+        
+            // gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
+            // gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
+            // gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
+        
+            return {
+              labels: this.state.demoLabel,
+              datasets: [
+                {
+                  backgroundColor: ["#62BB46","#000000", "#006595", "#F5A01A"],
+                  hoverBackgroundColor: "#607D8B",
+                  hoverBorderColor: "#ffffff",
+                  data: this.state.ddata,
+                  borderWidth: [5,5,5,5],
+                  
+                  label: "data set"
+                },
+                
+                // {
+                 
+                //   backgroundColor: ["#000000","#66ffff", "#0000ff"],
+                //   data: [100, 20, 40]}
+              ],
+               
+            };
+          },
+          options: {
+            maintainAspectRatio: false,
+            cutoutPercentage: 50,
+            rotation: Math.PI,
+            circumference: Math.PI,
+            title: {
+              display: true,
+              text: 'Scholar Demographics'
+            },
+            
+            legend: {
+              display: true,
+              position: "bottom",
+            },
+            tooltips: {
+              backgroundColor: "#f5f5f5",
+              titleFontColor: "#333",
+              bodyFontColor: "#666",
+              bodySpacing: 4,
+              xPadding: 12,
+              mode: "nearest",
+              intersect: 0,
+              position: "nearest"
+            },
+            responsive: true}
+        };
+      
+ 
+        let surveyTimeline = {
+          data: canvas => {
+            // let ctx = canvas.getContext("2d");
+        
+            // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+        
+            // gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
+            // gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
+            // gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
+        
+            return {
+              labels: ["5th", "6th", "7th", "8th"],
+              datasets: [
+                {
+                  label: "GPA",
+                  fill: true,
+                  lineTension: 0,
+                  backgroundColor: "rgba(0,101,149,0.7)",
+                  borderColor: "#006595",
+                  borderWidth: 2,
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  pointBackgroundColor: "#006595",
+                  pointBorderColor: "rgba(34,73,18,0)",
+                  pointHoverBackgroundColor: "#006595",
+                  pointBorderWidth: 20,
+                  pointHoverRadius: 4,
+                  pointHoverBorderWidth: 15,
+                  pointRadius: 4,
+                  data: this.state.cdata
+                }
+              ]
+            };
+          },
+          options: {
+            maintainAspectRatio: false,
+            title: {
+              display: true,
+              text: 'Cohort GPA Data'
+            },
+            legend: {
+              display: false
+            },
+            tooltips: {
+              backgroundColor: "#f5f5f5",
+              titleFontColor: "#333",
+              bodyFontColor: "#666",
+              bodySpacing: 4,
+              xPadding: 12,
+              mode: "nearest",
+              intersect: 0,
+              position: "nearest"
+            },
+            responsive: true,
+            scales: {
+              yAxes: [
+                {
+                  barPercentage: 1.6,
+                  gridLines: {
+                    drawBorder: false,
+                    color: "rgba(29,140,248,0.0)",
+                    zeroLineColor: "transparent"
+                  },
+                  ticks: {
+                    suggestedMin: 1,
+                    suggestedMax: 4,
+                    padding: 20,
+                    fontColor: "#9a9a9a"
+                  }
+                }
+              ],
+              xAxes: [
+                {
+                  barPercentage: 1.6,
+                  gridLines: {
+                    drawBorder: false,
+                    color: "rgba(29,140,248,0.1)",
+                    zeroLineColor: "transparent"
+                  },
+                  ticks: {
+                    padding: 20,
+                    fontColor: "#9a9a9a"
+                  }
+                }
+              ]
+            }}
+        };
         return(
           <div>
 
@@ -405,7 +405,7 @@ componentDidMount (){
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  CenterName
+                  {this.state.center.centerName}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -422,7 +422,7 @@ componentDidMount (){
                     marginRight: "3px",
                     marginLeft: "3px"
                   },
-                  "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+                  "& .fab,& .fas,& .far,& .fal,& .materialIcons": {
                     top: "4px",
                     fontSize: "16px",
                     position: "relative",
@@ -438,7 +438,7 @@ componentDidMount (){
 </Grid>
 <Grid container spacing={16}>  
       <Grid item sm={4}> 
-     <CustomCard>
+     <CustomCard style={{height: 150}}>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
                   <Icon>
@@ -456,10 +456,10 @@ componentDidMount (){
                   }}
                     variant="h3"
                   >
-                   Affiliate 
+                   Enrollment
                   </Typography>
                 <Typography 
-                  variant="h4"
+                  variant="h3"
                   style={{
                     color: "#3C4858",
                     marginTop: "0px",
@@ -472,7 +472,7 @@ componentDidMount (){
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  Richmond
+                 {this.state.center.enrollment}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -489,21 +489,21 @@ componentDidMount (){
                     marginRight: "3px",
                     marginLeft: "3px"
                   },
-                  "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+                  "& .fab,& .fas,& .far,& .fal,& .materialIcons": {
                     top: "4px",
                     fontSize: "16px",
                     position: "relative",
                     marginRight: "3px",
                     marginLeft: "3px"
                 }}}>
-                Established 2016
+                As of January 2019
                   
                 </Typography>
               </CustomCardFooter>
             </CustomCard>
      </Grid>  
      <Grid item sm={4}>  
-            <CustomCard>
+            <CustomCard style={{height: 150}}>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Icon>
@@ -520,7 +520,7 @@ componentDidMount (){
                   }}
                     variant="h4"
                   >
-                   Enrollment
+                   Math Outcome
                   </Typography>
                 <Typography 
                 variant="h4"
@@ -536,7 +536,9 @@ componentDidMount (){
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  296
+                  {`${this.state.mathOutcome} %`}
+
+                  {/* {this.state.center.outcomes.math * 100} */}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -553,21 +555,21 @@ componentDidMount (){
                     marginRight: "3px",
                     marginLeft: "3px"
                   },
-                  "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+                  "& .fab,& .fas,& .far,& .fal,& .materialIcons": {
                     top: "4px",
                     fontSize: "16px",
                     position: "relative",
                     marginRight: "3px",
                     marginLeft: "3px"
                 }}}>
-                As of January 2019
+                Maintained or Improved A/B
                   
                 </Typography>
               </CustomCardFooter>
             </CustomCard>
         </Grid>
         <Grid item sm={4}>  
-            <CustomCard>
+            <CustomCard style={{height: 150}}>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
                   <Icon>
@@ -585,7 +587,7 @@ componentDidMount (){
                   }}
                     variant="h4"
                   >
-                  FARM Rate
+                  Reading Outcomes
                   </Typography>
                 <Typography 
                 variant="h4"
@@ -601,7 +603,7 @@ componentDidMount (){
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  100%
+                 {`${this.state.readingOutcome} %`}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -618,7 +620,7 @@ componentDidMount (){
                         marginRight: "3px",
                         marginLeft: "3px"
                         },
-                    "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+                    "& .fab,& .fas,& .far,& .fal,& .materialIcons": {
                         top: "4px",
                         fontSize: "16px",
                         position: "relative",
@@ -638,14 +640,14 @@ componentDidMount (){
                     marginRight: "3px",
                     marginLeft: "3px"
                   },
-                  "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+                  "& .fab,& .fas,& .far,& .fal,& .materialIcons": {
                     top: "4px",
                     fontSize: "16px",
                     position: "relative",
                     marginRight: "3px",
                     marginLeft: "3px"
                 }}}>
-                Students Recieving Free Lunch
+                Maintained or Improved A/B
                   
                 </Typography>
                 </div>
@@ -660,9 +662,9 @@ componentDidMount (){
    <Grid item  sm={6} >
        <Card >
          <CardHeader color="warning" stats icon>
-           <p className={classes.cardCategory}>Survey Resuls</p>
+           <p className={classes.cardCategory}>Scholar Demographics</p>
            <h3 className={classes.cardTitle}>
-             <small>by</small> Role
+             Afterschool Academy 2018-19
            </h3>
          </CardHeader>
          <CardBody>

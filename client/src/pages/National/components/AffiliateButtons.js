@@ -78,23 +78,23 @@ const styles = theme => ({
   },
 });
 
-const images = [
-  {
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: 'Breakfast',
-    width: '40%',
-  },
-  {
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Burgers',
-    width: '30%',
-  },
-  {
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Camera',
-    width: '30%',
-  },
-];
+// const images = [
+//   {
+//     url: '/static/images/grid-list/breakfast.jpg',
+//     title: 'Breakfast',
+//     width: '40%',
+//   },
+//   {
+//     url: '/static/images/grid-list/burgers.jpg',
+//     title: 'Burgers',
+//     width: '30%',
+//   },
+//   {
+//     url: '/static/images/grid-list/camera.jpg',
+//     title: 'Camera',
+//     width: '30%',
+//   },
+// ];
 
 function ButtonBases(props) {
   const { classes } = props;

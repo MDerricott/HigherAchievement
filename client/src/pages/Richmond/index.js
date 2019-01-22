@@ -186,9 +186,9 @@ class Virginia extends Component {
       centers: [
         { markerOffset: 10,markerXOff:-60, name: "Henderson", coordinates: [-77.4466, 37.5963], id: "5c3b7d308296f336bce86ccf" },
         { markerOffset: 10,markerXOff:-50, name: "Boushall", coordinates: [-77.4697, 37.4729], id: "5c3b84538296f336bce86ee1"},
-        { markerOffset:5,markerXOff:45, name: "Wilder", coordinates: [-77.4216, 37.6205] },
+        // { markerOffset:5,markerXOff:45, name: "Wilder", coordinates: [-77.4216, 37.6205] },
         { markerOffset: 10,markerXOff:40, name: "Binford", coordinates: [-77.4622, 37.5491], id: "5c3b84668296f336bce86ee7" },
-        { markerOffset: 30, name: "Alexandria", coordinates: [-77.1108, 38.8265] },
+        // { markerOffset: 30, name: "Alexandria", coordinates: [-77.1108, 38.8265] },
         ]
     }
     this.handleCenterSelection = this.handleCenterSelection.bind(this)

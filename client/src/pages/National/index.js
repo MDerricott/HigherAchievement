@@ -28,7 +28,7 @@ import LocalOffer from "@material-ui/icons/LocalOffer";
 import ZoomIn from '@material-ui/icons/ZoomIn'
 import Button from '@material-ui/core/Button'; 
 import ZoomOut from '@material-ui/icons/ZoomOutMap'
-import Footer from '../../common/Footer'
+// import Footer from '../../common/Footer'
 
 
 

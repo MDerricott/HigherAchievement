@@ -137,7 +137,7 @@ render() {
           </Menu>
             </div>
             <Typography variant="h6" color="inherit" className={classes.grow}>
-                <img src={image} height={60}/> 
+                <img src={image} height={60} alt="HA-Logo"/> 
                 
             </Typography>
           {/* <Typography variant="h6" color="inherit" className={classes.grow}>

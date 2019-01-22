@@ -206,13 +206,13 @@ const datas = [80, 100, 70, 80, 120, 80];
 
 let surveyTimeline = {
   data: canvas => {
-    let ctx = canvas.getContext("2d");
+    // let ctx = canvas.getContext("2d");
 
-    let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+    // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-    gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
-    gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
-    gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
+    // gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
+    // gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
+    // gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
 
     return {
       labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
@@ -292,7 +292,7 @@ let surveyTimeline = {
 // #########################################
 let affiliateHBard = {
   data: canvas => {
-    let ctx = canvas.getContext("2d");
+    // let ctx = canvas.getContext("2d");
 
     // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
@@ -436,7 +436,7 @@ let affiliateHBard = {
 //TESTING
 let rolePieChart = {
   data: canvas => {
-    let ctx = canvas.getContext("2d");
+    // let ctx = canvas.getContext("2d");
    
 
     // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);

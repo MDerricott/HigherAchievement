@@ -7,23 +7,30 @@ const centerSchema = new Schema({
         required: true,
     },
     enrollment: {
+        type: Number, 
+    },
+    farmRate:{
         type: Number,
-        
     },
-    glyph: {
-        type: Array,
-        
+    affiliate:{
+        type: String,
     },
-    heatmap:{
-        type: Array
+
+    scholarDemo: {
+        data: {
+            type: Array
+        },
+        labels: {
+            type: Array
+        },
     },
-    centerDirector: {
-        name: {
+    cohortData: {
+        data: {
             type: String
         },
-        email: {
+        label: {
             type: String
-        },
+     },
     },
     outcomes:{
         math: {
