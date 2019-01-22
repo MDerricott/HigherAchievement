@@ -28,14 +28,14 @@ import CardFooter from "../National/components/CardFooter";
 import IconButton from '@material-ui/core/IconButton';
 import LocalOffer from "@material-ui/icons/LocalOffer";
 import { Link } from "react-router-dom";
-import Danger from "../../common/Danger";
+// import Danger from "../../common/Danger";
 import CustomCard from "../../common/CustomCard";
 import CardHeader from "../../common/CardHeader";
 import CardIcon from "../../common/CardIcon";
 // import CardBody from "components/Card/CardBody.jsx";
 import CustomCardFooter from "../../common/CardFooter";
 import Icon from "@material-ui/core/Icon";
-import Warning from "@material-ui/icons/Warning";
+// import Warning from "@material-ui/icons/Warning";
 // react plugin for creating charts
 // import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -44,8 +44,9 @@ import Accessibility  from '@material-ui/icons/AccessibilityNew';
 import ChartIcon from '@material-ui/icons/InsertChart'
 import CardBody from '../../common/CardBody'
 import NotesIcon from "@material-ui/icons/Notes"
+import SchoolBusIcon from '@material-ui/icons/DirectionsBus'
 
-const successColor = "#4caf50"
+// const successColor = "#4caf50"
 
 
 // const dashboardStyle = {
@@ -121,10 +122,10 @@ const successColor = "#4caf50"
 //       }
 //     },
     const wrapperStyles = {
-      width: "100%",
-      maxWidth: 980,
+      width: "80%",
+      maxWidth: 1000,
       margin: "0 auto",
-      padding: 10,
+      padding: 3,
       backgroundColor: "#62BB46"
     }
   
@@ -135,8 +136,8 @@ const successColor = "#4caf50"
 
 
 const otherScale = scaleLinear()
-  .domain([0,16.3])
-  .range(["#ffffff","#F5A01A"])
+  .domain([0,14])
+  .range(["#ffffff","#f5a01a"])
 
 
 const colorScale = scaleLinear()
@@ -175,7 +176,7 @@ class Virginia extends Component {
     this.state = {
       poverty: [],
       displayText: "hide",
-      viewBox: "2800 -150 980 751",
+      viewBox: "2800 -200 980 751",
       radius: 0,
       zoom: 12,
       circle: "visible",
@@ -229,7 +230,7 @@ class Virginia extends Component {
 
   handleReset() {
     this.setState({
-      viewBox: "2800 -150 980 751",
+      viewBox: "2800 -200 980 751",
       radius: 0,
       circle: "visible",
       displayText: "hide",
@@ -252,12 +253,79 @@ class Virginia extends Component {
           console.log(classes.dashboardStyle)
     return (
      <Grid container justify="center"  style={{backgroundColor:"#62BB46" }}> 
-    
-    <Grid container style={{height: 50}}/>
      <Grid container style={wrapperStyles}>
-     <Grid container>
-          <Grid container justify="center">
-            <div> 
+     
+
+          <CustomCard>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <Icon>
+                      <PlaceIcon fontSize="large" />
+                      </Icon>
+                </CardIcon>
+                
+                <Typography style={{
+                    color: "#3C4858",
+                    margin: 0,
+                    padding: 10,
+                    fontSize: "14px",
+                    marginTop: "0",
+                    marginBottom: "0"
+                  }}
+                    variant="h3"
+                  >
+                   Affiliate 
+                  </Typography>
+                <Typography 
+                  variant="h2"
+                  style={{
+                    color: "#3C4858",
+                    marginTop: "0px",
+                    minHeight: "auto",
+                    fontWeight: "300",
+                    marginBottom: "3px",
+                    textDecoration: "none",
+                      "& small": {
+                      color: "#777",
+                      fontWeight: "400",
+                      lineHeight: "1"
+                  }}}>
+                  Richmond
+                </Typography>
+              </CardHeader>
+              <CustomCardFooter stats>
+              <Typography style={{
+                  color: "#999999",
+                  display: "inline-flex",
+                  fontSize: "12px",
+                  lineHeight: "22px",
+                  "& svg": {
+                    top: "4px",
+                    width: "16px",
+                    height: "16px",
+                    position: "relative",
+                    marginRight: "3px",
+                    marginLeft: "3px"
+                  },
+                  "& .fab,& .fas,& .far,& .fal,& .material-icons": {
+                    top: "4px",
+                    fontSize: "16px",
+                    position: "relative",
+                    marginRight: "3px",
+                    marginLeft: "3px"
+                }}}>
+                4009 Fitzhugh Ave , Suite 200, Richmond, VA 23230
+                  
+                </Typography>
+              </CustomCardFooter>
+            </CustomCard>
+   
+    
+
+    
+     {/* <Grid container> */}
+          {/* <Grid container justify="center"> */}
+            {/* <div style={{heght: 500}}>  */}
              <Card elevation={4} style={{backgroundColor: "#000000", color:"#ffffff", width: "40%", minHeight: 50, display: "inline-block", position: "relative", top:50, left:20}}> 
                        {(grad ? 
                        <div>
@@ -294,10 +362,6 @@ class Virginia extends Component {
            
               <Card className={classes.card} elevation={2} > 
                     <Grid container justify="flex-end"> 
-                        <Grid item  sm={12} md={5} style={{height: 75}}> 
-                      
-                        </Grid>
-                        <Grid item sm={12} md={7}>
                               <div >
                                     <CardActions className={classes.actions} disableActionSpacing>
   
@@ -374,9 +438,7 @@ class Virginia extends Component {
                                                
                                     </CardActions>
                                 </div>   
-                    
-                          </Grid>
-                          </Grid>
+                       </Grid>
                          
                       <Paper  elevation={0}>
                           <ComposableMap
@@ -384,8 +446,8 @@ class Virginia extends Component {
                             projectionConfig={{
                                 scale: 1000,
                             }}
-                            width={980}
-                            height={551}
+                            width={1000}
+                            height={500}
                             viewBox={this.state.viewBox}
                             style={{
                                 width: "100%",
@@ -521,36 +583,33 @@ class Virginia extends Component {
                         </div>
                     </CardFooter>
             </Card>
-            </div>
-            <Grid container  style={wrapperStyles}>
-                
-                <Grid item>
-                    
-                </Grid>
-                <Grid container spacing={16}>  
+            {/* </div> */}
+           
+    
+  <Grid container spacing={16}>  
       <Grid item sm={4}> 
-     <CustomCard>
+      <CustomCard style={{height: 150}}>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
                   <Icon>
-                      <PlaceIcon fontSize="large" />
+                      <SchoolBusIcon fontSize="large" />
                       </Icon>
                 </CardIcon>
                 
                 <Typography style={{
                     color: "#3C4858",
                     margin: 0,
-                    padding: 10,
+                    padding: 5,
                     fontSize: "14px",
                     marginTop: "0",
                     marginBottom: "0"
                   }}
                     variant="h3"
                   >
-                   Affiliate 
+                   School District 
                   </Typography>
                 <Typography 
-                  variant="h4"
+                  variant="h6"
                   style={{
                     color: "#3C4858",
                     marginTop: "0px",
@@ -563,7 +622,7 @@ class Virginia extends Component {
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  Richmond
+                  <small>  Richmond City Public Schools</small>
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -594,7 +653,7 @@ class Virginia extends Component {
             </CustomCard>
      </Grid>  
      <Grid item sm={4}>  
-            <CustomCard>
+            <CustomCard  style={{height: 150}}>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Icon>
@@ -614,7 +673,7 @@ class Virginia extends Component {
                    Enrollment
                   </Typography>
                 <Typography 
-                variant="h4"
+                variant="h3"
                 style={{
                   color: "#3C4858",
                   marginTop: "0px",
@@ -658,7 +717,7 @@ class Virginia extends Component {
             </CustomCard>
         </Grid>
         <Grid item sm={4}>  
-            <CustomCard>
+            <CustomCard style={{height: 150}}>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
                   <Icon>
@@ -679,7 +738,7 @@ class Virginia extends Component {
                   FARM Rate
                   </Typography>
                 <Typography 
-                variant="h4"
+                variant="h3"
                 style={{
                   color: "#3C4858",
                   marginTop: "0px",
@@ -720,14 +779,15 @@ class Virginia extends Component {
                 Students Recieving Free Lunch
                   
                 </Typography>
-                </div>
+               </div>
               </CustomCardFooter>
+             
             </CustomCard>
         </Grid>
     </Grid> 
             
      
-     </Grid>
+     {/* </Grid> */}
     
      <Grid container>
      
@@ -818,8 +878,11 @@ class Virginia extends Component {
             </Grid>
             </Grid>
      </Grid>
- </Grid>    
- </Grid>
+ 
+//  </Grid>
+//  </Grid>   
+//  </Grid> 
+//  </Grid>
     )
   }
 }

@@ -28,6 +28,7 @@ import LocalOffer from "@material-ui/icons/LocalOffer";
 import ZoomIn from '@material-ui/icons/ZoomIn'
 import Button from '@material-ui/core/Button'; 
 import ZoomOut from '@material-ui/icons/ZoomOutMap'
+import Footer from '../../common/Footer'
 
 
 
@@ -66,7 +67,7 @@ const styles = theme => ({
 
 const colorScale = scaleLinear()
   .domain([7,20])
-  .range(["#FBE9E7","#FF5722"])
+  .range(["#ffffff","#006595"])
 
 class National extends Component {
   constructor() {
@@ -142,9 +143,8 @@ componentDidMount() {
           
               <Card   stat icon rounded elevation={4} style={{backgroundColor: "#000000", width: "50%", minHeight: 75, display: "inline-block", position: "relative", top:50, left:20}}> 
                   <Typography
-                    color="secondary"
                     variant="h4"
-                    style={{padding: 15}}
+                    style={{padding: 15, color:"#ffffff"}}
 
                   > 
                     National Poverty Data
@@ -341,21 +341,22 @@ componentDidMount() {
       <Card square elevation={0} style={{padding:5}} justifyContent="center">
           <Grid container width="100%" spacing={16} justify="center" >
               <Grid item sm={3}>
-                  <AffilateButton key={1} affilate="DC Metro"  />
+                  <Link to="/dcmetro" ><AffilateButton key={1} affilate="DC Metro" imageURL={"https://higherachievement.org/wp-content/uploads/2018/12/IMG_6971-e1545143799286.jpg"} /></Link>
               </Grid>
               <Grid item sm={3}>
-                  <AffilateButton key={2} affilate="Baltimore"  />
+                  <Link to="/baltimore"><AffilateButton key={2} affilate="Baltimore" imageURL={"https://higherachievement.org/wp-content/uploads/2018/04/Baltimore-scholar-studying-banner-photo-1024x682.jpg"}  /> </Link>
               </Grid>
               <Grid item sm={3}>
-                  <AffilateButton key={3} affilate="Richmond"  />
+              <Link to="/richmond"> <AffilateButton key={3} affilate="Richmond"  imageURL={"https://higherachievement.org/wp-content/uploads/2016/10/Richmond-Scholars.jpg"}  /> </Link>
               </Grid> 
               <Grid item sm={3}>
-                  <AffilateButton key={4} affilate="Pittsburgh"  />
+              <Link to="/pittsburgh"> <AffilateButton key={4} affilate="Pittsburgh" imageURL={"https://higherachievement.org/wp-content/uploads/2018/09/One-World-Education.jpg"} /> </Link>
               </Grid>
             </Grid>
         </Card>   
         </div>
       </div>
+    
       </Grid>
     )
   }

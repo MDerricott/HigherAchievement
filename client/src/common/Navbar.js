@@ -57,7 +57,7 @@ render() {
   return (
     <div className={classes.root}>
       <AppBar 
-        position="fixed"
+        position="static"
         color="secondary" >
         <Toolbar>
           <div>

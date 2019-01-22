@@ -18,6 +18,8 @@ import Profile from './pages/Profile';
 import API from "./utils/API";
 import Login from "./common/Login";
 import Test from './common/testing'
+import Footer from './common/Footer'
+import { Grid } from "@material-ui/core";
 
 
 
@@ -132,7 +134,7 @@ const token = localStorage.getItem("token")
     
   
     return (
-
+<div> 
       <Router>
         
         <div style={{backgroundColor: "#62BB46", height: "100%"}}>
@@ -171,14 +173,18 @@ const token = localStorage.getItem("token")
         
       
             <Route component={NoMatch} />
+            
           </Switch>
-
-
-   
-        </div>
+       
+         
         
+         
+        </div>
+       
       </Router>
-     
+      <div   style={{height: 50, backgroundColor:"#62BB46"}}/>
+      <Footer />
+ </div>  
     );
   }
 }

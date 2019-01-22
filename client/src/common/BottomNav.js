@@ -31,7 +31,8 @@ class SimpleBottomNavigation extends React.Component {
         value={value}
         onChange={this.handleChange}
         showLabels
-        className={classes.root}
+        position="static"
+        // className={classes.root}
         className="bottom"
       >
         <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />

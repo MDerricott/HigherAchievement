@@ -25,7 +25,6 @@ const styles = theme => ({
       },
       '& $imageMarked': {
         opacity: 0,
-         color: "inherit"
       },
       '& $imageTitle': {
         border: '4px solid currentColor',
@@ -78,30 +77,35 @@ const styles = theme => ({
   },
 });
 
-const images = [
-  {
-    url: '/static/images/grid-list/breakfast.jpg',
-    title: 'Breakfast',
-    width: '40%',
-  },
-  {
-    url: '/static/images/grid-list/burgers.jpg',
-    title: 'Burgers',
-    width: '30%',
-  },
-  {
-    url: '/static/images/grid-list/camera.jpg',
-    title: 'Camera',
-    width: '30%',
-  },
-];
+// const images = [
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Breakfast',
+//     width: "25%",
+//   },
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Burgers',
+//     width: "25%",
+//   },
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Camera',
+//     width: "25%",
+//   },
+//   {
+//     url: 'https://picsum.photos/200/300?image=0',
+//     title: 'Camera',
+//     width: "25%",
+//   },
+// ];
 
 function ButtonBases(props) {
   const { classes } = props;
 
   return (
     <div className={classes.root}>
-     
+      {/* {images.map(image => ( */}
         <ButtonBase
           focusRipple
           key={props.key}
@@ -115,10 +119,20 @@ function ButtonBases(props) {
           <span
             className={classes.imageSrc}
             style={{
-              backgroundImage: `url(${props.imageURL})`,
+            //   backgroundImage: `url(${image.url})`,
+            backgroundColor: "#F5A01A"
             }}
           />
-          <span className={classes.imageBackdrop} />
+          <span style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              backgroundColor: "#ffffff",
+              opacity: 0.4,
+    // transition: this.props.theme.transitions.create('opacity'),
+  }} />
           <span className={classes.imageButton}>
             <Typography
               component="span"
@@ -126,12 +140,22 @@ function ButtonBases(props) {
               color="inherit"
               className={classes.imageTitle}
             >
-               {props.affilate}
-              <span className={classes.imageMarked} />
+              {props.affilate}
+              <span style={{
+    height: 3,
+    width: 18,
+    backgroundColor: "#ffffff",
+    position: 'absolute',
+    bottom: -2,
+    left: 'calc(50% - 9px)',
+    // transition: theme.transitions.create('opacity'),
+  }} />
             </Typography>
           </span>
         </ButtonBase>
-      
+          
+
+      {/* ))} */}
     </div>
   );
 }
