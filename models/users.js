@@ -12,22 +12,26 @@ const usersSchema = new Schema({
     },
   firstName: { 
       type: String, 
-     
     },
-  lastName: 
-  String,
+  lastName: {
+    type: String
+  },
   date: { 
       type: Date, 
-      default: Date.now 
+      default: Date.now,
+      require: true
     },
-    _likedCharts:{
-        type: Schema.Types.ObjectId,
-        ref: "Charts"
-    },
+  affiliate: {
+    type: String,
+  },
+  role: {
+    type: String,
+  }, 
+
 });
-// usersSchema.methods.avatar = function() {
-//   return this.firstName[0];
-// }
+usersSchema.methods.avatar = function() {
+  return this.firstName + " " +  this.lastName;
+}
 
 const Users = mongoose.model("Users", usersSchema);
 

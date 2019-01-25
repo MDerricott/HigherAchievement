@@ -6,10 +6,11 @@ const usercontroller = require('../../controllers/usercontroller');
 router.route("/")
     .post(usercontroller.create)
     .get(usercontroller.findUser)
+    .get(usercontroller.findAll)
 
 
-router.route("/likes/:id")
-    .post(usercontroller.updateLikes)
+// router.route("/likes/:id")
+//     .post(usercontroller.updateLikes)
 
 
 module.exports = router;

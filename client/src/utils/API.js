@@ -9,5 +9,11 @@ export default {
     },
     getCenter: (centerName) => {
         return axios.get("/api/center/" + centerName)
+    },
+    getAllUsers: () => {
+        return axios.get("/api/users")
+    },
+    getSalesforce: () => {
+        return axios.get('/services/data/v44.0')
     }
 }

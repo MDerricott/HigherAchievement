@@ -109,7 +109,7 @@ handleInputChange = event => {
   this.setState({
     [name]: value
   });
-  console.log(this.state)
+
 };
 
 onSubmit = () => {
@@ -121,7 +121,7 @@ handleClickShowPassword = () => {
 };
 
 componentDidMount = () => {
-const token = localStorage.getItem("token")
+const token = sessionStorage.getItem("token")
 
 
   token ?
@@ -152,7 +152,7 @@ const token = localStorage.getItem("token")
             <Route exact path="/national" component={National} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/login"  component={Login  } />
-            <Route exact path="/testing" component={Test} />
+            <Route exact path="/testing" component={Admin} />
             <Route path="/admin" 
             render={(props) => (this.state.isAuth ? 
             <Admin /> : 

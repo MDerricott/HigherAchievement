@@ -38,7 +38,21 @@ class Form extends React.Component {
            email:"",
            showPassword:false,
            completedForm: false,
+           data: null
       }
+
+       componentDidMount = () => {
+    
+
+        API.getSalesforce({})
+        .then(res => {
+          console.log(res);
+        })
+      
+        .catch(err => console.log("error " + err))
+       } 
+
+
 
       handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -50,10 +64,7 @@ class Form extends React.Component {
         });
       };
       
-     
-      
-      
-
+    
 
       handleClickShowPassword = () => {
         this.setState(state => ({ showPassword: !state.showPassword }));
@@ -72,7 +83,7 @@ class Form extends React.Component {
               .then(res => {
                 console.log(res.data._id)
                 const id = res.data._id;
-                localStorage.setItem("token", id);
+                sessionStorage.setItem("token", id);
                 this.setState({completedForm: true})
                 this.props.onSubmit()
 

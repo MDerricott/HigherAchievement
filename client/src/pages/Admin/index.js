@@ -14,102 +14,22 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from '@material-ui/core/Grid'
 import { Line, Pie, HorizontalBar } from "react-chartjs-2";
-import Table from './Table'
+import Table from './Table';
+import API from "../../utils/API";
 
 
 
-import {
-  // surveyTimeline,
-  affiliateHBard,
-  rolePieChart
-} from "./charts";
+
+// import {
+//   // surveyTimeline,
+//   affiliateHBard,
+//   rolePieChart
+// } from "./charts";
 import { Typography } from '@material-ui/core';
 
 
 const datas = [80, 100, 70, 80, 120, 80];
 
-let surveyTimeline = {
-  data: canvas => {
-    // let ctx = canvas.getContext("2d");
-
-    // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-
-    // gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
-    // gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
-    // gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
-
-    return {
-      labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-      datasets: [
-        {
-          label: "Data",
-          fill: true,
-          // backgroundColor: "#006595",
-          borderColor: "#F5A01A",
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          pointBackgroundColor: "#F5A01A",
-          pointBorderColor: "rgba(34,73,18,0)",
-          pointHoverBackgroundColor: "#62BB46",
-          pointBorderWidth: 20,
-          pointHoverRadius: 4,
-          pointHoverBorderWidth: 15,
-          pointRadius: 4,
-          data: datas
-        }
-      ]
-    };
-  },
-  options: {
-    maintainAspectRatio: false,
-    legend: {
-      display: false
-    },
-    tooltips: {
-      backgroundColor: "#f5f5f5",
-      titleFontColor: "#333",
-      bodyFontColor: "#666",
-      bodySpacing: 4,
-      xPadding: 12,
-      mode: "nearest",
-      intersect: 0,
-      position: "nearest"
-    },
-    responsive: true,
-    scales: {
-      yAxes: [
-        {
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: "rgba(29,140,248,0.0)",
-            zeroLineColor: "transparent"
-          },
-          ticks: {
-            suggestedMin: 60,
-            suggestedMax: 125,
-            padding: 20,
-            fontColor: "#9a9a9a"
-          }
-        }
-      ],
-      xAxes: [
-        {
-          barPercentage: 1.6,
-          gridLines: {
-            drawBorder: false,
-            color: "rgba(29,140,248,0.1)",
-            zeroLineColor: "transparent"
-          },
-          ticks: {
-            padding: 20,
-            fontColor: "#9a9a9a"
-          }
-        }
-      ]
-    }}
-};
 
 
 const successColor = "#4caf50"
@@ -199,10 +119,279 @@ const dashboardStyle = {
  
 
   class AdminDashboard extends React.Component {
-    
+     state ={
+       users: {},
+       totalSurveys: null,
+       affilateData: null,
+
+     } 
+    //  "NAT", "DCM", "BAL", "RIC", "PGH"
+     componentDidMount = () => {
+      API.getAllUsers({})
+        // .then(res => this.storeUser())
+        .then(res => {
+          console.log(res.data)
+          const data = res.data
+          let national = 0;
+          let richmond = 0;
+          let baltimore = 0;
+          let pittsburgh = 0;
+          let dcmetro = 0;
+          
+          // let total = null;
+          data.map(x => {
+            if (x.affiliate === "National"){
+              national ++
+            }
+            else if (x.affiliate === "Richmond"){
+              richmond++
+            }
+            else if (x.affiliate === "Baltimore"){
+              baltimore ++
+            }
+            else if (x.affiliate === "Pittsburgh"){
+              pittsburgh ++
+            }
+            else if (x.affiliate === "DC Metro")
+            dcmetro ++
+          }
+          )
+            // console.log(national + " " + richmond +  " " + baltimore + " " + pittsburgh +  " " + dcmetro)
+          this.setState({
+            totalSurveys: res.data.length - 1,
+            affilateData: [national,dcmetro,baltimore,richmond,pittsburgh]
+          })
+ 
+        })
+        .catch(err => console.log(err));
+    }
+
+     
+
+
+
+
+
     render(){
     const { classes } = this.props;
- 
+    let rolePieChart = {
+      data: canvas => {
+        // let ctx = canvas.getContext("2d");
+       
+    
+        // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+    
+        // gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
+        // gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
+        // gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
+    
+        return {
+          labels: ["Families", "Mentors","Donors","School Partners"],
+          datasets: [
+            {
+              backgroundColor: ["#62BB46","#000000", "#006595", "#F5A01A"],
+              hoverBackgroundColor: "#607D8B",
+              hoverBorderColor: "#ffffff",
+              data: this.state.affilateData,
+              borderWidth: [5,5,5,5],
+              
+              label: "data set"
+            }
+            // {
+             
+            //   backgroundColor: ["#000000","#66ffff", "#0000ff"],
+            //   data: [100, 20, 40]}
+          ],
+           
+        };
+      },
+      options: {
+        maintainAspectRatio: false,
+        cutoutPercentage: 0,
+        rotation: 10,
+        legend: {
+          display: true,
+          position: "bottom",
+        },
+        tooltips: {
+          backgroundColor: "#f5f5f5",
+          titleFontColor: "#333",
+          bodyFontColor: "#666",
+          bodySpacing: 4,
+          xPadding: 12,
+          mode: "nearest",
+          intersect: 0,
+          position: "nearest"
+        },
+        responsive: true}
+    };
+    
+    
+  
+    let surveyTimeline = {
+      data: canvas => {
+        // let ctx = canvas.getContext("2d");
+    
+        // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+    
+        // gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
+        // gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
+        // gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
+    
+        return {
+          labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+          datasets: [
+            {
+              label: "Data",
+              fill: true,
+              // backgroundColor: "#006595",
+              borderColor: "#F5A01A",
+              borderWidth: 2,
+              borderDash: [],
+              borderDashOffset: 0.0,
+              pointBackgroundColor: "#F5A01A",
+              pointBorderColor: "rgba(34,73,18,0)",
+              pointHoverBackgroundColor: "#62BB46",
+              pointBorderWidth: 20,
+              pointHoverRadius: 4,
+              pointHoverBorderWidth: 15,
+              pointRadius: 4,
+              data: datas
+            }
+          ]
+        };
+      },
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          backgroundColor: "#f5f5f5",
+          titleFontColor: "#333",
+          bodyFontColor: "#666",
+          bodySpacing: 4,
+          xPadding: 12,
+          mode: "nearest",
+          intersect: 0,
+          position: "nearest"
+        },
+        responsive: true,
+        scales: {
+          yAxes: [
+            {
+              barPercentage: 1.6,
+              gridLines: {
+                drawBorder: false,
+                color: "rgba(29,140,248,0.0)",
+                zeroLineColor: "transparent"
+              },
+              ticks: {
+                suggestedMin: 60,
+                suggestedMax: 125,
+                padding: 20,
+                fontColor: "#9a9a9a"
+              }
+            }
+          ],
+          xAxes: [
+            {
+              barPercentage: 1.6,
+              gridLines: {
+                drawBorder: false,
+                color: "rgba(29,140,248,0.1)",
+                zeroLineColor: "transparent"
+              },
+              ticks: {
+                padding: 20,
+                fontColor: "#9a9a9a"
+              }
+            }
+          ]
+        }}
+    };
+    
+    let affiliateHBard = {
+      data: canvas => {
+        // let ctx = canvas.getContext("2d");
+    
+        // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
+    
+        // gradientStroke.addColorStop(1, "rgba(72,72,176,0.1)");
+        // gradientStroke.addColorStop(0.4, "rgba(72,72,176,0.0)");
+        // gradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
+    
+        return {
+          labels: ["NAT", "DCM", "BAL", "RIC", "PGH"],
+          datasets: [
+            {
+              label: "Surveys",
+              // fill: true,
+              backgroundColor: "#006595" ,
+              hoverBackgroundColor: "#F5A01A",
+              borderColor: "#ffffff",
+              borderWidth: 0,
+              borderDash: [],
+              borderDashOffset: 0.0,
+              data: this.state.affilateData
+            }
+          ]
+        };
+      },
+      options: {
+        maintainAspectRatio: false,
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'Surveys by affilate'
+        },
+        tooltips: {
+          backgroundColor: "#f5f5f5",
+          titleFontColor: "#333",
+          bodyFontColor: "#666",
+          bodySpacing: 4,
+          xPadding: 12,
+          mode: "nearest",
+          intersect: 0,
+          position: "nearest"
+        },
+        responsive: true,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                drawBorder: false,
+                color: "rgba(225,78,202,0.1)",
+                zeroLineColor: "transparent"
+              },
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 100,
+                padding: 10,
+                fontColor: "#9e9e9e"
+              }
+            }
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                drawBorder: false,
+                color: "rgba(225,78,202,0.1)",
+                zeroLineColor: "transparent"
+              },
+              ticks: {
+                padding: 10,
+                suggestedMin:0,
+                fontColor: "#9e9e9e"
+              }
+            }
+          ]
+        }
+      }
+    };
+
     return (
 <div>
 
@@ -278,7 +467,7 @@ const dashboardStyle = {
                     color="secondary"
                     > 
                     
-                        123
+                        {this.state.totalSurveys}
                     </Typography>
                   </div>
                   

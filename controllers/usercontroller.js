@@ -23,6 +23,15 @@ module.exports = {
             })
             .catch(err => res.status(422).json(err));
         },
+
+    findAll: (req, res) =>{
+        db.Users
+            .find({})
+            .then(function(dbUser){
+                res.json(dbUser)
+            })
+            .catch(err => res.status(422).json(err));
+         },
     // Update Likes
     updateLikes: (req, res) => {
         db.Users
