@@ -96,33 +96,75 @@ const wrapperStyles = {
   
 
 class Center extends Component {
-    constructor(){
-    super()
-    this.state = {
+    // constructor(){
+    // super()
+  state = {
         center: {},
         cdata:[],
         ddata:[],
         mathOutcome:null,
         readingOutcome: null,
         demoLabel: null,
+        centerId: "",
+        salesforce: null,
     };
-    }
-componentDidMount (){
-    API.getCenter(this.props.match.params.centerName)
-        .then(res => {
-          
-            this.setState({
-                center: res.data,
-                cdata: res.data.cohortData.data.split(","),
-                ddata: res.data.scholarDemo.data,
-                demoLabel: res.data.scholarDemo.labels,
-                mathOutcome: res.data.outcomes.math * 100,
-                readingOutcome: res.data.outcomes.reading * 100
     
-            })
-            console.log(this.state.center.outcomes.math)
-        })
-        .catch(err => console.log(err));
+componentDidMount (){
+// const Henderson = this.props.match.params.centerName
+  // var search = "FIND {Henderson}"
+  
+//  API.findSalesforceUrl('search: "FIND {Henderson}"')
+//   .then(res => {
+//     console.log(res.data)
+//   })
+
+API.pullCenterData("0011U000008XFtSQAW")
+    .then(res => {
+      console.log(res.data)
+    
+    })
+
+
+  // // this.setState({ salesforce : "0011U000008XFtSQAW" })
+
+  // this.props.match.params.centerName === "Henderson" ? this.setState({ centerId : "0011U000008XFtSQAW" }) : console.log("didnt work")
+
+  // // console.log(this.state.salesforce)
+  
+  //   // if(this.props.match.params.centerName === "Henderson"){
+  //   //   this.setState({ centerId : "0011U000008XFtSQAW" })
+  //   //   console.log(this.state)
+    
+
+  //   API.getSalesforceRecord(this.props.match.params.centerName === "Henderson" ?  "0011U000008XFtSQAW"  : null)
+    
+  //   .then(res => {
+  //     console.log(res.data);
+  //     this.setState({
+  //       salesforce: res.data.name
+  //     })
+  //     console.log(res.data)
+  //   })
+  
+  
+    // .catch(err => console.log("error " + err))
+  // }
+
+    // API.getCenter(this.props.match.params.centerName)
+    //     .then(res => {
+          
+    //         this.setState({
+    //             center: res.data,
+    //             cdata: res.data.cohortData.data.split(","),
+    //             ddata: res.data.scholarDemo.data,
+    //             demoLabel: res.data.scholarDemo.labels,
+    //             mathOutcome: res.data.outcomes.math * 100,
+    //             readingOutcome: res.data.outcomes.reading * 100
+    
+    //         })
+    //         console.log(this.state.center.outcomes.math)
+    //     })
+    //     .catch(err => console.log(err));
 }
 
 
@@ -405,7 +447,8 @@ componentDidMount (){
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  {this.state.center.centerName}
+                  salesforce
+                  {this.state.salesforce}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>

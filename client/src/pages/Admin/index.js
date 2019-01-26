@@ -161,7 +161,7 @@ const dashboardStyle = {
             totalSurveys: res.data.length - 1,
             affilateData: [national,dcmetro,baltimore,richmond,pittsburgh]
           })
- 
+          console.log(this.state)
         })
         .catch(err => console.log(err));
     }
@@ -411,7 +411,7 @@ const dashboardStyle = {
 <Grid container >
    
     <Grid item sm={12} >
-        <Card >
+        {/* <Card >
               <CardHeader color="warning" stats icon>
                 <p className={classes.cardCategory}>Used Space</p>
                 <h3 className={classes.cardTitle}>
@@ -439,7 +439,7 @@ const dashboardStyle = {
                 </div>
               </CardFooter>
        
-          </Card>
+          </Card> */}
      </Grid>  
      </Grid>
     
@@ -516,7 +516,7 @@ const dashboardStyle = {
        
           </Card>
      </Grid>   */}
-     <Grid item sm={8}  >
+     <Grid item sm={4}  >
         <Card >
               <CardHeader color="warning" stats icon>
                 <p className={classes.cardCategory}>Total Surveys </p>
@@ -548,16 +548,7 @@ const dashboardStyle = {
        
           </Card>
      </Grid>  
-     </Grid>
-
-
-
-
-
-
-      <Grid container spacing={24} >
-   
-        <Grid item  sm={6} >
+     <Grid item  sm={4} >
             <Card >
               <CardHeader color="warning" stats icon>
                 <p className={classes.cardCategory}>Survey Resuls</p>
@@ -566,7 +557,7 @@ const dashboardStyle = {
                 </h3>
               </CardHeader>
               <CardBody>
-              <div className="chart-area" style={{height:300}}>
+              <div className="chart-area" style={{height:200}}>
                     
                     <Pie 
                       data={rolePieChart.data}
@@ -588,8 +579,18 @@ const dashboardStyle = {
               </CardFooter>
        
              </Card>
-         </Grid>  
-       <Grid item  sm={6} >
+         </Grid> 
+     </Grid>
+
+
+
+
+
+
+      <Grid container spacing={24} >
+   
+         
+       <Grid item  sm={12} >
         <Card elevation={0} >
               <CardHeader color="warning" stats icon>
                 <p className={classes.cardCategory}>Surveys </p>

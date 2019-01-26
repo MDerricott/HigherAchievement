@@ -38,20 +38,11 @@ class Form extends React.Component {
            email:"",
            showPassword:false,
            completedForm: false,
-           data: null
+           data: null,
+          
       }
 
-       componentDidMount = () => {
-    
-
-        API.getSalesforce({})
-        .then(res => {
-          console.log(res);
-        })
-      
-        .catch(err => console.log("error " + err))
-       } 
-
+  
 
 
       handleInputChange = event => {
@@ -76,7 +67,7 @@ class Form extends React.Component {
         if(
           this.state.firstName)
         {
-            API.createUser({
+            API.createSurvey({
               firstName: this.state.firstName
             })
               // .then(res => this.storeUser())
@@ -102,6 +93,8 @@ render (){
     return(
     
       <Grid container justify={"center"} style={{height:"100%"}}>
+
+    
       {this.props.auth ? (
       <div> <AboutUs /> </div>
       )
@@ -312,6 +305,8 @@ render (){
 </Grid>
 <Grid container justify={"center"} >
     <Paper  elevation={0} style={{padding: 10}}>
+
+    
       <Grid container justify={"center"}>
         <Grid item style={{minWidth: 400, padding: 5}}>   
         <FormControl fullWidth onSubmit={this.formSubmit}>

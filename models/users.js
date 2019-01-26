@@ -27,6 +27,9 @@ const usersSchema = new Schema({
   role: {
     type: String,
   }, 
+  consent: {
+    type: Number,
+  },
 
 });
 usersSchema.methods.avatar = function() {

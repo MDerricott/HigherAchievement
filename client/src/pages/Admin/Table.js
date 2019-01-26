@@ -182,7 +182,7 @@ for (let i = 0; i < 200; i += 1) {
 
 function ReactVirtualizedTable() {
   return (
-    <Paper elevation={0} style={{ height: 300, width: '100%' }}>
+    <Paper elevation={0} style={{ height: 700, width: '100%' }}>
       <WrappedVirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}

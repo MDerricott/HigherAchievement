@@ -1,5 +1,6 @@
 module.exports = {
     Users: require('./users'),
     Chart: require('./chart'),
-    Center: require('./center')
+    Center: require('./center'),
+    Surveys: require("./survey")
 };
