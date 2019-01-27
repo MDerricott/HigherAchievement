@@ -1,21 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-// import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
-// import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-// import purple from '@material-ui/core/colors/purple';
 import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import green from '@material-ui/core/colors/green';import { withStyles } from "@material-ui/core";
-
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button'
 import API from '../../utils/API';
 import Select from '@material-ui/core/Select';
@@ -36,7 +25,7 @@ class Form extends React.Component {
            firstName: "",
            lastName:"",
            email:"",
-           affilate:"",
+           affiliate:"",
            role: "",
            showPassword:false,
            completedForm: false,
@@ -73,7 +62,7 @@ class Form extends React.Component {
               firstName: this.state.firstName,
               lastName: this.state.lastName,
               email: this.state.email,
-              affilate: this.state.affilate,
+              affiliate: this.state.affiliate,
               role: this.state.role
 
             })
@@ -102,10 +91,7 @@ render (){
       <Grid container justify={"center"} style={{height:"100%"}}>
       <br>
       </br>
-      <div style={{height: 100}}>
-      <br></br>
-        <Typography variant="h2">   Tell us about you!</Typography>
-        </div>
+      
    
     
       {this.props.auth ? (
@@ -117,10 +103,14 @@ render (){
             <Grid container justify={"center"} >
               <Paper  elevation={0} style={{padding: 10}}>
                 <Grid container justify={"center"}>
-        
+                <div style={{height: 100}}>
+                    <br></br>
+                    <Typography variant="h3">   Tell us about you!</Typography>
+                    </div>
+                    <div style={{height: 50}}/>
       
                 <Grid item style={{minWidth: 200, padding: 5}}>    
-
+                  
                      <FormControl fullWidth>
                         <InputLabel
                             htmlFor="custom-css-standard-input"
@@ -255,11 +245,11 @@ render (){
                 }
             }}}}}
         >
-             Affilate
+             Affiliate
           </InputLabel>
            <Select
               key="af1"
-              value={this.state.affilate}
+              value={this.state.affiliate}
               onChange={this.handleInputChange}
               style={{
                   '&:after': {
@@ -267,8 +257,8 @@ render (){
                   },
                 }}
                 inputProps={{
-                  id: "affilate",
-                  name:"affilate"
+                  id: "affiliate",
+                  name:"affiliate"
                 }}
             >
            
@@ -300,7 +290,7 @@ render (){
                 }
             }}}}}
         >
-             What's your Role with Higher Achievement
+             What's your Role with Higher Achievement?
           </InputLabel>
            <Select
               key="1"

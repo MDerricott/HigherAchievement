@@ -2,26 +2,18 @@ import React from 'react';
 import Danger from "../../common/Danger";
 import Card from "../../common/CustomCard";
 import CardHeader from "../../common/CardHeader";
-// import CardIcon from "./CardIcon";
 import CardBody from "../../common/CardBody";
 import CardFooter from "../../common/CardFooter";
-// import Icon from "@material-ui/core/Icon";
 import Warning from "@material-ui/icons/Warning";
 import PropTypes from "prop-types";
-
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from '@material-ui/core/Grid'
 import {Pie, HorizontalBar } from "react-chartjs-2";
 import Table from './Table';
 import API from "../../utils/API";
-
-
-
-
 import { Typography } from '@material-ui/core';
-
-
-const datas = [80, 100, 70, 80, 120, 80];
+import CachedIcon from '@material-ui/icons/Cached'
+import InfoIcon from '@material-ui/icons/Info'
 
 
 
@@ -61,7 +53,7 @@ const dashboardStyle = {
       color: "#999999",
       margin: "0",
       fontSize: "14px",
-      marginTop: "0",
+      // marginTop: "0",
       paddingTop: "10px",
       marginBottom: "0"
     },
@@ -69,12 +61,12 @@ const dashboardStyle = {
       color: "rgba(255,255,255,.62)",
       margin: "0",
       fontSize: "14px",
-      marginTop: "0",
+      // marginTop: "0",
       marginBottom: "0"
     },
     cardTitle: {
       color: "#3C4858",
-      marginTop: "0px",
+      // marginTop: "0px",
       minHeight: "auto",
       fontWeight: "300",
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
@@ -88,7 +80,7 @@ const dashboardStyle = {
     },
     cardTitleWhite: {
       color: "#FFFFFF",
-      marginTop: "0px",
+      // marginTop: "0px",
       minHeight: "auto",
       fontWeight: "300",
       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
@@ -101,68 +93,87 @@ const dashboardStyle = {
       }
     }
   };
-  // const wrapperStyles = {
-  //   width: "75%",
-  //   maxWidth: 980,
-  //   margin: "0 auto",
-  //   padding: 10,
-  //   backgroundColor: "#62BB46"
-  // }
-
- 
 
   class AdminDashboard extends React.Component {
      state ={
        users: {},
        totalSurveys: null,
        affilateData: null,
+       roleData: null,
+       max: 0,
 
      } 
-    //  "NAT", "DCM", "BAL", "RIC", "PGH"
+
      componentDidMount = () => {
-      API.getAllUsers({})
+      API.findAllSurvey({})
         // .then(res => this.storeUser())
         .then(res => {
-          console.log(res.data)
+         
           const data = res.data
           let national = 0;
           let richmond = 0;
           let baltimore = 0;
           let pittsburgh = 0;
           let dcmetro = 0;
+          let families = 0;
+          let mentors = 0;
+          let donors = 0;
+          let school = 0;
+    
+      data.map(aff => {
           
-          // let total = null;
-          data.map(x => {
-            if (x.affiliate === "National"){
+            if (aff.affiliate === "National"){
               national ++
             }
-            else if (x.affiliate === "Richmond"){
+            else if (aff.affiliate === "Richmond"){
               richmond++
             }
-            else if (x.affiliate === "Baltimore"){
+            else if (aff.affiliate === "Baltimore"){
               baltimore ++
             }
-            else if (x.affiliate === "Pittsburgh"){
+            else if (aff.affiliate === "Pittsburgh"){
               pittsburgh ++
             }
-            else if (x.affiliate === "DC Metro")
-            dcmetro ++
-          }
+            else if (aff.affiliate === "DC Metro") {
+              dcmetro ++
+            }
+          
+            }
           )
-            // console.log(national + " " + richmond +  " " + baltimore + " " + pittsburgh +  " " + dcmetro)
+
+          data.map(role => {
+          
+            if (role.role === "Families"){
+              families ++
+            }
+            else if (role.role === "Mentor"){
+              mentors++
+            }
+            else if (role.role === "Donor"){
+              donors ++
+            }
+            else if (role.role === "School Partner"){
+              school ++
+            }
+    
+            }
+          )
+
+          const affilite = [national,dcmetro,baltimore,richmond,pittsburgh]
+          var max = affilite.reduce(function(a, b) {
+            return Math.max(a, b);
+        });
+        console.log("max" + max)
           this.setState({
-            totalSurveys: res.data.length - 1,
-            affilateData: [national,dcmetro,baltimore,richmond,pittsburgh]
+            totalSurveys: res.data.length,
+            affilateData: [national,dcmetro,baltimore,richmond,pittsburgh],
+            roleData: [families, mentors, donors, school],
+            max: max
           })
-          console.log(this.state)
+        
         })
         .catch(err => console.log(err));
     }
-
-     
-
-
-
 
 
     render(){
@@ -177,7 +188,7 @@ const dashboardStyle = {
               backgroundColor: ["#62BB46","#000000", "#006595", "#F5A01A"],
               hoverBackgroundColor: "#607D8B",
               hoverBorderColor: "#ffffff",
-              data: this.state.affilateData,
+              data: this.state.roleData,
               borderWidth: [5,5,5,5],
               
               label: "data set"
@@ -188,6 +199,10 @@ const dashboardStyle = {
         };
       },
       options: {
+        title: {
+          display: true,
+          text: 'Surveys by Role'
+        },
         maintainAspectRatio: false,
         cutoutPercentage: 0,
         rotation: 10,
@@ -237,7 +252,7 @@ const dashboardStyle = {
         },
         title: {
           display: true,
-          text: 'Surveys by affilate'
+          text: 'Surveys by Affilate'
         },
         tooltips: {
           backgroundColor: "#f5f5f5",
@@ -260,7 +275,7 @@ const dashboardStyle = {
               },
               ticks: {
                 suggestedMin: 0,
-                suggestedMax: 100,
+                suggestedMax: this.state.max + 1,
                 padding: 10,
                 fontColor: "#9e9e9e"
               }
@@ -283,7 +298,9 @@ const dashboardStyle = {
         }
       }
     };
-
+    const today = new Date();
+    const date = (today.getMonth()+1)+'-'+today.getDate() +'-'+ today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return (
 <div>
 
@@ -294,7 +311,9 @@ const dashboardStyle = {
 <Grid container >
 <Card style={{height:75}}> 
 
-  <Typography> Administration Dashboard   </Typography>
+  <Typography variant="h3" justify="center" style={{margin: "0 auto", padding: 10}}> Administration Dashboard   </Typography>
+
+  
 </Card>
 
 
@@ -318,12 +337,13 @@ const dashboardStyle = {
               </CardHeader>
               <CardBody>
               <div style={{height:200}} className="chart-area">
-                    
+              <div style={{height:"25%"}} />
                     <Typography
                     align="center"
-                    marginTop={50}
-                    variant="h2"
+                    // marginTop={50}
+                    variant="h1"
                     color="secondary"
+                    style={{margin: "0 auto"}}
                     > 
                     
                         {this.state.totalSurveys}
@@ -333,11 +353,11 @@ const dashboardStyle = {
               </CardBody>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
+                 
+                    <CachedIcon/>
+               
           
-                   As of TODAY Add Moment
+                   {`As of ${date} at ${time}`}
                   
                 </div>
               </CardFooter>
@@ -347,9 +367,9 @@ const dashboardStyle = {
      <Grid item sm={4}  >
         <Card >
               <CardHeader color="warning" stats icon>
-                <p className={classes.cardCategory}>Total Surveys </p>
+                <p className={classes.cardCategory}> Surveys </p>
                 <h3 className={classes.cardTitle}>
-                 <small>Affilate</small>
+                 <small>by</small> Affilate
                 </h3>
               </CardHeader>
               <CardBody>
@@ -365,12 +385,9 @@ const dashboardStyle = {
               </CardBody>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
-          
-                    Role footnote
-                  
+                
+                    <InfoIcon />
+                      Count of surveys by Affilate 
                 </div>
               </CardFooter>
        
@@ -396,9 +413,10 @@ const dashboardStyle = {
               </CardBody>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
+                 
+                    <InfoIcon />
+                    Count of surveys by Role
+                 
                 </div>
               </CardFooter>
        
@@ -422,9 +440,10 @@ const dashboardStyle = {
               </CardBody>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
+                 
+                <InfoIcon />
+                    Use the Download button to export the table to a .csv file
+                
           
                   
                 </div>

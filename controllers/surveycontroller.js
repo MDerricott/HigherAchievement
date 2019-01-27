@@ -25,6 +25,17 @@ module.exports = {
     
 
 
+         deleteSurveys: (req, res) =>{
+            db.Surveys
+                .remove(req.body)
+                .then(function(dbSurvey){
+                    res.json(dbSurvey)
+                })
+                .catch(err => res.status(422).json(err));
+             },
+        
+
+
 
 }
 

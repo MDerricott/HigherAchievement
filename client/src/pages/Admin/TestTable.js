@@ -16,13 +16,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import API from '../../utils/API';
 import {CSVLink } from "react-csv";
 import Button from  "@material-ui/core/Button"
 import { Grid } from '@material-ui/core';
 
-
+let counter = 0;
+function createData(name, calories, fat, carbs, protein) {
+  counter += 1;
+  return { id: counter, name, calories, fat, carbs, protein };
+}
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -53,7 +58,7 @@ const rows = [
   { id: 'affiliate', numeric: true, disablePadding: false, label: 'Affiliate' },
   { id: 'role', numeric: true, disablePadding: false, label: 'Role' },
   { id: 'email', numeric: true, disablePadding: false, label: 'Email' },
-  { id: 'date', numeric: true, disablePadding: false, label: 'Date Recieved' },
+  { id: 'date', numeric: true, disablePadding: false, label: 'Date' },
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -65,7 +70,7 @@ class EnhancedTableHead extends React.Component {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
-      <TableHead  style={{backgroundColor: "#F5A01A"}}>
+      <TableHead>
         <TableRow>
           <TableCell padding="checkbox">
             <Checkbox
@@ -139,16 +144,15 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-  const { numSelected, classes, handleDelete } = props;
+  const { numSelected, classes } = props;
 
   return (
     <Toolbar
-   
       className={classNames(classes.root, {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <div className={classes.title} >
+      <div className={classes.title}>
         {numSelected > 0 ? (
           <Typography color="inherit" variant="subtitle1">
             {numSelected} selected
@@ -163,10 +167,7 @@ let EnhancedTableToolbar = props => {
       <div className={classes.actions}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-            <IconButton 
-              aria-label="Delete"
-              onClick={handleDelete}
-              >
+            <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>
           </Tooltip>
@@ -201,7 +202,7 @@ const styles = theme => ({
 class EnhancedTable extends React.Component {
   state = {
     order: 'asc',
-    orderBy: 'name',
+    orderBy: 'calories',
     selected: [],
     data: [],
     page: 0,
@@ -217,10 +218,13 @@ class EnhancedTable extends React.Component {
         const userData = users.map((user, i) => {
          const today = new Date(user.date)
           const date = (today.getMonth()+1)+'-'+today.getDate() +'-'+ today.getFullYear();
-       
-          return {id: user._id, name: `${user.firstName} ${user.lastName}`, affiliate: user.affiliate, role: user.role, email: user.email, date: date}
+          console.log(date)
+          return {id: i, name: `${user.firstName} ${user.lastName}`, affiliate: user.affiliate, role: user.role, email: user.email, date: date}
+
         })
+        console.log(userData)
         this.setState({data: userData})
+       
       })
       .catch(err => console.log(err));
   }
@@ -267,11 +271,6 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
-  handleDelete = (event) => {
-    console.log(event.button)
-    console.log(this.state.selected)
-  }
-
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -288,15 +287,11 @@ class EnhancedTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
-      <Paper className={classes.root} elevation={0}>
-        <EnhancedTableToolbar 
-          numSelected={selected.length}
-          handleDelete={event => {this.handleDelete(event)}}
-           />
+      <Paper className={classes.root}>
+        <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
-              style={{backgroundColor: "#000000"}}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
@@ -326,11 +321,9 @@ class EnhancedTable extends React.Component {
                         {n.name}
                       </TableCell>
                       <TableCell align="right">{n.affiliate}</TableCell>
-                      <TableCell align="right">{n.role}</TableCell>
-                      <TableCell align="right">{n.email}</TableCell>
-                      <TableCell align="right">{n.date}</TableCell>
-                      
-                  
+                  <TableCell align="right">{n.role}</TableCell>
+                  <TableCell align="right">{n.email}</TableCell>
+                  <TableCell align="right">{n.date}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -357,7 +350,7 @@ class EnhancedTable extends React.Component {
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
-        <CSVLink data={this.state.data} style={{textDecoration: "none"}} ><Button variant="contained" color="secondary"> Download Table</Button></CSVLink>    
+        <CSVLink data={this.state.data} style={{textDecoration: "none"}} ><Button variant="contained" color="secondary"> Download</Button></CSVLink>    
         <Grid style={{height: 10}} />
       </Paper>
     );

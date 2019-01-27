@@ -141,7 +141,7 @@ componentDidMount() {
                 
           <div>
           
-              <Card   stat icon rounded elevation={4} style={{backgroundColor: "#000000", width: "50%", minHeight: 75, display: "inline-block", position: "relative", top:50, left:20}}> 
+              <Card elevation={4} style={{backgroundColor: "#000000", width: "50%", minHeight: 75, display: "inline-block", position: "relative", top:50, left:20}}> 
                   <Typography
                     variant="h4"
                     style={{padding: 15, color:"#ffffff"}}
@@ -338,7 +338,7 @@ componentDidMount() {
               <Typography> About National Poverty Data </Typography>
         </div>
 
-      <Card square elevation={0} style={{padding:5}} justifyContent="center">
+      <Card square elevation={0} style={{padding:5}} justify="center">
           <Grid container width="100%" spacing={16} justify="center" >
               <Grid item sm={3}>
                   <Link to="/dcmetro" ><AffilateButton key={1} affilate="DC Metro" imageURL={"https://higherachievement.org/wp-content/uploads/2018/12/IMG_6971-e1545143799286.jpg"} /></Link>

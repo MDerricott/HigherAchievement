@@ -40,45 +40,6 @@ const styles = theme => ({
         borderBottomColor: "#000000",
       },
     },
-    // cssOutlinedInput: {
-    //   '&$cssFocused $notchedOutline': {
-    //     borderColor: purple[500],
-    //   },
-    // },
-    // notchedOutline: {},
-    // bootstrapRoot: {
-    //   'label + &': {
-    //     marginTop: theme.spacing.unit * 3,
-    //   },
-    // },
-    // bootstrapInput: {
-    //   borderRadius: 4,
-    //   backgroundColor: theme.palette.common.white,
-    //   border: '1px solid #ced4da',
-    //   fontSize: 16,
-    //   padding: '10px 12px',
-    //   transition: theme.transitions.create(['border-color', 'box-shadow']),
-    //   // Use the system font instead of the default Roboto font.
-    //   fontFamily: [
-    //     '-apple-system',
-    //     'BlinkMacSystemFont',
-    //     '"Segoe UI"',
-    //     'Roboto',
-    //     '"Helvetica Neue"',
-    //     'Arial',
-    //     'sans-serif',
-    //     '"Apple Color Emoji"',
-    //     '"Segoe UI Emoji"',
-    //     '"Segoe UI Symbol"',
-    //   ].join(','),
-    //   '&:focus': {
-    //     borderColor: '#80bdff',
-    //     boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    //   },
-    // },
-    // bootstrapFormLabel: {
-    //   fontSize: 18,
-    // },
   });
   
 
@@ -89,20 +50,11 @@ const styles = theme => ({
     return(
 <Grid container justify={"center"}>
 
-{/* style={{width: 800}} */}
 
 
-<Card style={{width: 500}}> 
+<Card style={{width: 500, height: 1000}}> 
 
-    
-
-
-
-
-
-
-
-
+ 
 <Grid container justify={"center"} >
 
 
@@ -170,7 +122,7 @@ const styles = theme => ({
                 // onClick={this.handleClickShowPassword}
               >
               <VisibilityOff />
-                {/* {this.state.showPassword ? <Visibility /> : <VisibilityOff />} */}
+             
               </IconButton>
             </InputAdornment>
           }
@@ -179,37 +131,8 @@ const styles = theme => ({
 
 
         </Grid>
-        
-        {/* <Grid item style={{minWidth: 200, padding: 5}}>
-                
-        <FormControl className={classes.margin} fullWidth>
-        <InputLabel
-          htmlFor="custom-css-standard-input"
-          classes={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          }}
-        >
-          Last Name
-        </InputLabel>
-        <Input
-          fullWidth={true}
-          id="custom-css-standard-input"
-          classes={{
-            underline: classes.cssUnderline,
-            
-          }}
-        />
-      </FormControl>
-
-
-        </Grid> */}
+      
         </Grid>
-
-    
-
-
-
 
 </Paper>
 
