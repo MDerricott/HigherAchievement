@@ -8,23 +8,16 @@ import CardFooter from "../../common/CardFooter";
 // import Icon from "@material-ui/core/Icon";
 import Warning from "@material-ui/icons/Warning";
 import PropTypes from "prop-types";
-// react plugin for creating charts
-// import ChartistGraph from "react-chartist";
-// @material-ui/core
+
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from '@material-ui/core/Grid'
-import { Line, Pie, HorizontalBar } from "react-chartjs-2";
+import {Pie, HorizontalBar } from "react-chartjs-2";
 import Table from './Table';
 import API from "../../utils/API";
 
 
 
 
-// import {
-//   // surveyTimeline,
-//   affiliateHBard,
-//   rolePieChart
-// } from "./charts";
 import { Typography } from '@material-ui/core';
 
 
@@ -176,15 +169,7 @@ const dashboardStyle = {
     const { classes } = this.props;
     let rolePieChart = {
       data: canvas => {
-        // let ctx = canvas.getContext("2d");
-       
-    
-        // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    
-        // gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
-        // gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
-        // gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
-    
+      
         return {
           labels: ["Families", "Mentors","Donors","School Partners"],
           datasets: [
@@ -197,10 +182,7 @@ const dashboardStyle = {
               
               label: "data set"
             }
-            // {
-             
-            //   backgroundColor: ["#000000","#66ffff", "#0000ff"],
-            //   data: [100, 20, 40]}
+          
           ],
            
         };
@@ -228,99 +210,9 @@ const dashboardStyle = {
     
     
   
-    let surveyTimeline = {
-      data: canvas => {
-        // let ctx = canvas.getContext("2d");
-    
-        // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    
-        // gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
-        // gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
-        // gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
-    
-        return {
-          labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-          datasets: [
-            {
-              label: "Data",
-              fill: true,
-              // backgroundColor: "#006595",
-              borderColor: "#F5A01A",
-              borderWidth: 2,
-              borderDash: [],
-              borderDashOffset: 0.0,
-              pointBackgroundColor: "#F5A01A",
-              pointBorderColor: "rgba(34,73,18,0)",
-              pointHoverBackgroundColor: "#62BB46",
-              pointBorderWidth: 20,
-              pointHoverRadius: 4,
-              pointHoverBorderWidth: 15,
-              pointRadius: 4,
-              data: datas
-            }
-          ]
-        };
-      },
-      options: {
-        maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
-        tooltips: {
-          backgroundColor: "#f5f5f5",
-          titleFontColor: "#333",
-          bodyFontColor: "#666",
-          bodySpacing: 4,
-          xPadding: 12,
-          mode: "nearest",
-          intersect: 0,
-          position: "nearest"
-        },
-        responsive: true,
-        scales: {
-          yAxes: [
-            {
-              barPercentage: 1.6,
-              gridLines: {
-                drawBorder: false,
-                color: "rgba(29,140,248,0.0)",
-                zeroLineColor: "transparent"
-              },
-              ticks: {
-                suggestedMin: 60,
-                suggestedMax: 125,
-                padding: 20,
-                fontColor: "#9a9a9a"
-              }
-            }
-          ],
-          xAxes: [
-            {
-              barPercentage: 1.6,
-              gridLines: {
-                drawBorder: false,
-                color: "rgba(29,140,248,0.1)",
-                zeroLineColor: "transparent"
-              },
-              ticks: {
-                padding: 20,
-                fontColor: "#9a9a9a"
-              }
-            }
-          ]
-        }}
-    };
     
     let affiliateHBard = {
       data: canvas => {
-        // let ctx = canvas.getContext("2d");
-    
-        // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-    
-        // gradientStroke.addColorStop(1, "rgba(72,72,176,0.1)");
-        // gradientStroke.addColorStop(0.4, "rgba(72,72,176,0.0)");
-        // gradientStroke.addColorStop(0, "rgba(119,52,169,0)"); //purple colors
-    
         return {
           labels: ["NAT", "DCM", "BAL", "RIC", "PGH"],
           datasets: [
@@ -411,41 +303,8 @@ const dashboardStyle = {
 <Grid container >
    
     <Grid item sm={12} >
-        {/* <Card >
-              <CardHeader color="warning" stats icon>
-                <p className={classes.cardCategory}>Used Space</p>
-                <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
-                </h3>
-              </CardHeader>
-              <CardBody>
-              <div className="chart-area">
-                    
-              <Line
-                      data={surveyTimeline.data}
-                      options={surveyTimeline.options}
-                    />
-              </div>
-                  
-              </CardBody>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
-          
-                    Get more space
-                  
-                </div>
-              </CardFooter>
-       
-          </Card> */}
      </Grid>  
      </Grid>
-    
-
-
-
 
   <Grid container spacing={24}>
    
@@ -485,37 +344,6 @@ const dashboardStyle = {
        
           </Card>
      </Grid>  
-     {/* <Grid item sm={4}  >
-        <Card >
-              <CardHeader color="warning" stats icon>
-                <p className={classes.cardCategory}>Affilate</p>
-                <h3 className={classes.cardTitle}>
-                  <small>Breakdown</small>
-                </h3>
-              </CardHeader>
-              <CardBody>
-              <div className="chart-area">
-                    
-                
-              <Pie 
-                      data={rolePieChart.data}
-                      options={rolePieChart.options}
-                      />
-              </div>
-              </CardBody>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
-          
-                    As of Today
-                  
-                </div>
-              </CardFooter>
-       
-          </Card>
-     </Grid>   */}
      <Grid item sm={4}  >
         <Card >
               <CardHeader color="warning" stats icon>
@@ -571,25 +399,14 @@ const dashboardStyle = {
                   <Danger>
                     <Warning />
                   </Danger>
-          
-                    
-                
-                  
                 </div>
               </CardFooter>
        
              </Card>
          </Grid> 
      </Grid>
-
-
-
-
-
-
       <Grid container spacing={24} >
-   
-         
+
        <Grid item  sm={12} >
         <Card elevation={0} >
               <CardHeader color="warning" stats icon>

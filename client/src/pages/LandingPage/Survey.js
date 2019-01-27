@@ -22,6 +22,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import AboutUs from './AboutUs';
 import {  Redirect } from "react-router-dom";
+import { Typography } from '@material-ui/core';
 
 
 
@@ -34,8 +35,9 @@ class Form extends React.Component {
            auth: "",
            firstName: "",
            lastName:"",
-           password: "",
            email:"",
+           affilate:"",
+           role: "",
            showPassword:false,
            completedForm: false,
            data: null,
@@ -68,7 +70,12 @@ class Form extends React.Component {
           this.state.firstName)
         {
             API.createSurvey({
-              firstName: this.state.firstName
+              firstName: this.state.firstName,
+              lastName: this.state.lastName,
+              email: this.state.email,
+              affilate: this.state.affilate,
+              role: this.state.role
+
             })
               // .then(res => this.storeUser())
               .then(res => {
@@ -93,7 +100,13 @@ render (){
     return(
     
       <Grid container justify={"center"} style={{height:"100%"}}>
-
+      <br>
+      </br>
+      <div style={{height: 100}}>
+      <br></br>
+        <Typography variant="h2">   Tell us about you!</Typography>
+        </div>
+   
     
       {this.props.auth ? (
       <div> <AboutUs /> </div>
@@ -245,8 +258,8 @@ render (){
              Affilate
           </InputLabel>
            <Select
-              key="em1"
-              value={this.state.email}
+              key="af1"
+              value={this.state.affilate}
               onChange={this.handleInputChange}
               style={{
                   '&:after': {
@@ -254,20 +267,23 @@ render (){
                   },
                 }}
                 inputProps={{
-                  id: "email",
-                  name:"email"
+                  id: "affilate",
+                  name:"affilate"
                 }}
             >
            
-            <MenuItem value={"Richmond"}>Richmond</MenuItem>
+            <MenuItem value={"National"}>National</MenuItem>
             <MenuItem value={"DC Metro"}>DC Metro</MenuItem>
             <MenuItem value={"Baltimore"}>Baltimore</MenuItem>
+            <MenuItem value={"Richmond"}>Richmond</MenuItem>
+            <MenuItem value={"Pittsburgh"}>Pittsburgh</MenuItem>
             </Select>
       </FormControl>
     </Grid>
     </Grid>
 </Paper>
-{/* <Paper  elevation={0} style={{padding: 10}}>
+
+<Paper  elevation={0} style={{padding: 10}}>
         
    <Grid container justify={"center"}>
     <Grid item style={{minWidth: 400, padding: 5}}>    
@@ -284,24 +300,33 @@ render (){
                 }
             }}}}}
         >
-              Email
+             What's your Role with Higher Achievement
           </InputLabel>
-           <Input
-              key="em1"
-              id="email"
-              name="email"
-              value={this.state.email}
+           <Select
+              key="1"
+              value={this.state.role}
               onChange={this.handleInputChange}
               style={{
                   '&:after': {
                   borderBottomColor: "#000000",
                   },
                 }}
-            /> */}
-      {/* </FormControl>
+                inputProps={{
+                  id: "role",
+                  name:"role"
+                }}
+            >
+           
+            <MenuItem value={"Mentor"}>Mentor</MenuItem>
+            <MenuItem value={"Donor"}>Donor</MenuItem>
+            <MenuItem value={"Families"}>Families/Scholar</MenuItem>
+            <MenuItem value={"SchoolPartner"}>School Partners</MenuItem>
+            </Select>
+      </FormControl>
     </Grid>
     </Grid>
-</Paper> */}
+</Paper>
+
 </Grid>
 <Grid container justify={"center"} >
     <Paper  elevation={0} style={{padding: 10}}>
@@ -310,53 +335,14 @@ render (){
       <Grid container justify={"center"}>
         <Grid item style={{minWidth: 400, padding: 5}}>   
         <FormControl fullWidth onSubmit={this.formSubmit}>
-            <InputLabel
-              htmlFor="adornment-password"
-                 style={{cssLabel: {
-                    '&$cssFocused': {
-                     color: "#000000",
-                     cssFocused: {},
-                     cssUnderline: {
-                        '&:after': {
-                        borderBottomColor: "#000000",
-                        }
-                      }
-                    }
-                    }}}
-                    >
-                      Password
-              </InputLabel>
-              <Input
-                key="pw1"
-                fullWidth
-                id="password"
-                type={this.state.showPassword ? 'text' : 'password'}
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                name="password"
-                style={{
-                    underline:{ '&:after': {
-                    borderBottomColor: "#000000",
-                    }},
-                  }}
-                    endAdornment={
-                      <InputAdornment position="end">
-                      <IconButton
-                      aria-label="Toggle password visibility"
-                      onClick={this.handleClickShowPassword}
-                    >
-                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                      </InputAdornment>
-                    }
-                    />
+         
     <br>
     </br>
     
     
               <Button 
                type="submit"
-                color="primary"
+                color="secondary"
                 variant="contained"
                 onClick={this.handleFormSubmit}
                 >
@@ -364,7 +350,7 @@ render (){
               </Button>
       
           </FormControl>
-          
+        <Grid style={{height: 50}} />
       </Grid>
       <Grid item >
           <br></br>
@@ -377,6 +363,7 @@ render (){
 </Card>
 
       )}
+      
 
 </Grid>
     )}

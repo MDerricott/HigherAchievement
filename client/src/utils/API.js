@@ -28,5 +28,8 @@ export default {
     createSurvey: (surveydata) => {
         return axios.post("/api/survey", surveydata);
     },
+    findAllSurvey: () => {
+        return axios.get("/api/survey");
+    },
 
 }

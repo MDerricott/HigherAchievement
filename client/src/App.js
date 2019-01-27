@@ -19,12 +19,7 @@ import API from "./utils/API";
 import Login from "./common/Login";
 // import Test from './common/testing'
 import Footer from './common/Footer'
-import TestTable from "./pages/Admin/TestTable";
-// import { Grid } from "@material-ui/core";
-
-
-
-// export default createMuiTheme({ palette, themeName });
+// import TestTable from "./pages/Admin/TestTable";
 
 
 
@@ -153,7 +148,7 @@ const token = sessionStorage.getItem("token")
             <Route exact path="/national" component={National} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/login"  component={Login  } />
-            <Route exact path="/testing" component={TestTable} />
+            <Route exact path="/testing" component={Admin} />
             <Route path="/admin" 
             render={(props) => (this.state.isAuth ? 
             <Admin /> : 
