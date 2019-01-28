@@ -24,11 +24,6 @@ class LandingPage extends Component {
         auth:""
     };
 
-    // componentDidMount() {
-    //     API.getBook(this.props.match.params.id)
-    //       .then(res => this.setState({ book: res.data }))
-    //       .catch(err => console.log(err));
-    //   }
 render(){
 
 
@@ -55,39 +50,3 @@ render(){
 
 
 
-
-// <Grid container>
-//     <Grid container style={{height: 100}} />
-//         <div className="lp" style={wrapperStyles}>  
-//             <Grid container  >
-//                     <Grid 
-//                         item 
-//                         width={"50%"} 
-//                         xs={12} 
-//                         md={6}
-//                         // className="loading-page"
-//                     >
-//                             <Grid container style={{height: 200}} justify="center" >
-//                                  <br></br>
-//                                  <br></br>
-//                             Place holder for HA About Text and App Introduction
-                            
-//                                 <Survey {...this.props} auth={this.props.auth} onSubmit={this.props.onSubmit} />
-//                             </Grid>
-//                     </Grid>   
-//                 </Grid>     
-//                  <Grid 
-//                     item 
-//                     width={"50%"}  
-//                     xs={12} 
-//                     md={6}>
-//                             <Timeline />
-//                 </Grid>
-//                 <Grid>
-//             </Grid>
-//         </div>
-//      </Grid> 
-// </Grid>
-//     )}
-
-// }

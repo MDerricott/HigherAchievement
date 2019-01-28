@@ -209,22 +209,27 @@ class EnhancedTable extends React.Component {
   };
 
   componentDidMount = () => {
-    API.findAllSurvey({})
-      // .then(res => this.storeUser())
-      .then(res => {
-        
-        const users = res.data
-        const userData = users.map((user, i) => {
-         const today = new Date(user.date)
-          const date = (today.getMonth()+1)+'-'+today.getDate() +'-'+ today.getFullYear();
-       
-          return {id: user._id, name: `${user.firstName} ${user.lastName}`, affiliate: user.affiliate, role: user.role, email: user.email, date: date}
-        })
-        this.setState({data: userData})
-      })
-      .catch(err => console.log(err));
+    this.getSurveyResults()
   }
 
+
+ getSurveyResults = () => {
+  API.findAllSurvey({})
+  // .then(res => this.storeUser())
+  .then(res => {
+    
+    const users = res.data
+    const userData = users.map((user, i) => {
+     const today = new Date(user.date)
+      const date = (today.getMonth()+1)+'-'+today.getDate() +'-'+ today.getFullYear();
+   
+      return {id: user._id, name: `${user.firstName} ${user.lastName}`, affiliate: user.affiliate, role: user.role, email: user.email, date: date}
+    })
+    this.setState({data: userData})
+  })
+  .catch(err => console.log(err));
+
+ }
 
 
   handleRequestSort = (event, property) => {
@@ -270,6 +275,24 @@ class EnhancedTable extends React.Component {
   handleDelete = (event) => {
     console.log(event.button)
     console.log(this.state.selected)
+    const selectedArray = this.state.selected
+    const select = selectedArray.map( sel => {
+      API.deleteSurveys({
+        _id : sel
+      })
+      .then(res =>{
+        console.log(res)
+        console.log(select)
+        
+        this.getSurveyResults()
+        this.props.getSurveyResults()
+      })
+      .catch(err => console.log(err));
+    }
+
+    )
+    this.setState({ selected: [] });
+    
   }
 
   handleChangePage = (event, page) => {

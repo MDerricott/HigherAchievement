@@ -26,7 +26,7 @@ cancelClick = () => {
 render(){
   
     return (
-      <div>
+      <div style={{height: 1500}}>
        <Dialog 
               open={this.props.open}
               onClose={this.props.handleClose}
@@ -34,7 +34,7 @@ render(){
               fullWidth
               aria-labelledby="form-dialog-title"
             >
-          <DialogTitle id="max-width-dialog-title">Admin Dashboard</DialogTitle>
+          <DialogTitle id="max-width-dialog-title">Admin Dashboard Login</DialogTitle>
        <DialogContent>
             <DialogContentText>
               Login into the Admin Dashboard
@@ -69,17 +69,19 @@ render(){
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.handleSubmit} color="primary">
-             <Link to="/admin"> Login </Link>
+         
+            <Button href="/admin" onClick={this.props.handleSubmit} color="secondary" style={{textDecoration:"none"}}>
+              Login 
             </Button>
-            <Link to="/">
+          
+         
             
             
            
-            <Button onClick={this.cancelClick} color="primary">
+            <Button href="/" onClick={this.cancelClick} color="secondary">
               Cancel
             </Button>
-            </Link>
+        
             
           </DialogActions>
         </Dialog>

@@ -573,12 +573,12 @@ class Virginia extends Component {
                         </div>
                         <div>
                           <CardActions className={classes.actions} disableActionSpacing>
-                              <IconButton aria-label="Add to favorites">
+                              {/* <IconButton aria-label="Add to favorites">
                                   <FavoriteIcon />
                               </IconButton>
                               <IconButton aria-label="Share">
                                   <ShareIcon />
-                              </IconButton>
+                              </IconButton> */}
                           </CardActions>
                         </div>
                     </CardFooter>

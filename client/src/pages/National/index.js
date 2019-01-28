@@ -253,12 +253,7 @@ componentDidMount() {
                                       strokeWidth: {mapStrokeWidth},
                                       outline: "none",
                                     },
-                        // pressed: {
-                        //   fill: "#FF5722",
-                        //   stroke: "#ffffff",
-                        //   strokeWidth: {mapStrokeWidth},
-                        //   outline: "none",
-                        // },
+                     
                                   }}
                                 />
                               </Tooltip>
@@ -273,7 +268,7 @@ componentDidMount() {
                                     style={{
                                         default: { fill: "#00695f" },
                                         hover: { fill: "#FFFFFF" },
-                                        pressed: { fill: "#FF5722" },
+                                        pressed: { fill: "##62BB46" },
                                     }}
                                   >
                                       <Link to={`/${affiliate.route}/`} >
@@ -284,7 +279,7 @@ componentDidMount() {
                                             r={this.state.radius}
                                             style={{
                                               stroke: "#00695f",
-                                              strokeWidth: 1,
+                                              strokeWidth: 0,
                                               opacity: 1,
                                             }}
                                           />
@@ -295,7 +290,7 @@ componentDidMount() {
                                                 y={affiliate.markerOffset}
                                                 style={{
                                                     fontFamily: "Roboto, sans-serif",
-                                                    fill: "#607D8B",
+                                                    fill: "#000000",
                                                 }}
                                             >
                                                 {affiliate.name}
@@ -311,7 +306,7 @@ componentDidMount() {
                   <div className={classes.stats}>
                      
                         <Typography
-                          variant="subtitle2"
+                          
                         >
                             <LocalOffer />
                             Data from 2017 Census
@@ -319,12 +314,7 @@ componentDidMount() {
                   </div>
                   <div>
                       <CardActions className={classes.actions} disableActionSpacing>
-                          <IconButton aria-label="Add to favorites">
-                            <FavoriteIcon />
-                          </IconButton>
-                          <IconButton aria-label="Share">
-                            <ShareIcon />
-                          </IconButton>
+                      
                         </CardActions>
                   </div>
               </CardFooter>
@@ -335,7 +325,7 @@ componentDidMount() {
         <div style={{height:100 , width:"100%"}}>
             <br />
             <br />
-              <Typography> About National Poverty Data </Typography>
+              {/* <Typography> About National Poverty Data </Typography> */}
         </div>
 
       <Card square elevation={0} style={{padding:5}} justify="center">

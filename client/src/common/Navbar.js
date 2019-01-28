@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import image from '../images/blacklogo.png';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 
 
 
@@ -58,7 +59,9 @@ render() {
     <div className={classes.root}>
       <AppBar 
         position="static"
-        color="secondary" >
+        color="secondary" 
+        elevation={3}
+        >
         <Toolbar>
           <div>
         <IconButton 
@@ -192,7 +195,7 @@ render() {
                   // onClick={this.handleMenu}
                   color="inherit"
                   >
-                  <AccountCircle />
+                  <CheckCircleIcon />
                   </IconButton>
                 </Link>
                 </Tooltip> 

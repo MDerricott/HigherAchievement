@@ -6,6 +6,7 @@ const surveycontroller = require('../../controllers/surveycontroller');
 router.route("/")
     .post(surveycontroller.create)
     .get(surveycontroller.findAll)
+    .delete(surveycontroller.deleteSurveys)
 
 
 // router.route("/likes/:id")

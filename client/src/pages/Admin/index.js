@@ -105,6 +105,9 @@ const dashboardStyle = {
      } 
 
      componentDidMount = () => {
+      this.getSurveyData()
+    }
+    getSurveyData = () => {
       API.findAllSurvey({})
         // .then(res => this.storeUser())
         .then(res => {
@@ -174,7 +177,6 @@ const dashboardStyle = {
         })
         .catch(err => console.log(err));
     }
-
 
     render(){
     const { classes } = this.props;
@@ -435,7 +437,7 @@ const dashboardStyle = {
               </CardHeader>
               <CardBody elevation={0}>
               
-                 <Table elevation={0}/>
+                 <Table elevation={0} getSurveyData={this.getSurveyData()}/>
               
               </CardBody>
               <CardFooter stats>

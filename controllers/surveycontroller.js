@@ -27,7 +27,7 @@ module.exports = {
 
          deleteSurveys: (req, res) =>{
             db.Surveys
-                .remove(req.body)
+                .deleteOne(req.body)
                 .then(function(dbSurvey){
                     res.json(dbSurvey)
                 })

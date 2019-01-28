@@ -106,66 +106,46 @@ class Center extends Component {
         readingOutcome: null,
         demoLabel: null,
         centerId: "",
-        salesforce: null,
+        salesforce: [],
     };
-    
-componentDidMount (){
-// const Henderson = this.props.match.params.centerName
-  // var search = "FIND {Henderson}"
-  
-//  API.findSalesforceUrl('search: "FIND {Henderson}"')
-//   .then(res => {
-//     console.log(res.data)
-//   })
 
-API.pullCenterData("0011U000008XFtSQAW")
+
+getsalesforceData =  (centerId) => {
+
+    API.pullCenterData(centerId)
     .then(res => {
       console.log(res.data)
-    
+      this.setState({
+        salesforce: res.data,
+        ddata: [res.data.black__c, res.data.white__c, res.data.hispanic__c, res.data.noresponse__c],
+        cdata:[res.data.fifth__c,res.data.sixth__c, res.data.seventh__c, res.data.eighth__c]
+      })
     })
+    .catch(err => console.log(err))
+  }
 
-
-  // // this.setState({ salesforce : "0011U000008XFtSQAW" })
-
-  // this.props.match.params.centerName === "Henderson" ? this.setState({ centerId : "0011U000008XFtSQAW" }) : console.log("didnt work")
-
-  // // console.log(this.state.salesforce)
-  
-  //   // if(this.props.match.params.centerName === "Henderson"){
-  //   //   this.setState({ centerId : "0011U000008XFtSQAW" })
-  //   //   console.log(this.state)
     
+componentDidMount (){
 
-  //   API.getSalesforceRecord(this.props.match.params.centerName === "Henderson" ?  "0011U000008XFtSQAW"  : null)
-    
-  //   .then(res => {
-  //     console.log(res.data);
-  //     this.setState({
-  //       salesforce: res.data.name
-  //     })
-  //     console.log(res.data)
-  //   })
-  
-  
-    // .catch(err => console.log("error " + err))
-  // }
-
-    // API.getCenter(this.props.match.params.centerName)
-    //     .then(res => {
-          
-    //         this.setState({
-    //             center: res.data,
-    //             cdata: res.data.cohortData.data.split(","),
-    //             ddata: res.data.scholarDemo.data,
-    //             demoLabel: res.data.scholarDemo.labels,
-    //             mathOutcome: res.data.outcomes.math * 100,
-    //             readingOutcome: res.data.outcomes.reading * 100
-    
-    //         })
-    //         console.log(this.state.center.outcomes.math)
-    //     })
-    //     .catch(err => console.log(err));
-}
+  if(this.props.match.params.centerName === "Henderson"){
+    this.getsalesforceData("0011U000008XFtSQAW")
+    }
+  else if (this.props.match.params.centerName === "Binford"){
+    this.getsalesforceData("0011U00000AJf3tQAD")
+  } 
+  else if (this.props.match.params.centerName === "Boushall"){
+    this.getsalesforceData("0011U00000AJf51QAD")
+  }
+  else if (this.props.match.params.centerName === "Lakeland"){
+    this.getsalesforceData("0011U000008XFtSQAW")
+  }
+  else if (this.props.match.params.centerName === "CJR"){
+    this.getsalesforceData("0011U000008XFtSQAW")
+  }
+  else if (this.props.match.params.centerName === "CherryHill"){
+    this.getsalesforceData("0011U000008XFtSQAW")
+  }
+  }
 
 
     render(){
@@ -173,17 +153,9 @@ API.pullCenterData("0011U000008XFtSQAW")
 
         let rolePieChart = {
           data: canvas => {
-            // let ctx = canvas.getContext("2d");
-          
-        
-            // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-        
-            // gradientStroke.addColorStop(1, "rgba(29,140,248,0.2)");
-            // gradientStroke.addColorStop(0.4, "rgba(29,140,248,0.0)");
-            // gradientStroke.addColorStop(0, "rgba(29,140,248,0)"); //blue colors
-        
+            
             return {
-              labels: this.state.demoLabel,
+              labels: ["Black","White", "Hispanic", "Prefer Not to Say"],
               datasets: [
                 {
                   backgroundColor: ["#62BB46","#000000", "#006595", "#F5A01A"],
@@ -194,11 +166,7 @@ API.pullCenterData("0011U000008XFtSQAW")
                   
                   label: "data set"
                 },
-                
-                // {
-                 
-                //   backgroundColor: ["#000000","#66ffff", "#0000ff"],
-                //   data: [100, 20, 40]}
+
               ],
                
             };
@@ -233,14 +201,7 @@ API.pullCenterData("0011U000008XFtSQAW")
  
         let surveyTimeline = {
           data: canvas => {
-            // let ctx = canvas.getContext("2d");
-        
-            // let gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
-        
-            // gradientStroke.addColorStop(1, "rgba(34,73,18,0.2)");
-            // gradientStroke.addColorStop(0.4, "rgba(34,73,18,0.0)");
-            // gradientStroke.addColorStop(0, "rgba(34,73,18,0)"); //blue colors
-        
+            
             return {
               labels: ["5th", "6th", "7th", "8th"],
               datasets: [
@@ -319,100 +280,14 @@ API.pullCenterData("0011U000008XFtSQAW")
             }}
         };
         return(
-          <div>
+          <div style={{height: 1050}}>
 
           
             <div style={wrapperStyles}>
 
 
-            
-            {/* <Paper 
-                elevation={0}
-                alignContents="center"
-                >
-            <Grid container alignContent="center" >
-                   <div className="center">
-                    <Typography
-                    variant="h3"
-                    align="center"
-                    className="center"
-                    paragraph>
-                        {this.state.center.centerName}
-                    </Typography >
-                    </div>
-            </Grid>
-            <Grid 
-                container
-                height={50}
-                
-            />
-            <Grid container>
-                <div className="center">
-                     <Heatmap
-                        width ={800}
-                        height= {500}
-                     />
-                </div>
-            </Grid>
-            <Grid 
-                container
-                height={50}
-            />
-            <div className="center">
-            <Grid container>
-            <Grid item sm={6}>
-            Text about Chart
-            
-            </Grid>
-                <Grid item sm={6}>
-                    <Glyphs
-                        width={400}
-                        height={400}
-                        margin={5}
-                        data={
-                            [
-                            {date:4,value: this.state.grade8Value},
-                            {date:3,value: this.state.grade7Value},
-                            {date:2,value: this.state.grade6Value},
-                            {date:1,value: this.state.grade5Value}
-                        ]}
-                    />  
-                </Grid>
-                <Grid container>
-                <Grid item>  
-
-                </Grid >
-                <Grid item sm={6}>
-                    <PieChart
-                        width={400}
-                        height={400}
-                        letters={[
-                            {ethnicty: "Black", frequency: "90"},
-                            {ethnicty: "Hispanic", frequency: "7"},
-                            {ethnicty: "White", frequency: "3"}
-                        ]}
-                        browsers={[
-                            {label: "0 - 25k" , usage: "53"},
-                            {label: "25k - 40k" , usage: "23"},
-                            {label: "40k - 60k" , usage: "13"},
-                            {label: "60k - more" , usage: "17"}
-                        ]}
-                    />
-                </Grid>
-                <Grid item>  
-                    <Typography paragraph className="center">
-                        Text about graph
-                    </Typography>
-                </Grid >
-               </Grid>
-             </Grid>
-             </div>
-            
-             </Paper> */}
-
-
 <div>
-<Grid container>
+<Grid container >
 <CustomCard>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
@@ -447,8 +322,8 @@ API.pullCenterData("0011U000008XFtSQAW")
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  salesforce
-                  {this.state.salesforce}
+                  
+                  {this.state.salesforce.name}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -515,7 +390,7 @@ API.pullCenterData("0011U000008XFtSQAW")
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                 {this.state.center.enrollment}
+                 {this.state.salesforce.enrollment__c}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -579,7 +454,7 @@ API.pullCenterData("0011U000008XFtSQAW")
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                  {`${this.state.mathOutcome} %`}
+                  {`${this.state.salesforce.mathoutcome__c} %`}
 
                   {/* {this.state.center.outcomes.math * 100} */}
                 </Typography>
@@ -646,7 +521,7 @@ API.pullCenterData("0011U000008XFtSQAW")
                       fontWeight: "400",
                       lineHeight: "1"
                   }}}>
-                 {`${this.state.readingOutcome} %`}
+                  {`${this.state.salesforce.readingoutcome__c} %`}
                 </Typography>
               </CardHeader>
               <CustomCardFooter stats>
@@ -767,109 +642,7 @@ API.pullCenterData("0011U000008XFtSQAW")
  
      <Grid container>
      
-     {/* <CustomCard>
-              <CardHeader color="warning" stats icon>
-                <CardIcon color="warning">
-                  <Icon>
-                      <NotesIcon/>
-                      </Icon>
-                </CardIcon>
-
-                <Typography style={{
-                    color: "#3C4858",
-                    margin: 0,
-                    padding: 10,
-                    fontSize: "14px",
-                    marginTop: "0",
-                    marginBottom: "0"
-                  }}
-                    variant="h4"
-                  >
-                  Virginia Poverty
-                  </Typography>
-                <Typography 
-                variant="h4"
-                style={{
-                  color: "#3C4858",
-                  marginTop: "0px",
-                  minHeight: "auto",
-                  fontWeight: "300",
-                  marginBottom: "3px",
-                  textDecoration: "none",
-                      "& small": {
-                      color: "#777",
-                      fontWeight: "400",
-                      lineHeight: "1"
-                  }}}>
-                  11.2%
-                </Typography>
-              </CardHeader>
-              <CardBody>
-
-                      <Typography 
-                        paragraph>
-                      Poverty has a significant impact on individuals and society at large. Children who live in poverty are likely to suffer from poor nutrition during infancy, experience emotional distress, and have an increased risk for academic failure and teenage pregnancy. Adult men and women who live in poverty are at high risk of poor health, debilitating stress, and violence. Poverty can also affect seniors' ability to care for themselves or to obtain prescription medication.
-                      </Typography>
-                      <Typography paragraph>
-                      Except for periods of economic recession -- which tend to create increased, if temporary, levels of poverty -- overall poverty rates in the US have held steady for nearly 50 years and have rarely gone above 15 percent.
-                      <br />
-                      Poverty was once far more prevalent among the elderly than among other age groups, but today's elderly have a poverty rate similar to that of working-age adults and much lower than that of children. For example, from 1960-1995, the official poverty rate of those aged 65 and above fell from 35 percent to 10 percent. In 2015, just 8.8 percent of seniors were living below the poverty level, compared to 19.7 percent of American children.
-                      <br />
-                      There is a greater likelihood of facing poverty or near poverty if one is Black or Hispanic or in a family (of any race) that is headed by a single woman.
-                      <br />
-                      Important factors affecting poverty are educational attainment, economic opportunity, and family status. There is a strong and direct relationship between education level and earnings and employability. The Bureau of Labor Statistics reports that in 2015 an adult (aged 25+) with a bachelor’s degree earned about 40 percent more than an adult with just a high school diploma and was only about half as likely to be unemployed. However, a good education is not enough. To reach their full earning potential, workers also need the job opportunities and potential for upward mobility that a truly healthy economy creates.
-                      
-                      </Typography>
-              </CardBody>
-              <CustomCardFooter stats>
-                <div style={{
-                    color: "#999999",
-                    display: "inline-flex",
-                    fontSize: "12px",
-                    lineHeight: "22px",
-                        "& svg": {
-                            top: "4px",
-                            width: "16px",
-                            height: "16px",
-                            position: "relative",
-                            marginRight: "3px",
-                            marginLeft: "3px"
-                            },
-                        "& .fab,& .fas,& .far,& .fal,& .material-icons": {
-                            top: "4px",
-                            fontSize: "16px",
-                            position: "relative",
-                            marginRight: "3px",
-                            marginLeft: "3px"
-                        }}}>
-                <Typography
-                              style={{
-                                color: "#999999",
-                                display: "inline-flex",
-                                fontSize: "12px",
-                                lineHeight: "22px",
-                                "& svg": {
-                                  top: "4px",
-                                  width: "16px",
-                                  height: "16px",
-                                  position: "relative",
-                                  marginRight: "3px",
-                                  marginLeft: "3px"
-                                },
-                                "& .fab,& .fas,& .far,& .fal,& .material-icons": {
-                                  top: "4px",
-                                  fontSize: "16px",
-                                  position: "relative",
-                                  marginRight: "3px",
-                                  marginLeft: "3px"
-                              }}}
-                            >
-                                <LocalOffer />
-                                Data from Virginia Performs
-                          </Typography>
-                </div>
-              </CustomCardFooter>
-            </CustomCard> */}
+     
             </Grid>
 
         </div>

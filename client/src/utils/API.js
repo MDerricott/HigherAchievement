@@ -31,5 +31,8 @@ export default {
     findAllSurvey: () => {
         return axios.get("/api/survey");
     },
+    deleteSurveys: () => {
+        return axios.delete("/api/survey");
+    }
 
 }
