@@ -42,8 +42,8 @@ import Icon from "@material-ui/core/Icon";
 import PlaceIcon from '@material-ui/icons/Place';
 import Accessibility  from '@material-ui/icons/AccessibilityNew';
 import ChartIcon from '@material-ui/icons/InsertChart'
-import CardBody from '../../common/CardBody'
-import NotesIcon from "@material-ui/icons/Notes"
+// import CardBody from '../../common/CardBody'
+// import NotesIcon from "@material-ui/icons/Notes"
 import SchoolBusIcon from '@material-ui/icons/DirectionsBus'
 import Footer from '../../common/Footer'
 

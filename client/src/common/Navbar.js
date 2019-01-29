@@ -147,11 +147,9 @@ render() {
             {this.props.auth && (
               
             <Tooltip 
-              title="My Profile"
+              title="Survey Completed"
             >  
-            <Link
-              className="link"
-              to={"/profile"}>
+          
               <IconButton
       // aria-owns={this.state.anchorEl ? 'profile' : undefined}
       // aria-haspopup="true"
@@ -159,7 +157,7 @@ render() {
                 color="inherit">
               <CheckCircleIcon />
               </IconButton>
-              </Link>
+             
               </Tooltip> 
               
               )}

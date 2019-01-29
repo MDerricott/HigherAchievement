@@ -157,7 +157,7 @@ class Pennsylvania
       radius: 0,
       circle: "visible",
       displayText: "hide",
-      zoom: 23,
+      zoom: 15,
       zoomedIn: false,
     })
   }

@@ -29,7 +29,7 @@ render(){
 
     return(
 
-      <Grid> 
+      <Grid style={{height: 1200}}> 
         <Grid container style={wrapperStyles}>
         <Grid container style={{height: 100}} />
             <Grid item xs={12} md={6}> 

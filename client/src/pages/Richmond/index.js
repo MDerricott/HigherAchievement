@@ -709,7 +709,7 @@ class Virginia extends Component {
      
      {/* </Grid> */}
     
-     <Grid container>
+     {/* <Grid container>
      
      <CustomCard>
               <CardHeader color="warning" stats icon>
@@ -795,7 +795,7 @@ class Virginia extends Component {
                 </div>
               </CustomCardFooter>
             </CustomCard>
-            </Grid>
+            </Grid> */}
             </Grid>
      </Grid>
  
