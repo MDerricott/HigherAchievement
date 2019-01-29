@@ -14,7 +14,6 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./common/Navbar";
 import NoMatch from "./pages/NoMatch";
 import Admin from './pages/Admin';
-import Profile from './pages/Profile';
 import API from "./utils/API";
 import Login from "./common/Login";
 import Demo from "./pages/Demo"
