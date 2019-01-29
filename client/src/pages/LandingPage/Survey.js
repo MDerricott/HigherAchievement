@@ -310,7 +310,7 @@ render (){
             <MenuItem value={"Mentor"}>Mentor</MenuItem>
             <MenuItem value={"Donor"}>Donor</MenuItem>
             <MenuItem value={"Families"}>Families/Scholar</MenuItem>
-            <MenuItem value={"SchoolPartner"}>School Partners</MenuItem>
+            <MenuItem value={"School Partner"}>School Partners</MenuItem>
             </Select>
       </FormControl>
     </Grid>
