@@ -45,6 +45,7 @@ import ChartIcon from '@material-ui/icons/InsertChart'
 import CardBody from '../../common/CardBody'
 import NotesIcon from "@material-ui/icons/Notes"
 import SchoolBusIcon from '@material-ui/icons/DirectionsBus'
+import Footer from '../../common/Footer'
 
     const wrapperStyles = {
       width: "80%",
@@ -173,6 +174,9 @@ class Virginia extends Component {
   
           console.log(classes.dashboardStyle)
     return (
+      <div>
+
+    
      <Grid container justify="center"  style={{backgroundColor:"#62BB46" }}> 
      <Grid container style={wrapperStyles}>
      
@@ -795,10 +799,10 @@ class Virginia extends Component {
             </Grid>
      </Grid>
  
-//  </Grid>
-//  </Grid>   
-//  </Grid> 
-//  </Grid>
+ <div style={{height: 50}}>
+ <Footer/>
+ </div>
+  </div>
     )
   }
 }

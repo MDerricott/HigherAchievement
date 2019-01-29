@@ -5,6 +5,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+
 // core components
 const container = {
     paddingRight: "15px",
@@ -81,32 +83,50 @@ function Footer({ ...props }) {
       <div className={classes.container}  style={{backgroundColor: "#62BB46"}}>
         <div className={classes.left} style={{backgroundColor: "#62BB46"}}>
           <List className={classes.list} style={{backgroundColor: "#62BB46"}}>
-            <ListItem className={classes.inlineBlock}>
-            <Button size="small" href="/national" className={classes.button}>
-                National Map
-            </Button>
-              
+          <ListItem className={classes.inlineBlock}>
+              <Link to="/national"
+                    style={{ textDecoration: 'none' }}>
+                <Button size="small" className={classes.button}>
+                    National
+                </Button>
+              </Link>
             </ListItem>
+{/*             
             <ListItem className={classes.inlineBlock}>
-            <Button size="small" href="/dcmetro" className={classes.button}>
-                 DC Metro
-            </Button>
-        
+              <Link to="/dcmetro"
+                    style={{ textDecoration: 'none' }}>
+                <Button size="small"  className={classes.button}>
+                  DC Metro
+                </Button>
+              </Link>
+            </ListItem> */}
+          
+            <ListItem className={classes.inlineBlock}>
+              <Link to="/baltimore"
+              style={{ textDecoration: 'none' }}>
+                <Button size="small"  className={classes.button}>
+                  Baltimore
+                 </Button>
+              </Link>
             </ListItem>
+
             <ListItem className={classes.inlineBlock}>
-            <Button size="small" href="/baltimore" className={classes.button}>
-                 Baltimore
-            </Button>
+              <Link to="/richmond"
+              style={{ textDecoration: 'none' }}>
+                <Button size="small"  className={classes.button}>
+                  Richmond
+                </Button>
+              </Link>
             </ListItem>
+
+
             <ListItem className={classes.inlineBlock}>
-            <Button size="small" href="/richmond" className={classes.button}>
-                 Richmond
-            </Button>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <Button size="small" href="/pittsburgh" className={classes.button}>
-                 Pittsburgh
-            </Button>
+              <Link to="/pittsburgh"
+              style={{ textDecoration: 'none' }}>
+                <Button size="small"  className={classes.button}>
+                  Pittsburgh
+                </Button>
+              </Link>
             </ListItem>
           </List>
         </div >

@@ -84,7 +84,7 @@ class National extends Component {
         mapStrokeWidth: .5,
         affiliates: [
             {markerOffset: -10, name: "Baltimore", route: "baltimore", coordinates: [-76.6122 , 39.2904]},
-            {markerOffset: -10, name: "Washington DC", route: "dcmetro", coordinates: [-77.0369, 38.9072]},
+            // {markerOffset: -10, name: "Washington DC", route: "dcmetro", coordinates: [-77.0369, 38.9072]},
             {markerOffset: -10, name: "Richmond", route: "richmond", coordinates: [-77.4360, 37.5407]},
             {markerOffset: -10, name: "Pittsburgh", route: "pittsburgh", coordinates: [-79.9959, 40.4406]},
         ]
@@ -330,16 +330,16 @@ componentDidMount() {
 
       <Card square elevation={0} style={{padding:5}} justify="center">
           <Grid container width="100%" spacing={16} justify="center" >
-              <Grid item sm={3}>
+              {/* <Grid item sm={3}>
                   <Link to="/dcmetro" ><AffilateButton key={1} affilate="DC Metro" imageURL={"https://higherachievement.org/wp-content/uploads/2018/12/IMG_6971-e1545143799286.jpg"} /></Link>
-              </Grid>
-              <Grid item sm={3}>
+              </Grid> */}
+              <Grid item sm={4}>
                   <Link to="/baltimore"><AffilateButton key={2} affilate="Baltimore" imageURL={"https://higherachievement.org/wp-content/uploads/2018/04/Baltimore-scholar-studying-banner-photo-1024x682.jpg"}  /> </Link>
               </Grid>
-              <Grid item sm={3}>
+              <Grid item sm={4}>
               <Link to="/richmond"> <AffilateButton key={3} affilate="Richmond"  imageURL={"https://higherachievement.org/wp-content/uploads/2016/10/Richmond-Scholars.jpg"}  /> </Link>
               </Grid> 
-              <Grid item sm={3}>
+              <Grid item sm={4}>
               <Link to="/pittsburgh"> <AffilateButton key={4} affilate="Pittsburgh" imageURL={"https://higherachievement.org/wp-content/uploads/2018/09/One-World-Education.jpg"} /> </Link>
               </Grid>
             </Grid>

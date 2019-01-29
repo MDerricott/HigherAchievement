@@ -33,7 +33,9 @@ org.authenticate().then(function(res){
   console.error('failed');
   console.error(err);
 });
-
+app.get("https://api.census.gov/data/timeseries/poverty/saipe/schdist?get=SD_NAME,SAEPOVALL_PT&for=school%20district%20(unified):*&in=state:40&time=2017&key=2fca4795be70964afb7aff62504017bde16d7e14", function(req, res){
+res.json()
+})
 
 app.get('/sobjects/account', function(req, res) { 
       org.authenticate(

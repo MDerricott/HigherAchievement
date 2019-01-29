@@ -33,6 +33,9 @@ export default {
     },
     deleteSurveys: () => {
         return axios.delete("/api/survey");
+    },
+    pennStateMap: () => {
+        return axios.get("https://api.census.gov/data/timeseries/poverty/saipe/schdist?get=SD_NAME,SAEPOVALL_PT&for=school%20district%20(unified):*&in=state:42&time=2017&key=2fca4795be70964afb7aff62504017bde16d7e14")
     }
 
 }

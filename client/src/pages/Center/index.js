@@ -32,6 +32,7 @@ import LineChartIcon from '@material-ui/icons/ShowChart'
 import SchoolIcon from '@material-ui/icons/School'
 import StarIcon from '@material-ui/icons/Grade'
 import ElaIcon from '@material-ui/icons/Language'
+import Footer from '../../common/Footer'
 // import BottomNav from '../../common/BottomNav'
 
 
@@ -144,6 +145,12 @@ componentDidMount (){
   }
   else if (this.props.match.params.centerName === "Cherry-Hill"){
     this.getsalesforceData("0011U00000AL2hYQAT")
+  }
+  else if (this.props.match.params.centerName === "West-End"){
+    this.getsalesforceData("0011U00000AL6HRQA1")
+  }
+  else if (this.props.match.params.centerName === "Homewood"){
+    this.getsalesforceData("0011U00000AL6GlQAL")
   }
   }
 
@@ -280,6 +287,11 @@ componentDidMount (){
             }}
         };
         return(
+         <div style={{height:1250}}>
+  <div style={{height:50}}/>
+        
+
+
           <div style={{height: 1050}}>
 
           
@@ -354,6 +366,7 @@ componentDidMount (){
             </CustomCard>
 
 </Grid>
+<div style={{height:50}}/>
 <Grid container spacing={16}>  
       <Grid item sm={4}> 
      <CustomCard style={{height: 150}}>
@@ -573,7 +586,7 @@ componentDidMount (){
             </CustomCard>
         </Grid>
     </Grid> 
-            
+    <div style={{height:50}}/>      
      
     <Grid container spacing={24} >
    
@@ -638,19 +651,24 @@ componentDidMount (){
   
      </Card>
    </Grid>  
+   <div style={{height:150}}/>
  </Grid>
  
      <Grid container>
      
      
             </Grid>
+            
 
         </div>
 
   </div>
+  <div style={{height:50}}/>
+</div>
 
+<Footer/>
+  </div>   
 
-  </div>
         )
     
         }

@@ -179,7 +179,7 @@ const token = sessionStorage.getItem("token")
        
       </Router>
       <div   style={{height: 50, backgroundColor:"#62BB46"}}/>
-      <Footer />
+
  </div>  
     );
   }

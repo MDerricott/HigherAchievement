@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import Menu from "@material-ui/core/Menu"
 import MenuItem from '@material-ui/core/MenuItem'
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+// import AccountCircle from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
 import image from '../images/blacklogo.png';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
@@ -87,53 +87,50 @@ render() {
                 open={open}
                 onClose={this.handleClose}
               >
-                <Link 
-                  component="button"
+                <Link  
                   to="/" 
                   color='inherit' 
                   className="link" 
-                  underline="none">
+                  style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={this.handleClose}>Home</MenuItem> 
                 </Link>
 
                  <Link 
-                  component="button"
                   to="/national" 
                   color='inherit' 
                   className="link" 
-                  underline="none">
+                  style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={this.handleClose}>National</MenuItem> 
                 </Link> 
-                <Link 
-                  component="button"
+                {/* <Link 
                   to="/dcmetro" 
                   color='inherit' 
                   className="link" 
-                  underline="none">
+                  style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={this.handleClose}>DC Metro</MenuItem> 
-                </Link> 
+                </Link>  */}
                 <Link 
-                  component="button"
+              
                   to="/baltimore" 
                   color='inherit' 
                   className="link" 
-                  underline="none">
+                  style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={this.handleClose}>Baltimore</MenuItem> 
                 </Link> 
                 <Link 
-                  component="button"
+                
                   to="/richmond" 
                   color='inherit' 
                   className="link" 
-                  underline="none">
+                  style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={this.handleClose}>Richmond</MenuItem> 
                 </Link> 
                 <Link 
-                  component="button"
+            
                   to="/pittsburgh" 
                   color='inherit' 
                   className="link" 
-                  underline="none">
+                  style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={this.handleClose}>Pittsburgh</MenuItem> 
                 </Link>
                 
@@ -147,7 +144,25 @@ render() {
             Higher Achievement
           </Typography> */}
           <div>
-
+            {this.props.auth && (
+              
+            <Tooltip 
+              title="My Profile"
+            >  
+            <Link
+              className="link"
+              to={"/profile"}>
+              <IconButton
+      // aria-owns={this.state.anchorEl ? 'profile' : undefined}
+      // aria-haspopup="true"
+      // onClick={this.handleMenu}
+                color="inherit">
+              <CheckCircleIcon />
+              </IconButton>
+              </Link>
+              </Tooltip> 
+              
+              )}
             <Tooltip 
               title="Admin Dashboard"
               >   
@@ -181,27 +196,7 @@ render() {
                   </Link> 
             </Tooltip> 
           </div>
-          {this.props.auth && (
-              <div>
-                <Tooltip 
-                  title="My Profile"
-                >  
-                <Link
-                    className="link"
-                    to={"/profile"}>
-                  <IconButton
-                  // aria-owns={this.state.anchorEl ? 'profile' : undefined}
-                  // aria-haspopup="true"
-                  // onClick={this.handleMenu}
-                  color="inherit"
-                  >
-                  <CheckCircleIcon />
-                  </IconButton>
-                </Link>
-                </Tooltip> 
-                
-              </div>
-            )}
+          
         </Toolbar>
       </AppBar>
     </div>
