@@ -146,7 +146,6 @@ const token = sessionStorage.getItem("token")
             <Route exact path="/baltimore" component={Baltimore} />
             <Route exact path="/center/:centerName" component={Center} />
             <Route exact path="/national" component={National} />
-            <Route exact path="/profile" component={Profile} />
             <Route path="/login"  component={Login  } />
             <Route exact path="/demo" component={Demo} />
             <Route path="/admin" 
