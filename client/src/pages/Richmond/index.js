@@ -46,81 +46,6 @@ import CardBody from '../../common/CardBody'
 import NotesIcon from "@material-ui/icons/Notes"
 import SchoolBusIcon from '@material-ui/icons/DirectionsBus'
 
-// const successColor = "#4caf50"
-
-
-// const dashboardStyle = {
-//     successText: {
-//       color: successColor
-//     },
-//     upArrowCardCategory: {
-//       width: "16px",
-//       height: "16px"
-//     },
-//     stats: {
-//       color: "#999999",
-//       display: "inline-flex",
-//       fontSize: "12px",
-//       lineHeight: "22px",
-//       "& svg": {
-//         top: "4px",
-//         width: "16px",
-//         height: "16px",
-//         position: "relative",
-//         marginRight: "3px",
-//         marginLeft: "3px"
-//       },
-//       "& .fab,& .fas,& .far,& .fal,& .material-icons": {
-//         top: "4px",
-//         fontSize: "16px",
-//         position: "relative",
-//         marginRight: "3px",
-//         marginLeft: "3px"
-//       }
-//     },
-//     cardCategory: {
-//       color: "#999999",
-//       margin: "0",
-//       fontSize: "14px",
-//       marginTop: "0",
-//       paddingTop: "10px",
-//       marginBottom: "0"
-//     },
-//     cardCategoryWhite: {
-//       color: "rgba(255,255,255,.62)",
-//       margin: "0",
-//       fontSize: "14px",
-//       marginTop: "0",
-//       marginBottom: "0"
-//     },
-//     cardTitle: {
-//       color: "#3C4858",
-//       marginTop: "0px",
-//       minHeight: "auto",
-//       fontWeight: "300",
-//       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-//       marginBottom: "3px",
-//       textDecoration: "none",
-//       "& small": {
-//         color: "#777",
-//         fontWeight: "400",
-//         lineHeight: "1"
-//       }
-//     },
-//     cardTitleWhite: {
-//       color: "#FFFFFF",
-//       marginTop: "0px",
-//       minHeight: "auto",
-//       fontWeight: "300",
-//       fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
-//       marginBottom: "3px",
-//       textDecoration: "none",
-//       "& small": {
-//         color: "#777",
-//         fontWeight: "400",
-//         lineHeight: "1"
-//       }
-//     },
     const wrapperStyles = {
       width: "80%",
       maxWidth: 1000,
@@ -130,10 +55,6 @@ import SchoolBusIcon from '@material-ui/icons/DirectionsBus'
     }
   
   
-
-
-
-
 
 const otherScale = scaleLinear()
   .domain([0,14])
@@ -207,9 +128,9 @@ class Virginia extends Component {
 
   handleCenterSelection(evt) {
     this.setState({
-      viewBox: "9000 -250 980 751",
+      viewBox: "10400 -250 980 751",
       circle: "hidden",
-      zoom: 35,
+      zoom: 40,
       radius: 9,
       displayText:  "affilateMarkers" ,
       zoomedIn:true,
@@ -321,11 +242,6 @@ class Virginia extends Component {
             </CustomCard>
    
     
-
-    
-     {/* <Grid container> */}
-          {/* <Grid container justify="center"> */}
-            {/* <div style={{heght: 500}}>  */}
              <Card elevation={4} style={{backgroundColor: "#000000", color:"#ffffff", width: "40%", minHeight: 50, display: "inline-block", position: "relative", top:50, left:20}}> 
                        {(grad ? 
                        <div>

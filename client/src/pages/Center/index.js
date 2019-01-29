@@ -137,13 +137,13 @@ componentDidMount (){
     this.getsalesforceData("0011U00000AJf51QAD")
   }
   else if (this.props.match.params.centerName === "Lakeland"){
-    this.getsalesforceData("0011U000008XFtSQAW")
+    this.getsalesforceData("0011U00000AL2j0QAD")
   }
-  else if (this.props.match.params.centerName === "CJR"){
-    this.getsalesforceData("0011U000008XFtSQAW")
+  else if (this.props.match.params.centerName === "Commodore"){
+    this.getsalesforceData("0011U00000AL2hdQAD")
   }
-  else if (this.props.match.params.centerName === "CherryHill"){
-    this.getsalesforceData("0011U000008XFtSQAW")
+  else if (this.props.match.params.centerName === "Cherry-Hill"){
+    this.getsalesforceData("0011U00000AL2hYQAT")
   }
   }
 
