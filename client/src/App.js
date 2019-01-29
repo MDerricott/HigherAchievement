@@ -17,8 +17,9 @@ import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import API from "./utils/API";
 import Login from "./common/Login";
+import Demo from "./pages/Demo"
 // import Test from './common/testing'
-import Footer from './common/Footer'
+// import Footer from './common/Footer'
 // import TestTable from "./pages/Admin/TestTable";
 
 
@@ -148,7 +149,7 @@ const token = sessionStorage.getItem("token")
             <Route exact path="/national" component={National} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/login"  component={Login  } />
-            <Route exact path="/testing" component={Admin} />
+            <Route exact path="/demo" component={Demo} />
             <Route path="/admin" 
             render={(props) => (this.state.isAuth ? 
             <Admin /> : 
